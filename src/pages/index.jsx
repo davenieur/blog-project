@@ -1,7 +1,10 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { getSiteItems } from '../../contentful/querys/getSiteItem'
-import { Box } from '@chakra-ui/react';
+import { getSite } from '../../contentful/querys/getSite'
+import { Grid, GridItem, Text } from '@chakra-ui/react'
+import { PostsGrid } from '@/posts/PostsGrid'
+import { Header } from '@/ui/Header'
+import { Footer } from '@/ui/Footer'
 
 export default function Home(props) {
   const [header, setHeader] = useState('');
@@ -32,15 +35,49 @@ export default function Home(props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box as="main">  
-        <Box as="header" bg="brand.100">
-          {header}
-        </Box>
 
-        <Box as="footer">
-          {footer}
-        </Box>
-      </Box>
+      <Grid 
+        templateAreas={`"header header"
+          "main main"
+          "footer footer"`}
+        gridTemplateRows={'10% 80% 10%'}
+        color='brand.black'
+        fontWeight='bold'
+        height="100vh"
+        padding="2rem"
+      >  
+
+        {/* Header */}
+        <Header 
+          header={header}
+
+        />
+
+        {/* Main */}
+
+        <GridItem as="main"  bg='brand.primary' area={'main'} padding="2rem">
+          <Grid
+            // templateAreas={`"header header"
+            //   "main main"
+            //   "footer footer"`}
+
+          >
+            <Text fontSize='5xl' mb={"1rem"}>
+              Blog
+            </Text>
+            <PostsGrid />
+          </Grid>
+
+          
+        </GridItem>
+
+        {/* Footer */}
+        <Footer 
+          footer={footer}
+        />
+
+
+      </Grid>
     </>
   )
 }

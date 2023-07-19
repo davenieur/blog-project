@@ -1,6 +1,6 @@
 import { client } from "../contentfulApi";
 
-const getSiteItems = async () => {
+const getSite = async () => {
   const siteQuery = `query {
     siteCollection {
       items {
@@ -22,5 +22,5 @@ const getSiteItems = async () => {
 };
 
 export {
-  getSiteItems
+  getSite
 };

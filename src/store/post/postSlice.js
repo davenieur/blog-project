@@ -8,12 +8,12 @@ export const postSlice = createSlice({
     },
     reducers: {
         onLoadPosts: ( state , { payload } ) => {
-            state.isLoadingEvents = false;
-            // state.events = payload;
-            payload.forEach( event => {
-                const exists = state.events.some( dbEvent => dbEvent.id === event.id );
+            state.isLoadingPosts = false;
+    
+            payload.forEach( post => {
+                const exists = state.posts.some( content => content.slug === post.slug );
                 if( !exists ){
-                    state.events.push( event );
+                    state.posts.push( post );
                 }
             });
         },
