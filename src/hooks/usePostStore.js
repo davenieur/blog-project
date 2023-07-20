@@ -3,8 +3,6 @@ import { onLoadPosts } from "@/store/post/postSlice";
 import { getPosts } from "../../contentful/querys/getPosts";
 import { client } from "../../contentful/contentfulApi";
 
-
-
 export const usePostStore = () => {
     const dispatch = useDispatch();
     const { posts } = useSelector( state => state.posts );
@@ -16,7 +14,7 @@ export const usePostStore = () => {
             dispatch( onLoadPosts( data ) );
 
         } catch (error) {
-            console.log('Error cargando eventos');
+            console.log('Error cargando posts');
             console.log(error);
         }
     }

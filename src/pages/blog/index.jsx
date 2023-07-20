@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Grid, GridItem, Text } from '@chakra-ui/react'
 import { PostsGrid } from '@/posts';
 
-export default function Home(props) {
+export default function Blog(props) {
   console.log(props)
 
   return (

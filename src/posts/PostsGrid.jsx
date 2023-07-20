@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { Flex } from "@chakra-ui/react";
-import { getPosts } from "../../contentful/querys/getPosts";
-import { PostCard } from "./PostCard";
+import { PostCard } from "./";
 import { usePostStore } from "@/hooks/usePostStore";
 
 export const PostsGrid = () => {
@@ -17,7 +16,7 @@ export const PostsGrid = () => {
                 posts.map(post => {
                     return(
                         <PostCard 
-                            key={post.slug}
+                            key={post.slugEN}
                             {...post}
                         />
                     )

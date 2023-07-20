@@ -4,13 +4,10 @@ import { Card, CardBody,Text, Flex } from '@chakra-ui/react';
 import { dateFormat } from '@/helpers/dateFormat';
 
 export const PostCard = (props) => {
-    const { title, author, readingTime, thumbnail, slug, creationDate } = props;
+    const { titleEN, titleES, author, readingTime, thumbnail, slugEN, slugES, creationDate } = props;
     
-    
-
-
     return (
-        <Card width="30em" bg="brand.primary" border="none" shadow="none" >
+        <Card width="30em" bg="brand.primary" border="none" shadow="none">
             <CardBody display="flex" gap="1rem" flexDirection="column">
                 <Link href={"/"}>
                     <Image
@@ -24,7 +21,7 @@ export const PostCard = (props) => {
                 </Link>
                 
                 <Flex direction="column" gap="1rem" color={"brand.gray"}>
-                    <Text fontSize='xl'>{ title }</Text>
+                    <Text fontSize='xl'>{ titleES }</Text>
 
                     <Flex direction="row" gap="1rem" >
                         <Text>

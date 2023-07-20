@@ -4,19 +4,35 @@ const getPosts= async () => {
   const postQuery = `query{
     postCollection(limit: 10) {
       items {
-          title
+          titleES: title(locale: "es")
+          titleEN: title(locale: "en-US")
+          slugES: slug(locale: "es")
+          slugEN: slug(locale: "en-US")
           creationDate
-          readingTime
-          thumbnail {
-              title
-              url
+          metaKeywordsES: metaKeywords(locale: "es")
+          metaKeywordsEN: metaKeywords(locale: "en-US")
+          metaDescriptionES: metaDescription(locale: "es")
+          metaDescriptionEN: metaDescription(locale: "en-US")
+          featuredImage{
+            title
+            url
+          }
+          thumbnail{
+            title
+            url
           }
           author{
             fullName
+            photo{
+              title
+              url
+            }
+            slug
+            
           }
-          slug
           excerpt
-      }
+          readingTime
+        }
     }
   }`;
 

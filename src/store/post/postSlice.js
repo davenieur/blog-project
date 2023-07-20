@@ -11,7 +11,7 @@ export const postSlice = createSlice({
             state.isLoadingPosts = false;
     
             payload.forEach( post => {
-                const exists = state.posts.some( content => content.slug === post.slug );
+                const exists = state.posts.some( content => content.slugES === post.slugES );
                 if( !exists ){
                     state.posts.push( post );
                 }
