@@ -1,23 +1,19 @@
-
-import Link from 'next/link';
-
-
-import { Grid, GridItem, Text } from '@chakra-ui/react'
-import { PostsGrid } from '@/posts';
+import { useEffect } from 'react';
 
 export default function Home(props) {
-  console.log(props)
 
-  return (
-    <Grid
-    >
-      <Text fontSize='5xl' mb={"1rem"}>
-        Blog
-      </Text>
-      <PostsGrid />
-    </Grid>
-   
-  )
+  // Redirrecionando a /blog
+  const redirectToBlog = () => {
+    window.location.href = '/blog';
+  };
+
+  useEffect(() => {
+    redirectToBlog();
+  }, []);
+
+  
+  return <div>Redirecting...</div>;
+  
 }
 
 export async function getStaticProps(props){

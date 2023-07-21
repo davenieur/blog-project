@@ -2,9 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardBody,Text, Flex } from '@chakra-ui/react';
 import { dateFormat } from '@/helpers/dateFormat';
+import { useLocale } from '@/helpers/LocaleContext';
 
 export const PostCard = (props) => {
+
+
     const { titleEN, titleES, author, readingTime, thumbnail, slugEN, slugES, creationDate } = props;
+    const { locale, slug, setSlug, altSlug, setAltSlug, languages, locales } = useLocale();
+
+    
     
     return (
         <Card width="30em" bg="brand.primary" border="none" shadow="none">
@@ -21,11 +27,13 @@ export const PostCard = (props) => {
                 </Link>
                 
                 <Flex direction="column" gap="1rem" color={"brand.gray"}>
-                    <Text fontSize='xl'>{ titleES }</Text>
+                    <Text fontSize='xl'>
+                        { locale === "es" ? titleES : titleEN }
+                    </Text>
 
                     <Flex direction="row" gap="1rem" >
                         <Text>
-                            Fecha: {dateFormat(creationDate)}
+                            { locale === "es" ? "Fecha: " : "Date: " } {dateFormat(creationDate)}
                         </Text>
                         <Text>
                             {author.fullName}

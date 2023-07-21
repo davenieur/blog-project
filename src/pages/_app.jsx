@@ -46,7 +46,7 @@ export default function App({ Component, pageProps }) {
             templateAreas={`"header header"
               "main main"
               "footer footer"`}
-            gridTemplateRows={'10% 80% 10%'}
+      
             color='brand.black'
             fontWeight='bold'
             height="100vh"

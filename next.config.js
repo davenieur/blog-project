@@ -1,11 +1,10 @@
-const { languages } = require('./constants');
+
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '/blog',
-  assetPrefix: '/blog/',
   i18n: {
-    locales: [ languages.es.route , languages.en.route ],
-    defaultLocale: languages.es.route,
+    locales: [ 'es' , 'en-US' ],
+    defaultLocale: 'es',
   },
   images: {
     domains: ['images.ctfassets.net', '//images.ctfassets.net']
