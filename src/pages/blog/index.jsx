@@ -1,20 +1,30 @@
-
-import Link from 'next/link';
-
-
+import { useState, useEffect } from 'react';
 import { Grid, GridItem, Text } from '@chakra-ui/react'
 import { PostsGrid } from '@/posts';
+import { getCategoriesSlugs, getPostsSlugs, getSite } from '../../../contentful/querys';
 
 export default function BlogPage(props) {
-  console.log("blog",props)
+  const [title, setTitle] = useState('');
+    
+  useEffect(() => {
+      const fetchData = async () => {
+      try {
+          const { title } = await getSite();
+          setTitle(title)
+      } catch (error) {
+          console.error(error);
+      }
+      };
+      fetchData();
+  }, []);
 
   return (
     <Grid
     >
       <Text fontSize='5xl' mb={"1rem"}>
-        Blog
+        {title}
       </Text>
-      <PostsGrid />
+      <PostsGrid {...props}/>
     </Grid>
    
   )

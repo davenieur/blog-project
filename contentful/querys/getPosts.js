@@ -29,7 +29,8 @@ const getPosts= async () => {
           }
           slug
         }
-        excerpt
+        excerptES: excerpt(locale: "es")
+        excerptEN: excerpt(locale: "en-US")
         readingTime
       }
     }

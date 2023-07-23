@@ -4,7 +4,7 @@ import { Flex } from "@chakra-ui/react";
 import { PostCard } from "./";
 import { usePostStore } from "@/hooks/usePostStore";
 
-export const PostsGrid = () => {
+export const PostsGrid = ( category ) => {
     const { posts, startLoadingPosts } = usePostStore();
 
     useEffect(() => {

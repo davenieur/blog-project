@@ -1,29 +1,33 @@
 import Link from "next/link";
 import { Button } from '@chakra-ui/react';
 import { GrLanguage } from "react-icons/gr"
-import { useLocale } from "@/helpers/LocaleContext";
+import useTranslation from 'next-translate/useTranslation'
 
-export const LanguageToggle = () => {
-    const { locale, setLocale, slug, setSlug, altSlug, setAltSlug, languages, locales } = useLocale();
-    const currentLanguage = languages[locale];
-    const [altLocale]= locales?.filter(lang => lang !== currentLanguage?.route) || [];
-    const altLanguage = languages[altLocale];
-    const linkPath = slug ?`/${altSlug}` : `${slug}/`    
+export const LanguageToggle = (props) => {
+    const { locales, locale, slug, altSlug } = props || {};
+  
+    const [altLocale] = locales?.filter(item => item !== locale ) || [];
+    const linkPath = slug ?`/blog/${altSlug}` : "/blog"
     
-    // Cambiamos el estado
-    const handleClick = () => {
-        setLocale(altLanguage.locale);
-        setAltSlug(slug);
-        setSlug(altSlug);
-    }
+    const { t } = useTranslation('common')
+    const label = t('label');
 
     return (
         
-        <Button leftIcon={<GrLanguage />} color="brand.black" backgroundColor="brand.secondary" variant='solid' onClick={handleClick}>
-            <Link href={linkPath} locale={altLanguage?.locale}>
-                {altLanguage?.label}
+        <Button leftIcon={<GrLanguage />} color="brand.black" backgroundColor="brand.secondary" variant='solid'>
+            <Link href={linkPath} locale={altLocale}>
+                {label}
             </Link>
         </Button>
         
     )
+}
+
+export async function getStaticProps(props){
+
+  return {
+      props: {
+        ...props
+      }
+  }
 }
