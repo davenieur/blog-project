@@ -1,18 +1,20 @@
 import { client } from "../contentfulApi";
 
-const getPosts= async () => {
+const getPosts= async (locale, altLocale) => {
   const postQuery = `query{
-    postCollection(limit: 10) {
+    postCollection(limit: 10, locale: "${locale}") {
       items {
-        titleES: title(locale: "es")
-        titleEN: title(locale: "en-US")
-        slugES: slug(locale: "es")
-        slugEN: slug(locale: "en-US")
+        title
+        altTitle: title(locale: "${altLocale}")
+        slug: slug(locale: "es")
+        altSlug: slug(locale: "${altLocale}")
+        metaKeywords
+        altMetaKeywords: metaKeywords(locale: "${altLocale}")
+        metaDescription
+        altMetaDescription: metaDescription(locale: "${altLocale}")
+        excerpt
+        altExcerpt: excerpt(locale: "${altLocale}")
         creationDate
-        metaKeywordsES: metaKeywords(locale: "es")
-        metaKeywordsEN: metaKeywords(locale: "en-US")
-        metaDescriptionES: metaDescription(locale: "es")
-        metaDescriptionEN: metaDescription(locale: "en-US")
         featuredImage{
           title
           url
@@ -29,8 +31,6 @@ const getPosts= async () => {
           }
           slug
         }
-        excerptES: excerpt(locale: "es")
-        excerptEN: excerpt(locale: "en-US")
         readingTime
       }
     }

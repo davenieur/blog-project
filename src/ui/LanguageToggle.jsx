@@ -4,9 +4,8 @@ import { GrLanguage } from "react-icons/gr"
 import useTranslation from 'next-translate/useTranslation'
 
 export const LanguageToggle = (props) => {
-    const { locales, locale, slug, altSlug } = props || {};
+    const { slug, altSlug, altLocale } = props || {};
   
-    const [altLocale] = locales?.filter(item => item !== locale ) || [];
     const linkPath = slug ?`/blog/${altSlug}` : "/blog"
     
     const { t } = useTranslation('common')
@@ -16,18 +15,9 @@ export const LanguageToggle = (props) => {
         
         <Button leftIcon={<GrLanguage />} color="brand.black" backgroundColor="brand.secondary" variant='solid'>
             <Link href={linkPath} locale={altLocale}>
-                {label}
+                { label }
             </Link>
         </Button>
         
     )
-}
-
-export async function getStaticProps(props){
-
-  return {
-      props: {
-        ...props
-      }
-  }
 }

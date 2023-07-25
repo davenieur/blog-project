@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Grid, GridItem, Text } from '@chakra-ui/react'
+import { Grid, Text } from '@chakra-ui/react'
 import { PostsGrid } from '@/posts';
-import { getCategoriesSlugs, getPostsSlugs, getSite } from '../../../contentful/querys';
+import { getSite } from '../../../contentful/querys';
 
 export default function BlogPage(props) {
   const [title, setTitle] = useState('');
@@ -31,9 +31,14 @@ export default function BlogPage(props) {
 }
 
 export async function getStaticProps(props){
+  const { locale, locales } = props;
+
+  const [ altLocale ] = locales.filter(lang => lang !== locale);
+
   return {
     props: {
-      ...props
+      ...props,
+      altLocale
     }
   }
 }

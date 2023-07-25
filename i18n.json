@@ -3,6 +3,7 @@
   "defaultLocale": "es",
   "pages": {
     "*": ["common"],
-    "/blog": ["blog"]
+    "/blog": ["post"],
+    "/blog/category/[category]/[post]": ["post", "category"]
   }
 }

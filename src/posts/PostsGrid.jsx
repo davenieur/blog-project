@@ -4,11 +4,12 @@ import { Flex } from "@chakra-ui/react";
 import { PostCard } from "./";
 import { usePostStore } from "@/hooks/usePostStore";
 
-export const PostsGrid = ( category ) => {
+export const PostsGrid = ( props ) => {
+    const { locale, altLocale, slug, altSlug } = props;
     const { posts, startLoadingPosts } = usePostStore();
 
     useEffect(() => {
-        startLoadingPosts()
+        startLoadingPosts(locale, altLocale)
     }, []);
 
     return (
@@ -17,7 +18,7 @@ export const PostsGrid = ( category ) => {
                 posts.map(post => {
                     return(
                         <PostCard 
-                            key={post.slugES}
+                            key={post.slug}
                             {...post}
                         />
                     )

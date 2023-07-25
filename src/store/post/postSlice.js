@@ -9,9 +9,10 @@ export const postSlice = createSlice({
     reducers: {
         onLoadPosts: ( state , { payload } ) => {
             state.isLoadingPosts = false;
-    
+            
+            // Mantenemos los posts que ya están en el arreglo
             payload.forEach( post => {
-                const exists = state.posts.some( content => content.slugES === post.slugES );
+                const exists = state.posts.some( content => content.slug === post.slug );
                 if( !exists ){
                     state.posts.push( post );
                 }

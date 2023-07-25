@@ -17,9 +17,14 @@ export default function Home(props) {
 }
 
 export async function getStaticProps(props){
+  const { locale, locales } = props;
+
+  const [ altLocale ] = locales.filter(lang => lang !== locale);
+
   return {
     props: {
-      ...props
+      ...props,
+      altLocale
     }
   }
 }

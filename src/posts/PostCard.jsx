@@ -5,13 +5,13 @@ import { dateFormat } from '@/helpers/dateFormat';
 import useTranslation from 'next-translate/useTranslation'
 
 export const PostCard = (props) => {
-    const { titleEN, titleES, author, readingTime, thumbnail, slugEN, slugES, creationDate } = props;
-    const { t } = useTranslation('blog');
-    
-    const title = t('title', {titleES: titleES, titleEN: titleEN})
+    const { title, altTitle, author, readingTime, thumbnail, creationDate } = props;
 
-    // const { t } = useTranslation('common')
-    // const label = t('label');
+    const { t } = useTranslation('post');
+    
+    const postTitle = t('title', { titleES: title, titleEN: altTitle })
+
+    const date = t('date');
 
     return (
         <Card width="30em" bg="brand.primary" border="none" shadow="none">
@@ -29,12 +29,12 @@ export const PostCard = (props) => {
                 
                 <Flex direction="column" gap="1rem" color={"brand.gray"}>
                     <Text fontSize='xl'>
-                       {title}
+                       {postTitle}
                     </Text>
 
                     <Flex direction="row" gap="1rem" >
                         <Text>
-                            Fecha: { dateFormat(creationDate) }
+                             { `${date}${dateFormat(creationDate)}` }
                         </Text>
                         <Text>
                             {author.fullName}
