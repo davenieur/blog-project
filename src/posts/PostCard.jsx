@@ -5,18 +5,19 @@ import { dateFormat } from '@/helpers/dateFormat';
 import useTranslation from 'next-translate/useTranslation'
 
 export const PostCard = (props) => {
-    const { title, altTitle, author, readingTime, thumbnail, creationDate } = props;
+    const { titleES, titleEN, slugES, slugEN, author, readingTime, thumbnail, creationDate } = props;
 
     const { t } = useTranslation('post');
     
-    const postTitle = t('title', { titleES: title, titleEN: altTitle })
+    const postTitle = t('title', { titleES, titleEN });
+    const postSlug = t('slug', { slugES, slugEN });
 
     const date = t('date');
 
     return (
         <Card width="30em" bg="brand.primary" border="none" shadow="none">
             <CardBody display="flex" gap="1rem" flexDirection="column">
-                <Link href={"/"}>
+                <Link href={`/blog/${ postSlug }`}>
                     <Image
                         src={thumbnail.url}
                         alt={thumbnail.title}
@@ -36,7 +37,7 @@ export const PostCard = (props) => {
                         <Text>
                              { `${date}${dateFormat(creationDate)}` }
                         </Text>
-                        <Text>
+                        <Text color={"brand.pink"}>
                             {author.fullName}
                         </Text>
                         <Text >

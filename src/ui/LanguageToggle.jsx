@@ -4,20 +4,22 @@ import { GrLanguage } from "react-icons/gr"
 import useTranslation from 'next-translate/useTranslation'
 
 export const LanguageToggle = (props) => {
-    const { slug, altSlug, altLocale } = props || {};
-  
-    const linkPath = slug ?`/blog/${altSlug}` : "/blog"
-    
+    const { slug, altSlug, altLocale } = props;
+
+    const linkPath = slug ? `/blog/category/${altSlug}` : "/blog"
+
+    /* Use */
     const { t } = useTranslation('common')
     const label = t('label');
 
     return (
-        
-        <Button leftIcon={<GrLanguage />} color="brand.black" backgroundColor="brand.secondary" variant='solid'>
-            <Link href={linkPath} locale={altLocale}>
+        <Link href={ linkPath } locale={ altLocale }>
+            <Button leftIcon={<GrLanguage />} color="brand.black" backgroundColor="brand.secondary" variant='ghost'>
+                
                 { label }
-            </Link>
-        </Button>
+            
+            </Button>
+        </Link>
         
     )
 }

@@ -2,8 +2,6 @@
   "locales": ["en-US", "es"],
   "defaultLocale": "es",
   "pages": {
-    "*": ["common"],
-    "/blog": ["post"],
-    "/blog/category/[category]/[post]": ["post", "category"]
+    "*": ["common", "post", "category"]
   }
 }

@@ -1,39 +1,31 @@
-import { useState, useEffect } from 'react';
-import { Grid, Text } from '@chakra-ui/react'
+import { useState, useEffect, useMemo } from 'react';
+import { Grid, GridItem, Text } from '@chakra-ui/react'
 import { PostsGrid } from '@/posts';
 import { getSite } from '../../../contentful/querys';
+import { CategoriesGrid } from '@/categories';
+import { PostsLayout } from '@/layouts/PostsLayout';
+
+
+/* /blog */
 
 export default function BlogPage(props) {
-  const [title, setTitle] = useState('');
-    
-  useEffect(() => {
-      const fetchData = async () => {
-      try {
-          const { title } = await getSite();
-          setTitle(title)
-      } catch (error) {
-          console.error(error);
-      }
-      };
-      fetchData();
-  }, []);
-
+ 
   return (
-    <Grid
-    >
-      <Text fontSize='5xl' mb={"1rem"}>
-        {title}
-      </Text>
+    <PostsLayout props={ props }>
+      
+      {/* LISTA DE POSTS */}
       <PostsGrid {...props}/>
-    </Grid>
-   
+
+
+      {/* LISTA DE CATEGORIAS */}
+      <CategoriesGrid {...props}/>
+    </PostsLayout>
   )
 }
 
 export async function getStaticProps(props){
   const { locale, locales } = props;
-
-  const [ altLocale ] = locales.filter(lang => lang !== locale);
+  const [ altLocale ] = locales.filter(language => language !== locale);
 
   return {
     props: {

@@ -1,15 +1,15 @@
 import { client } from "../contentfulApi";
 
-const getCategories = async () => {
+const getCategory = async (locale, altLocale, slug) => {
   const siteQuery = `query {
     siteCollection {
       items {
-        categoriesCollection {
+        categoriesCollection(locale: "${locale}", where: { slug:"${slug}" } ) {
           items{
-            slugES: slug(locale: "es")
-            slugEN: slug(locale: "en-US")
-            nameES: name(locale: "es")
-            nameEN: name(locale: "en-US")
+            slug
+            altSlug: slug(locale: "${altLocale}")
+            name
+            altName: name(locale: "${altLocale}")
           }
         }
       }
@@ -21,7 +21,7 @@ const getCategories = async () => {
   try {
     const data = await client.request(siteQuery);
     const { siteCollection: { items } } = data;
-    return items[0].categoriesCollection.items;
+    return items[0].categoriesCollection.items[0];
   } catch (error) {
     console.error(error);
     throw error;
@@ -29,5 +29,5 @@ const getCategories = async () => {
 };
 
 export {
-    getCategories
+    getCategory
 };

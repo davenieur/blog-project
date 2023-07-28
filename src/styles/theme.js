@@ -4,11 +4,11 @@ const theme = extendTheme({
   colors: {
       brand: {
         primary: "#FCFCFC",
-        secondary: "#99E1D9",
-        tertiary: "#F7567C",
-        quaternary: "#FFA143",
-        black: "#212227",
+        secondary: "#FF8811",
+        tertiary: "#5F00BA",
+        black: "#0C0910",
         gray: "#212529",
+        pink: "#F227B2",
         footer: "#F7F7F7"
     },
   },

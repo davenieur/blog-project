@@ -1,12 +1,10 @@
-import getT from 'next-translate/getT'
-import { Flex, Grid, Text, GridItem } from '@chakra-ui/react'
+
 import { PostsGrid } from "@/posts";
 import { CategoriesGrid } from '@/categories/CategoriesGrid';
-import { getCategories, getCategory } from "../../../../contentful/querys";
-import Link from 'next/link';
-import { PostsLayout } from '@/layouts';
+import { getCategories, getCategory } from "../../../contentful/querys";
+import { PostsLayout } from '@/layouts/PostsLayout';
 
-/* blog/category/[...slug] */
+/* blog/[...slug] */
 
 export default function(props){
     return (
