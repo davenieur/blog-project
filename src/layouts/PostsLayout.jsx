@@ -33,9 +33,8 @@ export const PostsLayout = ( { props } ) => {
                 "pages categories"`}
         >   
        
+            {/* BREADCRUMB */}
             <Heading  as='h1' display={"flex"} flex-direction={"row"} gap={"1rem"} gridArea={"breadcrumb"} fontSize={"4xl"} color='brand.black'>
-                {/* BLOG */}
-            
                 <Breadcrumb separator={<ChevronRightIcon />}>                    <BreadcrumbItem>
                         <BreadcrumbLink href='/blog'> { memorizedTitle } </BreadcrumbLink>
                     </BreadcrumbItem>
@@ -47,12 +46,12 @@ export const PostsLayout = ( { props } ) => {
                         </BreadcrumbItem>
                      ) : null } 
                 </Breadcrumb>
-
-
             </Heading>
-           
+            
+            {/* POSTS */}
             <PostsGrid {...props} /> 
             
+            {/* CATEGORIES */}
             <CategoriesGrid { ...props } />
 
            

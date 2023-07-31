@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Box, Text, Badge } from '@chakra-ui/react';
+import { Text, Tag, TagLabel } from '@chakra-ui/react';
 import useTranslation from 'next-translate/useTranslation'
 
 
@@ -12,12 +12,12 @@ export const CategoryItem = (props) => {
     const categorySlug = t('slug', { slugES, slugEN })
 
     return (
-        <Badge backgroundColor={"brand.primary"} width={"fit-content"} bg={"brand.secondary"} padding={".5rem"} borderRadius={".5rem"} color={"brand.black"}>
+        <Tag size={"md"} variant='subtle' width={"fit-content"} bg={"brand.secondary"} padding={".5rem"} borderRadius={".5rem"} color={"brand.black"}>
             <Link href={`/blog/category/${ categorySlug }`} locale={ locale } >
-                <Text fontSize='sm' borderBottom={"brand.tertiary .2rem solid"}>
+                <TagLabel fontSize={"sm"}>
                     { categoryName }
-                </Text>
+                </TagLabel>
             </Link>
-        </Badge>
+        </Tag>
     )
 }

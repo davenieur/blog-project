@@ -20,12 +20,13 @@ export const PostCard = (props) => {
                 <Link href={`/blog/${ postSlug }`}>
                     <Box width="100%">
                         <Image
-                            src={thumbnail.url}
-                            alt={thumbnail.title}
-                            // priority={true} 
-                            width={300}
-                            height={200}
+                            src={ thumbnail.url }
+                            alt={ thumbnail.title }
+                            width={ 300 }
+                            height={ 200 }
                             layout="responsive"  
+                            blurDataURL={ thumbnail.url }
+                            placeholder = 'blur'  
                         />
                     </Box>
                 </Link>

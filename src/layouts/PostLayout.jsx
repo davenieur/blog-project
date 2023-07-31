@@ -7,16 +7,12 @@ import { PostInfo } from "@/post";
 
 export const PostLayout = ( { props } ) => {
     const { category } = props;
-    console.log("postLayout", props);
-    // const { slugES, slugEN, nameES, nameEN } = category;
+    const { slugES, slugEN, nameES, nameEN } = category;
 
-    // const { t } = useTranslation('category');
+    const { t } = useTranslation('category');
     
-    // const categorySlug = t('slug', { slugES , slugEN });
-    // const categoryName = t('name', { nameES, nameEN })
-
-
-
+    const categorySlug = t('slug', { slugES , slugEN });
+    const categoryName = t('name', { nameES, nameEN })
     const [title, setTitle] = useState('');
     
     useEffect(() => {
@@ -35,7 +31,7 @@ export const PostLayout = ( { props } ) => {
 
     return (
         <Flex direction={"column"} gap={"4em"}>
-            {/* Title con breadcrumb */}
+       
             <Heading as='h3' display={"flex"} flexDirection={"row"} gap={"1rem"} fontSize={"xl"} color='brand.black'>
                 <Breadcrumb separator={<ChevronRightIcon />}>
                     <BreadcrumbItem >
@@ -43,17 +39,16 @@ export const PostLayout = ( { props } ) => {
                     </BreadcrumbItem>
 
                     <BreadcrumbItem>
-                        {/* <BreadcrumbLink href={`/blog/category/${ categorySlug }`}>{ categoryName }</BreadcrumbLink> */}
-                        <BreadcrumbLink href={`/blog/`}>uwu</BreadcrumbLink>
+                        <BreadcrumbLink href={`/blog/category/${ categorySlug }`}>{ categoryName }</BreadcrumbLink>
+                       
                     </BreadcrumbItem>
 
                 </Breadcrumb>
             </Heading>   
 
             <Grid
-                templateAreas={`"postInfo postInfo featuredImage featuredImage"
-                    "shareMenu shareMenu featuredImage featuredImage"
-                    "body body body contentsTable"`
+                templateAreas={`"postInfo postInfo"
+                    "postBody  postContentTable"`
                 }
             >   
                 <PostInfo { ...props } />    

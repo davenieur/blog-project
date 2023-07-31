@@ -34,7 +34,6 @@ const getPost= async (slug) => {
         excerpt
         readingTime
         category{
-          slug
           slugES: slug(locale: "es")
           slugEN: slug(locale: "en-US")
           nameES: name(locale: "es")
