@@ -1,9 +1,11 @@
 import { useState, useEffect, useMemo } from "react";
-import { GridItem, Flex } from "@chakra-ui/react"
+import { GridItem, Flex } from "@chakra-ui/react";
+import Link from 'next/link';
 import { LanguageToggle } from ".";
 import { getHeader } from "../../contentful/querys";
 
 export const Header = (props) => {
+    const { locale } = props;
     const [header, setHeader] = useState('');
 
     const memorizedHeader = useMemo(() => header, [header]);
@@ -26,9 +28,9 @@ export const Header = (props) => {
     return (
         <GridItem as="header" padding="2rem 4rem"  width={"100vw"}  area={'header'} >
             <Flex justifyContent="space-between" alignItems="center">
-            
-                { memorizedHeader }
-
+                <Link href={`/blog`} locale={ locale }>
+                    { memorizedHeader }
+                </Link>
                 <LanguageToggle {...props}/>
             </Flex>
         </GridItem>

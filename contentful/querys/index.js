@@ -4,3 +4,4 @@ export * from './getPosts';
 export * from './getSite';
 export * from './getCategories';
 export * from './getCategory';
+export * from './getPost';

@@ -4,6 +4,7 @@ import { GrLanguage } from "react-icons/gr"
 import useTranslation from 'next-translate/useTranslation'
 
 export const LanguageToggle = (props) => {
+    console.log("language", props)
     const { slug, altSlug, altLocale } = props;
 
     const linkPath = slug ? `/blog/category/${altSlug}` : "/blog"

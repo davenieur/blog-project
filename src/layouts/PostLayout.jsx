@@ -1,8 +1,21 @@
-import { Grid, Text, Flex, GridItem } from "@chakra-ui/react";
 import { useEffect, useMemo, useState } from "react"
+import useTranslation from "next-translate/useTranslation";
+import { Grid, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Heading, Flex } from "@chakra-ui/react";
+import { ChevronRightIcon } from "@chakra-ui/icons";
+import { getSite } from "../../contentful/querys";
+import { PostInfo } from "@/post";
 
-export const PostLayout = ( { children, props } ) => {
-    const { name } = props;
+export const PostLayout = ( { props } ) => {
+    const { category } = props;
+    console.log("postLayout", props);
+    // const { slugES, slugEN, nameES, nameEN } = category;
+
+    // const { t } = useTranslation('category');
+    
+    // const categorySlug = t('slug', { slugES , slugEN });
+    // const categoryName = t('name', { nameES, nameEN })
+
+
 
     const [title, setTitle] = useState('');
     
@@ -18,34 +31,36 @@ export const PostLayout = ( { children, props } ) => {
         fetchData();
     }, []);
 
-    // const memorizedTitle = useMemo(() => title, [title]);
+    const memorizedTitle = useMemo(() => title, [title]);
 
     return (
-        <Grid
-            templateAreas={`"postInfo postInfo featuredImage featuredImage"
-                "shareMenu shareMenu featuredImage featuredImage"
-                "body body body contentsTable"`}
-        >   
-             <Breadcrumb display={"flex"} flex-direction={"row"} gap={"1rem"} gridArea={"title"} separator='-'>
-                {/* BLOG */}
+        <Flex direction={"column"} gap={"4em"}>
+            {/* Title con breadcrumb */}
+            <Heading as='h3' display={"flex"} flexDirection={"row"} gap={"1rem"} fontSize={"xl"} color='brand.black'>
+                <Breadcrumb separator={<ChevronRightIcon />}>
+                    <BreadcrumbItem >
+                        <BreadcrumbLink href='/blog'> { memorizedTitle } </BreadcrumbLink>
+                    </BreadcrumbItem>
 
+                    <BreadcrumbItem>
+                        {/* <BreadcrumbLink href={`/blog/category/${ categorySlug }`}>{ categoryName }</BreadcrumbLink> */}
+                        <BreadcrumbLink href={`/blog/`}>uwu</BreadcrumbLink>
+                    </BreadcrumbItem>
 
-                <BreadcrumbItem isCurrentPage>      
-                    <Link  href={ "/" } locale={ locale }>
-                        { memorizedTitle }
-                    </Link>  
-                </BreadcrumbItem>
-                
-                { name ? ( <BreadCrumb name={ name } /> ) : null }
-               
-            </Breadcrumb>
+                </Breadcrumb>
+            </Heading>   
+
+            <Grid
+                templateAreas={`"postInfo postInfo featuredImage featuredImage"
+                    "shareMenu shareMenu featuredImage featuredImage"
+                    "body body body contentsTable"`
+                }
+            >   
+                <PostInfo { ...props } />    
+            
+            </Grid>
+
+        </Flex>
            
-            { children }
-
-            {/* PAGINACIÓN */}
-            <GridItem area={"pages"}>
-                Page: 
-            </GridItem>
-        </Grid>
     )
 }

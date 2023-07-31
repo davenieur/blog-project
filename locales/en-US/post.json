@@ -4,5 +4,6 @@
     "metaKeywords": "{{metaKeywordsEN}}",
     "metaDescription": "{{metaDescriptionEN}}",
     "excerpt": "{{excerptEN}}",
-    "date": "Date: "
+    "date": "Date: ",
+    "author": "Author: "
 }

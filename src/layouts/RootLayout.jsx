@@ -4,7 +4,7 @@ import { Header, Footer } from "@/ui";
 export const RootLayout = ( { children, pageProps } ) => {
     return (
         <Grid 
-            gridTemplateRows={"1fr 3fr 1fr"}
+            gridTemplateRows={"1fr 4fr 1fr"}
             templateAreas={`"header header"
             "main main"
             "footer footer"`}

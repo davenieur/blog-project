@@ -5,7 +5,7 @@ const nextTranslate = require('next-translate-plugin')
 
 module.exports = nextTranslate({
   images: {
-    domains: ['images.ctfassets.net', '//images.ctfassets.net']
+    domains: ['images.ctfassets.net', '//images.ctfassets.net', 'downloads.ctfassets.net' ]
   },
   redirects: async() => {
     return[

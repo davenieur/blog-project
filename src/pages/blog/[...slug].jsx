@@ -1,24 +1,18 @@
-
-import { PostsGrid } from "@/posts";
-import { CategoriesGrid } from '@/categories/CategoriesGrid';
-import { getCategories, getCategory } from "../../../contentful/querys";
-import { PostsLayout } from '@/layouts/PostsLayout';
+import { PostLayout } from "@/layouts";
+import { getPosts, getPost } from "../../../contentful/querys";
 
 /* blog/[...slug] */
 
 export default function(props){
     return (
-        <PostsLayout props={ props }> 
-            <PostsGrid {...props} /> 
-            <CategoriesGrid { ...props } />
-        </PostsLayout>    
+        <PostLayout props={ props } /> 
     )  
 }
 
 export async function getStaticPaths(){
-    const categories = await getCategories();
+    const posts = await getPosts();
 
-    const pathES = categories.map(( item ) => ({
+    const pathES = posts.map(( item ) => ({
             params: {
                 slug: [item.slugES]
             },
@@ -26,7 +20,7 @@ export async function getStaticPaths(){
         })
     )
 
-    const pathEN = categories.map(( item ) => ({
+    const pathEN = posts.map(( item ) => ({
             params: {
                 slug: [item.slugEN]
             },
@@ -47,18 +41,15 @@ export async function getStaticProps(props){
     const { params: { slug }, locale, locales } = props || {};    
     const pageSlug = slug.join("/");
     const [ altLocale ] = locales.filter(language => language !== locale);
-
-    const { name, altSlug } = await getCategory( locale, altLocale, pageSlug );
-
-  
+    const data = await getPost(pageSlug);
+    
     return {
       props: {
+        ...data, 
         locales,
         locale,
         altLocale,
         slug: pageSlug,
-        altSlug,
-        name,
       }
     }
   }
