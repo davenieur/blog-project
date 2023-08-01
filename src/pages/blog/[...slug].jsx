@@ -4,7 +4,10 @@ import { getPosts, getPost } from "../../../contentful/querys";
 /* blog/[...slug] */
 
 export default function(props){
+    console.log(props)
+
     return (
+        // <h2>hola</h2>
         <PostLayout props={ props } /> 
     )  
 }
@@ -41,8 +44,8 @@ export async function getStaticProps(props){
     const { params: { slug }, locale, locales } = props || {};    
     const pageSlug = slug.join("/");
     const [ altLocale ] = locales.filter(language => language !== locale);
-    const data = await getPost(pageSlug);
-    
+    const data = await getPost(locale, altLocale, pageSlug);
+
     return {
       props: {
         ...data, 

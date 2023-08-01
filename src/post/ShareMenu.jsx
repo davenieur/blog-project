@@ -7,36 +7,9 @@ import { BiLink } from "react-icons/bi"
 export const ShareMenu = (props) => {
     const { postSlug, thumbnail } = props;
 
-   
-    useEffect(() => {
-        const metaTags = [
-            { property: 'og:title', content: 'Título de tu blog' },
-            { property: 'og:description', content: 'Descripción de tu blog' },
-            { property: 'og:image', content: thumbnail.url },
-            { property: 'og:url', content: `https://blog-project-rho-ten.vercel.app/blog/${postSlug}` },
-        ];
-
-        metaTags.forEach((metaTag) => {
-            const element = document.createElement('meta');
-            element.setAttribute('property', metaTag.property);
-            element.setAttribute('content', metaTag.content);
-            document.head.appendChild(element);
-        });
-
-        // Limpia los meta tags al desmontar el componente
-        return () => {
-        metaTags.forEach((metaTag) => {
-            const element = document.head.querySelector(`meta[property="${metaTag.property}"][content="${metaTag.content}"]`);
-            if (element) {
-            document.head.removeChild(element);
-            }
-        });
-        };
-  }, [postSlug, thumbnail.url]);
-
 
     return (
-        <Flex direction={"row"} alignItems={"center"} gap={"1.5rem"} color={"brand.gray"}> 
+        <Flex direction={"row"} alignItems={"center"} gap={"1.5rem"} color={"brand.gray"} > 
             <Text>
                 ¡Comparte!
             </Text>

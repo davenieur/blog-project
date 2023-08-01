@@ -7,11 +7,11 @@ import useTranslation from 'next-translate/useTranslation'
 export const PostCard = (props) => {
     const { titleES, titleEN, slugES, slugEN, author, readingTime, thumbnail, creationDate } = props;
 
+    // Traducir el contenido de la carta
     const { t } = useTranslation('post');
     
     const postTitle = t('title', { titleES, titleEN });
     const postSlug = t('slug', { slugES, slugEN });
-
     const date = t('date');
 
     return (
@@ -24,7 +24,6 @@ export const PostCard = (props) => {
                             alt={ thumbnail.title }
                             width={ 300 }
                             height={ 200 }
-                            layout="responsive"  
                             blurDataURL={ thumbnail.url }
                             placeholder = 'blur'  
                         />

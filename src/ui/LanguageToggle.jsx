@@ -1,13 +1,21 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { Button } from '@chakra-ui/react';
 import { GrLanguage } from "react-icons/gr"
 import useTranslation from 'next-translate/useTranslation'
 
 export const LanguageToggle = (props) => {
-    // console.log("language", props)
     const { slug, altSlug, altLocale } = props;
+    
+    const router = useRouter();
 
-    const linkPath = slug ? `/blog/category/${altSlug}` : "/blog"
+    // Obtener el path completo
+    const fullPath = router.asPath;
+
+    // Comprobar si el path contiene "category/"
+    const hasCategorySubroute = fullPath.includes('/category/');
+
+    const linkPath = slug ? ( hasCategorySubroute ? `/blog/category/${ altSlug }` : `/blog/${ altSlug }`) : "/blog"
 
     /* Use */
     const { t } = useTranslation('common')

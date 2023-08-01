@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import useTranslation from "next-translate/useTranslation";
-import { Grid, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Heading, Flex } from "@chakra-ui/react";
-import { ChevronRightIcon } from "@chakra-ui/icons";
+import { Grid, BreadcrumbItem, BreadcrumbLink, Heading, Flex } from "@chakra-ui/react";
+import { BreadCrumb } from "@/ui";
 import { getSite } from "../../contentful/querys";
 import { PostInfo } from "@/post";
 
@@ -14,7 +14,7 @@ export const PostLayout = ( { props } ) => {
     const categorySlug = t('slug', { slugES , slugEN });
     const categoryName = t('name', { nameES, nameEN })
     const [title, setTitle] = useState('');
-    
+    1
     useEffect(() => {
         const fetchData = async () => {
         try {
@@ -30,21 +30,13 @@ export const PostLayout = ( { props } ) => {
     const memorizedTitle = useMemo(() => title, [title]);
 
     return (
-        <Flex direction={"column"} gap={"4em"}>
+        <Flex direction={"column"}>
        
-            <Heading as='h3' display={"flex"} flexDirection={"row"} gap={"1rem"} fontSize={"xl"} color='brand.black'>
-                <Breadcrumb separator={<ChevronRightIcon />}>
-                    <BreadcrumbItem >
-                        <BreadcrumbLink href='/blog'> { memorizedTitle } </BreadcrumbLink>
-                    </BreadcrumbItem>
-
-                    <BreadcrumbItem>
-                        <BreadcrumbLink href={`/blog/category/${ categorySlug }`}>{ categoryName }</BreadcrumbLink>
-                       
-                    </BreadcrumbItem>
-
-                </Breadcrumb>
-            </Heading>   
+            <BreadCrumb>
+                <BreadcrumbItem>
+                    <BreadcrumbLink href={`/blog/category/${ categorySlug }`}>{ categoryName }</BreadcrumbLink>
+                </BreadcrumbItem>
+            </BreadCrumb>   
 
             <Grid
                 templateAreas={`"postInfo postInfo"

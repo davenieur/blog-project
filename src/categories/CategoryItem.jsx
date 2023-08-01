@@ -12,9 +12,9 @@ export const CategoryItem = (props) => {
     const categorySlug = t('slug', { slugES, slugEN })
 
     return (
-        <Tag size={"md"} variant='subtle' width={"fit-content"} bg={"brand.secondary"} padding={".5rem"} borderRadius={".5rem"} color={"brand.black"}>
+        <Tag size={"md"} variant='subtle' width={"fit-content"} bg={"brand.secondary"} padding={".5rem 1rem"} borderRadius={".5rem"} color={"brand.black"}>
             <Link href={`/blog/category/${ categorySlug }`} locale={ locale } >
-                <TagLabel fontSize={"sm"}>
+                <TagLabel fontSize={"md"}>
                     { categoryName }
                 </TagLabel>
             </Link>

@@ -1,20 +1,20 @@
 import { client } from "../contentfulApi";
 
 // Obtener todos los datos del post
-const getPost= async (slug) => {
+const getPost= async (locale, altLocale, slug) => {
 
   const postQuery = `query{
-    postCollection(where: { slug:"${slug}" } ) {
+    postCollection(locale: "${locale}", where: { slug:"${slug}" } ) {
       items {
-        titleES: title(locale: "es")
-        titleEN: title(locale: "en-US")
-        slugES: slug(locale: "es")
-        slugEN: slug(locale: "en-US")
+        slug
+        altSlug: slug(locale: "${altLocale}")
+        title
+        altTitle: title(locale: "${altLocale}")
         creationDate
-        metaKeywordsES: metaKeywords(locale: "es")
-        metaKeywordsEN: metaKeywords(locale: "en-US")
-        metaDescriptionES: metaDescription(locale: "es")
-        metaDescriptionEN: metaDescription(locale: "en-US")
+        metaKeywords
+        altMetaKeywords: metaKeywords(locale: "${altLocale}")
+        metaDescription
+        altMetaDescription: metaDescription(locale: "${altLocale}")
         featuredImage{
           title
           url
