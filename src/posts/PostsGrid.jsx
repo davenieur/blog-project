@@ -12,7 +12,6 @@ export const PostsGrid = ( props ) => {
         const fetchPosts = async () => {
             try {
                 const posts = await getPosts(slug);
-                console.log(posts)
 
                 setPosts(posts);
             } catch (error) {
