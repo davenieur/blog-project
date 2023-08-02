@@ -14,14 +14,14 @@ export const CategoriesGrid = (props) => {
     useEffect(() => {
         const fetchCategories = async () => {
         try {
-            const categories = await getCategories();
+            const categories = await getCategories(locale, altLocale);
             setCategories(categories);
         } catch (error) {
             console.error(error);
         }
         };
         fetchCategories();
-    }, []);
+    }, [ locale ]);
 
     const memorizedCategories = useMemo(() => categories, [categories]);
 

@@ -4,17 +4,13 @@ import useTranslation from 'next-translate/useTranslation'
 
 
 export const CategoryItem = (props) => {
-    const { name, altName, slug, altSlug, locale } = props || {};
-
-    const { t } = useTranslation('category');
-    const categoryName = t('name', { nameES: name, nameEN: altName })
-    const categorySlug = t('slug', { slugES: slug, slugEN: altSlug })
+    const { name, slug, locale } = props || {};
 
     return (
        
-        <Link href={`/blog/category/${ categorySlug }`} locale={ locale } >
+        <Link href={`/blog/category/${ slug }`} locale={ locale } >
             <Text>
-                { categoryName }
+                { name }
             </Text>
         </Link>
  

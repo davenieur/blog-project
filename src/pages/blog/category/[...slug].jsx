@@ -48,7 +48,7 @@ export async function getStaticProps(props){
     const pageSlug = slug.join("/");
     const [ altLocale ] = locales.filter(language => language !== locale);
 
-    const { name, altSlug } = await getCategory( locale, altLocale, pageSlug );
+    const { name, altSlug } = await getCategory(pageSlug, locale, altLocale );
 
     const limit = 9;
 

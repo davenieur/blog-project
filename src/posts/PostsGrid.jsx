@@ -25,7 +25,7 @@ export const PostsGrid = ( { children, props } ) => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const posts = await getPosts(slug, offset * 3, limit);
+                const posts = await getPosts(slug, offset * 3, limit, locale);
                 setPosts(posts);
                 setMaxOffset( Math.ceil( posts.length / 3 ) );
             } catch (error) {
@@ -58,9 +58,9 @@ export const PostsGrid = ( { children, props } ) => {
             <Flex direction={"row"} align={"center"} gap={"2rem"}>
                 { children }
 
-                {/* <Pagination 
+                <Pagination 
                     totalPosts={ memorizedPosts.length }
-                /> */}
+                />
             </Flex>
             
         </>

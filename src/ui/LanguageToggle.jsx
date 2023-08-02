@@ -5,6 +5,7 @@ import { GrLanguage } from "react-icons/gr"
 import useTranslation from 'next-translate/useTranslation'
 
 export const LanguageToggle = (props) => {
+
     const { slug, altSlug, altLocale } = props;
     
     const router = useRouter();

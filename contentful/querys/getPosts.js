@@ -14,7 +14,7 @@ const getPosts= async (slug, offset = 0, limit = 3, locale = 'es', altLocale = "
             title
             altTitle: title(locale: "${ altLocale }")
             slug
-            altSlugEN: slug(locale: "${ altLocale }")
+            altSlug: slug(locale: "${ altLocale }")
             creationDate
             thumbnail{
               title
