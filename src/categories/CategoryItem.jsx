@@ -1,23 +1,22 @@
 import Link from 'next/link';
-import { Text, Tag, TagLabel } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
 import useTranslation from 'next-translate/useTranslation'
 
 
 export const CategoryItem = (props) => {
-    const { nameES, nameEN, slugES, slugEN, locale } = props || {};
+    const { name, altName, slug, altSlug, locale } = props || {};
 
     const { t } = useTranslation('category');
-    
-    const categoryName = t('name', { nameES, nameEN })
-    const categorySlug = t('slug', { slugES, slugEN })
+    const categoryName = t('name', { nameES: name, nameEN: altName })
+    const categorySlug = t('slug', { slugES: slug, slugEN: altSlug })
 
     return (
-        <Tag size={"md"} variant='subtle' width={"fit-content"} bg={"brand.secondary"} padding={".5rem 1rem"} borderRadius={".5rem"} color={"brand.black"}>
-            <Link href={`/blog/category/${ categorySlug }`} locale={ locale } >
-                <TagLabel fontSize={"md"}>
-                    { categoryName }
-                </TagLabel>
-            </Link>
-        </Tag>
+       
+        <Link href={`/blog/category/${ categorySlug }`} locale={ locale } >
+            <Text>
+                { categoryName }
+            </Text>
+        </Link>
+ 
     )
 }

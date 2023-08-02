@@ -1,15 +1,16 @@
 import { client } from "../contentfulApi";
 
+// Obtenemos solo los datos relevantes para los categoryItems, se utiliza en los SLUGS para un enrutamiento correcto 
 const getCategories = async () => {
   const siteQuery = `query {
     siteCollection {
       items {
-        categoriesCollection {
+        categoriesCollection(locale: "es") {
           items{
-            slugES: slug(locale: "es")
-            slugEN: slug(locale: "en-US")
-            nameES: name(locale: "es")
-            nameEN: name(locale: "en-US")
+            slug
+            altSlug: slug(locale: "en-US")
+            name
+            altName: name(locale: "en-US")
           }
         }
       }

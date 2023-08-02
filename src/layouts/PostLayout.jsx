@@ -1,33 +1,19 @@
-import { useEffect, useMemo, useState } from "react"
 import useTranslation from "next-translate/useTranslation";
 import { Grid, BreadcrumbItem, BreadcrumbLink, Heading, Flex } from "@chakra-ui/react";
 import { BreadCrumb } from "@/ui";
-import { getSite } from "../../contentful/querys";
 import { PostInfo } from "@/post";
+import { PostComments } from "@/comments/PostComments";
 
+// Plantilla de cada uno de los posts
 export const PostLayout = ( { props } ) => {
     const { category } = props;
-    const { slugES, slugEN, nameES, nameEN } = category;
 
+    // Usamos Next Translate para traducir el nombre de las categorias y su slug
+    const { slug, altSlug, name, altName } = category;
     const { t } = useTranslation('category');
     
-    const categorySlug = t('slug', { slugES , slugEN });
-    const categoryName = t('name', { nameES, nameEN })
-    const [title, setTitle] = useState('');
-    1
-    useEffect(() => {
-        const fetchData = async () => {
-        try {
-            const { title } = await getSite();
-            setTitle(title)
-        } catch (error) {
-            console.error(error);
-        }
-        };
-        fetchData();
-    }, []);
-
-    const memorizedTitle = useMemo(() => title, [title]);
+    const categorySlug = t('slug', { slugES: slug , slugEN: altSlug });
+    const categoryName = t('name', { nameES: name , nameEN: altName });
 
     return (
         <Flex direction={"column"}>
@@ -44,7 +30,8 @@ export const PostLayout = ( { props } ) => {
                 }
             >   
                 <PostInfo { ...props } />    
-            
+                
+                <PostComments { ...props } />
             </Grid>
 
         </Flex>

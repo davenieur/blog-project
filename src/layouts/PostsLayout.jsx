@@ -3,16 +3,16 @@ import { BreadCrumb } from "@/ui";
 import { PostsGrid } from "@/posts";
 import { CategoriesGrid } from "@/categories";
 
-export const PostsLayout = ( { props } ) => {
+// Plantilla del despliegue de los posts
+export const PostsLayout = ( { children, props } ) => {
     const { name } = props;
 
     return (
         <Grid
             gridTemplateColumns={"3fr 1fr"}  
-            gridTemplateRows={".5fr 2fr 1fr"}
+            gridTemplateRows={"10% 90%"}
             templateAreas={`"breadcrumb categories"
-                "posts categories"
-                "pages categories"`}
+                "posts categories"`}
         >   
        
             {/* BREADCRUMB */}
@@ -26,11 +26,9 @@ export const PostsLayout = ( { props } ) => {
             
             </BreadCrumb>
 
-                    
-             
+
+            { children }
             
-            {/* POSTS */}
-            <PostsGrid {...props} /> 
             
             {/* CATEGORIES */}
             <CategoriesGrid { ...props } />

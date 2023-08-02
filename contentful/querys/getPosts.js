@@ -1,44 +1,40 @@
 import { client } from "../contentfulApi";
 
-const getPosts= async (slug) => {
+// Obtenemos solo los datos relevantes para los PostCards, se utiliza en los SLUGS para un enrutamiento correcto 
+const getPosts= async (slug, offset = 0, limit = 3, locale = 'es', altLocale = "en-US") => {
 
-  // Si existe un parámetro agregamos esta cadena al query
-  const withSearchParameter = slug ? ` , where: { category: { slug: "${slug}" } } ` : '';
+  // Si hay un parametro de búsqueda (slug) se agregará
+  const withSearchParameter = slug ? `, where: { category: { slug: "${ slug }" } } ` : '';
 
   const postQuery = `query{
-    postCollection(limit: 3 ${ withSearchParameter }) {
+    siteCollection {
       items {
-        titleES: title(locale: "es")
-        titleEN: title(locale: "en-US")
-        slugES: slug(locale: "es")
-        slugEN: slug(locale: "en-US")
-        metaKeywordsES: metaKeywords(locale: "es")
-        metaKeywordsEN: metaKeywords(locale: "en-US")
-        metaDescriptionES: metaDescription(locale: "es")
-        metaDescriptionEN: metaDescription(locale: "en-US")
-        excerptES: excerpt(locale: "es")
-        excerptEN: excerpt(locale: "en-US")
-        creationDate
-        featuredImage{
-          title
-          url
-        }
-        thumbnail{
-          title
-          url
-        }
-        author{
-          fullName
-          photo{
+        postsCollection(limit: ${ limit }, skip: ${ offset }, locale: "${ locale }" ${ withSearchParameter }) {
+          items {
             title
-            url
+            altTitle: title(locale: "${ altLocale }")
+            slug
+            altSlugEN: slug(locale: "${ altLocale }")
+            creationDate
+            thumbnail{
+              title
+              url
+            }
+            author{
+              fullName
+              photo{
+                title
+                url
+              }
+            }
+            readingTime
+            category{
+              slug
+              altSlug: slug(locale: "${ altLocale }")
+              name
+              altName: name(locale: "${ altLocale }")
+            }
           }
-          slug
-        }
-        readingTime
-        category{
-          slug
-          name
         }
       }
     }
@@ -46,8 +42,9 @@ const getPosts= async (slug) => {
 
   try {
     const data = await client.request(postQuery);
-    const { postCollection: { items } } = data;
-    return items;
+   
+    const { siteCollection: { items } } = data;
+    return items[0].postsCollection.items;
   } catch (error) {
     console.error(error);
     throw error;

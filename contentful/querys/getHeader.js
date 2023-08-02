@@ -1,5 +1,6 @@
 import { client } from "../contentfulApi";
 
+// Se utiliza para obtener el contenido del Header ( se pueden agregar imagenes, texto o más ) 
 const getHeader = async () => {
   const siteQuery = `query {
     siteCollection {

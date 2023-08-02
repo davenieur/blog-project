@@ -5,18 +5,18 @@ import { dateFormat } from '@/helpers/dateFormat';
 import useTranslation from 'next-translate/useTranslation'
 
 export const PostCard = (props) => {
-    const { titleES, titleEN, slugES, slugEN, author, readingTime, thumbnail, creationDate } = props;
+    const { title, altTitle, slug, altSlug, author, readingTime, thumbnail, creationDate } = props;
 
     // Traducir el contenido de la carta
     const { t } = useTranslation('post');
     
-    const postTitle = t('title', { titleES, titleEN });
-    const postSlug = t('slug', { slugES, slugEN });
+    const postTitle = t('title', { titleES: title, titleEN: altTitle });
+    const postSlug = t('slug', { slugES: slug, slugEN: altSlug });
     const date = t('date');
 
     return (
-        <Card display="flex" flex={"flex: 1 1 30%"} width="30%" bg="brand.primary" border="none" shadow="none" padding={"1rem"} >
-            <CardBody display="flex" gap="1rem" flexDirection="column" >
+        <Card display="flex" width="30%" bg="brand.primary" border="none" shadow="none" >
+            <CardBody display="flex" gap="1rem" flexDirection="column" padding={"0"} >
                 <Link href={`/blog/${ postSlug }`}>
                     <Box width="100%">
                         <Image
@@ -31,10 +31,11 @@ export const PostCard = (props) => {
                 </Link>
                 
                 <Flex direction="column" gap="1rem" color={"brand.gray"}>
-                    <Text fontSize='xl'>
-                       { postTitle }
-                    </Text>
-
+                    <Link href={`/blog/${ postSlug }`}>
+                        <Text fontSize='xl' textAlign={"justify"}>
+                        { postTitle }
+                        </Text>
+                    </Link>
                     <Flex direction="row" gap="1rem" >
                         <Text>
                              { `${date}${dateFormat(creationDate)}` }

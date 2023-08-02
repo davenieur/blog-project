@@ -1,6 +1,7 @@
 import { Grid, GridItem  } from "@chakra-ui/react";
 import { Header, Footer } from "@/ui";
 
+// Plantilla base del sitio
 export const RootLayout = ( { children, pageProps } ) => {
     return (
         <Grid 

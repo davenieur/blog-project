@@ -1,19 +1,17 @@
 import { PostLayout } from "@/layouts";
-import { getPosts, getPost } from "../../../contentful/querys";
+import { getPostsSlugs, getPost } from "../../../contentful/querys";
 
 /* blog/[...slug] */
 
 export default function(props){
-    console.log(props)
-
     return (
-        // <h2>hola</h2>
+        // Uso de la plantilla de cada post
         <PostLayout props={ props } /> 
     )  
 }
 
 export async function getStaticPaths(){
-    const posts = await getPosts();
+    const posts = await getPostsSlugs();
 
     const pathES = posts.map(( item ) => ({
             params: {

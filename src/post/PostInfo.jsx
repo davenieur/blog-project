@@ -2,43 +2,25 @@ import { GridItem, Heading, Flex, Text, Divider, Tag, TagLabel, Avatar, Box } fr
 import useTranslation from "next-translate/useTranslation";
 import { dateFormat } from '@/helpers';
 import { CategoryItem } from '@/categories';
-import { ShareMenu } from '.';
+import { AuthorTag, ShareMenu } from '.';
 import Image from 'next/image';
 
 export const PostInfo = (props) => {
-    // const { titleES, titleEN, slugES, slugEN, author, readingTime, featuredImage, creationDate, category, thumbnail } = props;
-    const { title, altTitle, slug, altSlug, author, readingTime, featuredImage, creationDate, category, thumbnail } = props;
+    const { title, slug, author, readingTime, featuredImage, creationDate, category, thumbnail, locale } = props;
 
-
-    // Traducimos el contenido del post
-    // const { t } = useTranslation('post');
-    // const postTitle = t('title', { titleES, titleEN });
-    // const postSlug = t('slug', { slugES, slugEN });
-
-    // const date = t('date');
-    // const auth = t('author');
 
     return (
         <GridItem area={ "postInfo"} display={"flex"} alignItems={"center"} justifyContent="center" flexDirection={"row"} gap={"2rem"} >
-            <Flex direction={"column"} gap={"2rem"} padding={"2rem"} width={"fit-content"}>
-                <Heading as='h1' fontSize={"4xl"}>
+            <Flex direction={"column"} gap={"2rem"} padding={"2rem"} width={"50%"}>
+                <Heading as='h1' fontSize={"5xl"}>
                     { title }
                 </Heading>
                 
-                <Flex direction="row" gap="2rem" fontSize={"xl"} align={"center"}>
-                    <Tag size='lg' bg={"brand.tertiary"} color={"brand.primary"} borderRadius='full'>
-                        <Avatar
-                            src={ author.photo.url }
-                            size='xs'
-                            name='Segun Adebayo'
-                            ml={-1}
-                            mr={2}
-                        />
-                        <TagLabel>{ author.fullName } </TagLabel>
-                    </Tag>
+                <Flex direction="row" gap="2rem" fontSize={"md"} align={"center"} color={"brand.gray"}>
+                    <AuthorTag author={ ...author } locale={ locale} />
 
                     <Text>
-                            { dateFormat(creationDate) }
+                        { dateFormat(creationDate) }
                     </Text>
 
                     <Text >
@@ -46,7 +28,10 @@ export const PostInfo = (props) => {
                     </Text>
                 </Flex>
 
-                <CategoryItem { ...category }/>
+                <Box backgroundColor={"brand.secondary"} width={"fit-content"} padding={".5rem 1rem"} borderRadius={"1rem"} fontSize={"md"}>
+                    <CategoryItem { ...category }/>
+                </Box>
+                
 
                 <Divider orientation='horizontal' />
 

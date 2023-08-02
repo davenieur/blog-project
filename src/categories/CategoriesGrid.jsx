@@ -6,7 +6,7 @@ import { CategoryItem } from './CategoryItem';
 
 
 export const CategoriesGrid = (props) => {
-    const { locale, altLocale, actualSlug, altActualSlug } = props;
+    const { locale, altLocale } = props;
 
     const [ categories, setCategories ] = useState([]);
 
@@ -14,7 +14,7 @@ export const CategoriesGrid = (props) => {
     useEffect(() => {
         const fetchCategories = async () => {
         try {
-            const categories = await getCategories(locale, altLocale);
+            const categories = await getCategories();
             setCategories(categories);
         } catch (error) {
             console.error(error);
@@ -31,11 +31,8 @@ export const CategoriesGrid = (props) => {
                 memorizedCategories.map( category => {
                     return(
                         <CategoryItem 
-                            key={ category.slugES }
+                            key={ category.slug }
                             { ...category }
-                            actualSlug
-                            altActualSlug
-                  
                         />
                     )
                 })

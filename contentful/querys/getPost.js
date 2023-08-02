@@ -1,7 +1,7 @@
 import { client } from "../contentfulApi";
 
-// Obtener todos los datos del post
-const getPost= async (locale, altLocale, slug) => {
+// Obtener todos los datos del post, se utiliza para que LanguageToggle tenga el slug en el otro idioma.
+const getPost= async (locale = "es", altLocale = "en-US", slug) => {
 
   const postQuery = `query{
     postCollection(locale: "${locale}", where: { slug:"${slug}" } ) {
@@ -34,10 +34,10 @@ const getPost= async (locale, altLocale, slug) => {
         excerpt
         readingTime
         category{
-          slugES: slug(locale: "es")
-          slugEN: slug(locale: "en-US")
-          nameES: name(locale: "es")
-          nameEN: name(locale: "en-US")
+          slug
+          altSlug: slug(locale: "${ altLocale }")
+          name
+          altName: name(locale: "${ altLocale }")
         }
       }
     }

@@ -3,9 +3,10 @@ import { Flex, IconButton} from "@chakra-ui/react"
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 
 export const Pagination = ( { totalPosts }) => {
-    const [ page, setPage ] = useState(1);
 
-    const totalPages = Math.floor(totalPosts / 3);
+    const [ page, setPage ] = useState(totalPosts === 0 ? 0 : 1)
+
+    const totalPages = Math.ceil(totalPosts / 3);
 
     const handleLeft = () => {
         setPage((currentPage) => (currentPage > 1 ? currentPage - 1 : totalPages ));
@@ -29,7 +30,7 @@ export const Pagination = ( { totalPosts }) => {
                     _hover={{ backgroundColor: "brand.pink"}}
                     onClick={ handleLeft }
                 />
-
+               
                 { page } / { totalPages } 
 
                 <IconButton

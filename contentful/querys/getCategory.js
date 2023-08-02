@@ -1,6 +1,7 @@
 import { client } from "../contentfulApi";
 
-const getCategory = async (locale, altLocale, slug) => {
+// Se utiliza para que LanguageToggle tenga el slug en el idioma alterno, además del nombre
+const getCategory = async (locale = 'es', altLocale = 'en-US', slug) => {
   const siteQuery = `query {
     siteCollection {
       items {

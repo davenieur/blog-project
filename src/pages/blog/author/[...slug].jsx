@@ -1,34 +1,29 @@
 import { PostsLayout } from "@/layouts";
-import { getCategories, getCategory } from "../../../../contentful/querys";
-import { PostsGrid } from "@/posts";
+import { getPostsSlugs, getPost } from "../../../contentful/querys";
 
-/* blog/[...slug] */
+/* blog/author/[...slug] */
 
 export default function(props){
-    // Desplegamos los posts sin el divider y con un limite de 9 posts por página
     return (
-        <PostsLayout props={ props }> 
-            <PostsGrid 
-                props={ ...props}
-            />
-        </PostsLayout> 
+        // Uso de la plantilla de cada post
+        <PostsLayout props={ props } /> 
     )  
 }
 
 export async function getStaticPaths(){
-    const categories = await getCategories();
+    const posts = await  getPostsSlugs();
 
-    const pathES = categories.map(( item ) => ({
+    const pathES = posts.map(( item ) => ({
             params: {
-                slug: [item.slug]
+                slug: [item.slugES]
             },
             locale: 'es'
         })
     )
 
-    const pathEN = categories.map(( item ) => ({
+    const pathEN = posts.map(( item ) => ({
             params: {
-                slug: [item.altSlug]
+                slug: [item.slugEN]
             },
             locale: 'en-US'
         })
@@ -47,20 +42,15 @@ export async function getStaticProps(props){
     const { params: { slug }, locale, locales } = props || {};    
     const pageSlug = slug.join("/");
     const [ altLocale ] = locales.filter(language => language !== locale);
-
-    const { name, altSlug } = await getCategory( locale, altLocale, pageSlug );
-
-    const limit = 9;
+    const data = await getPost(locale, altLocale, pageSlug);
 
     return {
       props: {
+        ...data, 
         locales,
         locale,
         altLocale,
         slug: pageSlug,
-        altSlug,
-        name,
-        limit
       }
     }
   }
