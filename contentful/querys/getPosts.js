@@ -9,7 +9,7 @@ const getPosts= async (slug, offset = 0, limit = 3, locale = 'es', altLocale = "
   const postQuery = `query{
     siteCollection {
       items {
-        postsCollection(limit: ${ limit }, skip: ${ offset }, locale: "${ locale }" ${ withSearchParameter }) {
+        postsCollection(limit: ${ limit }, skip: ${ offset }, order: [creationDate_DESC], locale: "${ locale }" ${ withSearchParameter }) {
           items {
             title
             altTitle: title(locale: "${ altLocale }")

@@ -8,7 +8,7 @@ export const CategoryItem = (props) => {
 
     return (
        
-        <Link href={`/blog/category/${ slug }`} locale={ locale } >
+        <Link href={`/blog/category/${ slug }`} locale={ locale }>
             <Text>
                 { name }
             </Text>

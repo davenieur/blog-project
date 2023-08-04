@@ -43,7 +43,7 @@ export async function getStaticProps(props){
     const pageSlug = slug.join("/");
     const [ altLocale ] = locales.filter(language => language !== locale);
     const data = await getPost(pageSlug, locale, altLocale);
- 
+   
     return {
       props: {
         ...data, 

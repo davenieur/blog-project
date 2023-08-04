@@ -26,7 +26,7 @@ export const CategoriesGrid = (props) => {
     const memorizedCategories = useMemo(() => categories, [categories]);
 
     return (
-        <Flex gridArea={'categories'} direction={"column"} color={"brand.black"} gap={"2rem"}>
+        <Flex gridArea={'categories'} direction={"column"} color={"brand.black"} gap={"2rem"} padding={"1rem"}>
             {
                 memorizedCategories.map( category => {
                     return(

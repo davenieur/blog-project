@@ -18,7 +18,7 @@ export const LanguageToggle = (props) => {
 
     const linkPath = slug ? ( hasCategorySubroute ? `/blog/category/${ altSlug }` : `/blog/${ altSlug }`) : "/blog"
 
-    /* Use */
+    // Traducir el label del botón de idiomas
     const { t } = useTranslation('common')
     const label = t('label');
 

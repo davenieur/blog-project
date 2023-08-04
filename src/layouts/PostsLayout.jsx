@@ -1,4 +1,4 @@
-import { Grid, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react"
+import { Grid, BreadcrumbItem, BreadcrumbLink, GridItem } from "@chakra-ui/react"
 import { BreadCrumb } from "@/ui";
 import { PostsGrid } from "@/posts";
 import { CategoriesGrid } from "@/categories";
@@ -9,10 +9,11 @@ export const PostsLayout = ( { children, props } ) => {
 
     return (
         <Grid
-            gridTemplateColumns={"3fr 1fr"}  
+            gridTemplateColumns={"3fr .75fr"}  
             gridTemplateRows={"10% 90%"}
             templateAreas={`"breadcrumb categories"
                 "posts categories"`}
+            gap={"2rem"}
         >   
        
             {/* BREADCRUMB */}
@@ -26,9 +27,7 @@ export const PostsLayout = ( { children, props } ) => {
             
             </BreadCrumb>
 
-
             { children }
-            
             
             {/* CATEGORIES */}
             <CategoriesGrid { ...props } />

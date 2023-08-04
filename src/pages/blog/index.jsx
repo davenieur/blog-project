@@ -51,9 +51,9 @@ export default function BlogPage(props) {
                 />
 
                 {/* Mostramos los posts de cada categoria */}
-                <PostsGrid props={ slug={ slug } }>
-                  <Divider orientation='horizontal' width={"70%"}/>
-                </PostsGrid>
+                <PostsGrid props={ slug={ slug } } />
+                 
+                <Divider orientation='horizontal' width={"70%"}/>
 
                 
               </Flex>

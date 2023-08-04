@@ -1,9 +1,0 @@
-{
-    "title": "{{titleEN}}",
-    "slug": "{{slugEN}}",
-    "metaKeywords": "{{metaKeywordsEN}}",
-    "metaDescription": "{{metaDescriptionEN}}",
-    "excerpt": "{{excerptEN}}",
-    "date": "Date: ",
-    "author": "Author: "
-}

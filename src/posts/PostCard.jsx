@@ -15,15 +15,15 @@ export const PostCard = (props) => {
     const date = t('date');
 
     return (
-        <Card display="flex" width="30%" bg="brand.primary" border="none" shadow="none" >
+        <Card  bg="brand.primary" border="none" shadow="none"  width={"30%"} >
             <CardBody display="flex" gap="1rem" flexDirection="column" padding={"0"} >
                 <Link href={`/blog/${ postSlug }`}>
-                    <Box width="100%">
+                    <Box width="100%" position={"relative"} height={"14rem"}>
                         <Image
                             src={ thumbnail.url }
                             alt={ thumbnail.title }
-                            width={ 300 }
-                            height={ 200 }
+                            layout="fill"
+                            objectFit="cover"
                             blurDataURL={ thumbnail.url }
                             placeholder = 'blur'  
                         />

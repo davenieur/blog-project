@@ -18,7 +18,6 @@ const getPostsSlugs= async () => {
 
   try {
     const data = await client.request(postQuery);
-    console.log(data)
     const { siteCollection: { items } } = data;
     return items[0].postsCollection.items;
   } catch (error) {

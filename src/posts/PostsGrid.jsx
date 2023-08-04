@@ -5,8 +5,9 @@ import { Pagination, PostCard } from "./";
 import { getPosts, getCategories } from "../../contentful/querys";
 
 
-export const PostsGrid = ( { children, props } ) => {
-    const { locale, slug, limit } = props;
+export const PostsGrid = ( { props } ) => {
+    const { locale, altLocale, slug, limit } = props;
+    console.log(props);
     const [ posts, setPosts ] = useState([]);
 
 
@@ -16,7 +17,6 @@ export const PostsGrid = ( { children, props } ) => {
     
     const incrementOffset = () => {
         setOffset((current) => (current > 1 ? current - 1 : maxOffset ));
-
     }
 
     
@@ -25,7 +25,7 @@ export const PostsGrid = ( { children, props } ) => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const posts = await getPosts(slug, offset * 3, limit, locale);
+                const posts = await getPosts(slug, offset * 3, limit, locale, altLocale);
                 setPosts(posts);
                 setMaxOffset( Math.ceil( posts.length / 3 ) );
             } catch (error) {
@@ -36,34 +36,30 @@ export const PostsGrid = ( { children, props } ) => {
     }, [ slug ]);
     
     const memorizedPosts = useMemo(() => posts, [posts]);
-    
-    return (
-        <>  
-            <Flex wrap={true} alignItems={"flex-start"} justifyContent={"flex-start"} flexWrap={"wrap"} gap={"2rem"}>
-        
-                {
-                    memorizedPosts.map(post => {
-                       
-                        return(
-                            <PostCard 
-                                key={ post.slug }
-                                { ...post }
-                            />
-                        )
-                    })
-                }
-            </Flex>
-                
-            
-            <Flex direction={"row"} align={"center"} gap={"2rem"}>
-                { children }
 
-                <Pagination 
-                    totalPosts={ memorizedPosts.length }
-                />
-            </Flex>
-            
-        </>
+    
+
+    // Si el estamos haciendo la petición para mostrar los posts por categoria
+    const wrapContent = limit === 9 ?  '' : 'wrap';
+
+    const overFlow = limit > 3 ? '' : 'hidden';
+
+    return (
+       
+        <Flex alignItems={"flex-start"} justifyContent={"flex-start"} gap={"2rem"}  wrap={ wrapContent } overflow={ overFlow }>
         
+            {
+                memorizedPosts.map(post => {
+                    
+                    return(
+                        <PostCard 
+                            key={ post.slug }
+                            { ...post }
+                        />
+                    )
+                })
+            }
+        </Flex>  
+      
     )
 }

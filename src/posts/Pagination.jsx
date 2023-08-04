@@ -4,7 +4,7 @@ import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 
 export const Pagination = ( { totalPosts }) => {
 
-    const [ page, setPage ] = useState(totalPosts === 0 ? 0 : 1)
+    const [ currentPage, setPage ] = useState(1)
 
     const totalPages = Math.ceil(totalPosts / 3);
 
@@ -29,9 +29,10 @@ export const Pagination = ( { totalPosts }) => {
                     icon={<ArrowBackIcon />}
                     _hover={{ backgroundColor: "brand.pink"}}
                     onClick={ handleLeft }
+                    
                 />
                
-                { page } / { totalPages } 
+                { currentPage } / { totalPages } 
 
                 <IconButton
                     isRound={true}

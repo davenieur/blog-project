@@ -1,16 +1,21 @@
+import { GridItem } from "@chakra-ui/react";
 import { PostsLayout } from "@/layouts";
 import { getCategories, getCategory } from "../../../../contentful/querys";
 import { PostsGrid } from "@/posts";
 
-/* blog/[...slug] */
+/* blog/category/[...slug] */
 
 export default function(props){
+    console.log("category", props);
+    
     // Desplegamos los posts sin el divider y con un limite de 9 posts por página
     return (
         <PostsLayout props={ props }> 
-            <PostsGrid 
-                props={ ...props}
-            />
+            <GridItem area={"posts"}>
+                <PostsGrid 
+                    props={ ...props}
+                />
+            </GridItem>
         </PostsLayout> 
     )  
 }

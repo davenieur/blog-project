@@ -1,3 +1,4 @@
-export * from './PostInfo';
+export * from './PostBody';
 export * from './ShareMenu';
-export * from './AuthorTag'
+export * from './PostInfo';
+export * from './PostContentTable';
