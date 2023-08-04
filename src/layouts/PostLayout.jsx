@@ -8,9 +8,6 @@ import { PostComments } from "@/comments";
 // Plantilla de cada uno de los posts
 export const PostLayout = ( { props } ) => {
     const { category: { slug, name } } = props;
-
-    
-
     return (
         <Flex direction={"column"}>
        
@@ -28,12 +25,17 @@ export const PostLayout = ( { props } ) => {
 
                 gap={"2rem"}
             >   
+                {/* Información del post */}
                 <PostInfo { ...props } />    
                 
+                {/*  Cuerpo del post */}
                 <PostBody { ...props } />
 
-                <PostContentTable { ...props } />
-                {/* <PostComments { ...props } /> */}
+                {/* Tabla de contenidos del post */}
+                <PostContentTable { ...props } />   
+                
+                {/* Comentarios del post */}
+                <PostComments { ...props } />
             </Grid>
 
         </Flex>

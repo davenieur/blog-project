@@ -7,7 +7,6 @@ import { getPosts, getCategories } from "../../contentful/querys";
 
 export const PostsGrid = ( { props } ) => {
     const { locale, altLocale, slug, limit } = props;
-    console.log(props);
     const [ posts, setPosts ] = useState([]);
 
 
@@ -19,9 +18,7 @@ export const PostsGrid = ( { props } ) => {
         setOffset((current) => (current > 1 ? current - 1 : maxOffset ));
     }
 
-    
-
-    // Lectura de todos los post publicados en el sitio
+    // Cargamos los posts con base a sus diferentes parámetros (slug, offset, limit, locale, altLocale);
     useEffect(() => {
         const fetchPosts = async () => {
             try {
@@ -35,13 +32,12 @@ export const PostsGrid = ( { props } ) => {
         fetchPosts();
     }, [ slug ]);
     
+    // Memorizamos los posts para optimizar
     const memorizedPosts = useMemo(() => posts, [posts]);
 
-    
-
-    // Si el estamos haciendo la petición para mostrar los posts por categoria
+    // Si se muestra los posts por categoria se aplica el wrap y se remueve el overflow = hidden
+    // Si se muestra los posts en la página principal (index) el wrap se remueve y se aplica el overflow = hidden
     const wrapContent = limit === 9 ?  '' : 'wrap';
-
     const overFlow = limit > 3 ? '' : 'hidden';
 
     return (
@@ -50,7 +46,6 @@ export const PostsGrid = ( { props } ) => {
         
             {
                 memorizedPosts.map(post => {
-                    
                     return(
                         <PostCard 
                             key={ post.slug }

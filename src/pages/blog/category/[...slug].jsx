@@ -6,9 +6,6 @@ import { PostsGrid } from "@/posts";
 /* blog/category/[...slug] */
 
 export default function(props){
-    console.log("category", props);
-    
-    // Desplegamos los posts sin el divider y con un limite de 9 posts por página
     return (
         <PostsLayout props={ props }> 
             <GridItem area={"posts"}>
@@ -47,14 +44,12 @@ export async function getStaticPaths(){
     }
 }   
 
-
+// Enviamos los datos de la categoría seleccionada usando el query getCategory
 export async function getStaticProps(props){
     const { params: { slug }, locale, locales } = props || {};    
     const pageSlug = slug.join("/");
     const [ altLocale ] = locales.filter(language => language !== locale);
-
     const { name, altSlug } = await getCategory(pageSlug, locale, altLocale );
-
     const limit = 9;
 
     return {

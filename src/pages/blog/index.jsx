@@ -26,9 +26,9 @@ export default function BlogPage(props) {
       }
       };
       fetchCategories();
-  }, []);
+  }, [ locale ]);
 
-  
+  // Memorizamos para optimizar
   const memorizedCategories = useMemo(() => categories, [categories]);
 
   return (
@@ -41,7 +41,7 @@ export default function BlogPage(props) {
           
             return(
 
-              <Flex direction={"column"} gap={"2rem"} padding={"1rem"} key={ slug }>
+              <Flex direction={"column"} gap={"2rem"} padding={"1rem"} key={ name }>
                 <CategoryItem 
                   name = { name }
                   altName = { altName }
@@ -53,21 +53,12 @@ export default function BlogPage(props) {
                 {/* Mostramos los posts de cada categoria */}
                 <PostsGrid props={ slug={ slug } } />
                  
-                <Divider orientation='horizontal' width={"70%"}/>
-
-                
-              </Flex>
-
-              
+                <Divider orientation='horizontal' width={"70%"}/>                
+              </Flex>     
             )
           })
         }
       </Flex>
-
-       
-   
-      
-     
     </PostsLayout>
   )
 }

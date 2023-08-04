@@ -37,13 +37,12 @@ export async function getStaticPaths(){
     }
 }   
 
-
+// Enviamos los datos del post seleccionado usando el query getCategory
 export async function getStaticProps(props){
     const { params: { slug }, locale, locales } = props || {};    
     const pageSlug = slug.join("/");
     const [ altLocale ] = locales.filter(language => language !== locale);
     const data = await getPost(pageSlug, locale, altLocale);
-   
     return {
       props: {
         ...data, 

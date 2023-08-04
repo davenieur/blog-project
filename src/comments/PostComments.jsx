@@ -9,12 +9,12 @@ export const PostComments = ( { slug, title} ) => {
 
     const disqusShortname = 'https-blog-project-rho-ten-vercel-app-blog'; 
     const disqusConfig = {
-        url: "http://localhost:3000",
+        url: `https://blog-project-rho-ten.vercel.app/blog/${slug}`,
         identifier: `${ slug }`,
         title: `${ title }`, 
     };
 
-    console.log(disqusConfig)
+  
     return (
         <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
     );
