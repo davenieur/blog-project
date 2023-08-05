@@ -15,12 +15,11 @@ export const PostContentTable = (props) => {
     return (
         <Flex  gridArea="postContentTable" direction="column" gap="2rem" padding="2rem">
             <Flex direction="row" align="center" fontSize="lg" gap=".5rem">
-                <AiFillCaretRight size="1.5rem" color="#5F00BA"/> 
+                <AiFillCaretRight size="1.5rem" color="#FF8811"/> 
                 { contentLabel }
             </Flex>
 
-           
-
+            {/* Mostramos todo el contenido HTML con etiqueta H2 */}
             { contentTable.map( content => {
                 return(
                     <Flex direction="column" gap="1rem" key={ content.content[0].value } width="70%">

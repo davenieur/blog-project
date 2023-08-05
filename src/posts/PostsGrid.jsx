@@ -9,7 +9,6 @@ export const PostsGrid = ( { props } ) => {
     const { locale, altLocale, slug, limit } = props;
     const [ posts, setPosts ] = useState([]);
 
-
     // Controlamos el offset para las peticiones (parametro Skip)
     const [ offset, setOffset ] = useState(0);
     const [ maxOffset, setMaxOffset ] = useState(1);
@@ -37,13 +36,11 @@ export const PostsGrid = ( { props } ) => {
 
     // Si se muestra los posts por categoria se aplica el wrap y se remueve el overflow = hidden
     // Si se muestra los posts en la página principal (index) el wrap se remueve y se aplica el overflow = hidden
-    const wrapContent = limit === 9 ?  '' : 'wrap';
+    const wrapContent = limit === 9 ?  'wrap' : '';
     const overFlow = limit > 3 ? '' : 'hidden';
 
     return (
-       
-        <Flex alignItems={"flex-start"} justifyContent={"flex-start"} gap={"2rem"}  wrap={ wrapContent } overflow={ overFlow }>
-        
+        <Flex alignItems={"flex-start"} justifyContent={"flex-start"} gap="4rem 2rem"  wrap={ wrapContent } overflow={ overFlow }>
             {
                 memorizedPosts.map(post => {
                     return(

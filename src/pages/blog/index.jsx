@@ -1,9 +1,9 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Flex, Text, Divider } from '@chakra-ui/react';
+import { Flex, Divider } from '@chakra-ui/react';
 import { Pagination } from '@/posts';
 import { PostsGrid } from '@/posts';
 
-import { CategoriesGrid, CategoryItem } from '@/categories';
+import {  CategoryItem } from '@/categories';
 import { PostsLayout } from '@/layouts/PostsLayout';
 import { getCategories } from '../../../contentful/querys';
 
@@ -15,7 +15,7 @@ export default function BlogPage(props) {
   // Obtenemos todas las categorias
   const [ categories, setCategories ] = useState([]);
 
-
+  // Realizamos el fetch cada que el locale cambie (puede mejorar)
   useEffect(() => {
       const fetchCategories = async () => {
       try {
@@ -26,9 +26,9 @@ export default function BlogPage(props) {
       }
       };
       fetchCategories();
-  }, [ locale ]);
+  }, [locale]);
 
-  // Memorizamos para optimizar
+  
   const memorizedCategories = useMemo(() => categories, [categories]);
 
   return (
@@ -41,24 +41,35 @@ export default function BlogPage(props) {
           
             return(
 
-              <Flex direction={"column"} gap={"2rem"} padding={"1rem"} key={ name }>
-                <CategoryItem 
-                  name = { name }
-                  altName = { altName }
-                  slug = { slug }
-                  altSlug = { altSlug }
-                  locale = { locale }
-                />
+              <Flex direction={"column"} gap={"2rem"} padding={"1rem"} key={ slug }>
+
+                {/* Nombre de la categoria */}
+                <Flex fontSize="2xl" color="brand.tertiary">
+                  <CategoryItem 
+                    name = { name }
+                    altName = { altName }
+                    slug = { slug }
+                    altSlug = { altSlug }
+                    locale = { locale }
+                  />
+                </Flex>
+                
 
                 {/* Mostramos los posts de cada categoria */}
                 <PostsGrid props={ slug={ slug } } />
                  
-                <Divider orientation='horizontal' width={"70%"}/>                
-              </Flex>     
+                <Divider orientation='horizontal' width={"70%"} variant="thick"/>
+
+              </Flex>
             )
           })
         }
       </Flex>
+
+       
+   
+      
+     
     </PostsLayout>
   )
 }

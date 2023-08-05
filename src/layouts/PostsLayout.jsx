@@ -9,7 +9,7 @@ export const PostsLayout = ( { children, props } ) => {
 
     return (
         <Grid
-            gridTemplateColumns={"3fr .75fr"}  
+            gridTemplateColumns={"3fr .6fr"}  
             gridTemplateRows={"10% 90%"}
             templateAreas={`"breadcrumb categories"
                 "posts categories"`}

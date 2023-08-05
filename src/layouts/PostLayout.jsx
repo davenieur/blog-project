@@ -9,7 +9,7 @@ import { PostComments } from "@/comments";
 export const PostLayout = ( { props } ) => {
     const { category: { slug, name } } = props;
     return (
-        <Flex direction={"column"}>
+        <Flex direction={"column"} padding="2rem">
        
             <BreadCrumb>
                 <BreadcrumbItem>

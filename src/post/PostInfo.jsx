@@ -10,8 +10,8 @@ export const PostInfo = (props) => {
 
 
     return (
-        <GridItem area={ "postInfo"} display={"flex"} alignItems={"center"} justifyContent="center" flexDirection={"row"} gap={"2rem"}  padding={"2rem"} >
-            <Flex direction={"column"} gap={"2rem"} width={"50%"}>
+        <GridItem area={ "postInfo"} display={"flex"} alignItems={"center"} justifyContent="center" flexDirection={"row"} gap={"5rem"}  padding={"3rem"} >
+            <Flex direction={"column"} gap={"2rem"} width={"40%"}>
                 <Heading as='h1' fontSize={"4xl"}>
                     { title }
                 </Heading>
@@ -28,7 +28,7 @@ export const PostInfo = (props) => {
                     </Text>
                 </Flex>
 
-                <Box backgroundColor={"brand.secondary"} width={"fit-content"} padding={".5rem 1rem"} borderRadius={"1rem"} fontSize={"md"}>
+                <Box backgroundColor="brand.tertiary" color="brand.primary" width="fit-content" padding=".5rem 1rem" borderRadius="1rem" fontSize="md">
                     <CategoryItem { ...category }/>
                 </Box>
                 
@@ -43,7 +43,7 @@ export const PostInfo = (props) => {
 
           
             {/* Imagen del post */}
-            <Box width="30rem" position={"relative"} height={"100%"}>
+            <Flex width="30%" position={"relative"} height={"100%"} align="center" justify="center">
                 <Image
                     src={ featuredImage.url }
                     alt={ featuredImage.title }
@@ -52,7 +52,7 @@ export const PostInfo = (props) => {
                     blurDataURL={ featuredImage.url }
                     placeholder = 'blur'  
                 />
-            </Box>
+            </Flex>
         </GridItem>
     )
 }
