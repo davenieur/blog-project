@@ -41,8 +41,8 @@ export default function BlogPage(props) {
           
             return(
 
-              <Flex direction={"column"} gap={"2rem"} padding={"1rem"} key={ slug }>
-
+              <Flex direction={"column"} gap={"2rem"} padding={"1rem"} key={ name }>
+                
                 {/* Nombre de la categoria */}
                 <Flex fontSize="2xl" color="brand.tertiary">
                   <CategoryItem 

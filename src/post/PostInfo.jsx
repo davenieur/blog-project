@@ -47,8 +47,7 @@ export const PostInfo = (props) => {
                 <Image
                     src={ featuredImage.url }
                     alt={ featuredImage.title }
-                    layout="fill"
-                    objectFit="cover"
+                    fill = "true"
                     blurDataURL={ featuredImage.url }
                     placeholder = 'blur'  
                 />

@@ -1,6 +1,3 @@
-// React
-import { createContext } from 'react'
-
 // Chakra
 import { ChakraProvider } from '@chakra-ui/react'
 import theme  from '../styles/theme';

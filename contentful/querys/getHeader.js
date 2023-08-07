@@ -5,7 +5,13 @@ const getHeader = async () => {
   const siteQuery = `query {
     siteCollection {
       items {
-        header
+        header{
+          name
+          logo{
+            url
+            title
+          }
+        }
       }
     }
   }`;

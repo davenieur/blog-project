@@ -20,12 +20,11 @@ export const PostCard = (props) => {
             <CardBody display="flex" gap="1rem" flexDirection="column" padding={"0"} >
                 <Link href={`/blog/${ postSlug }`}>
                     {/* Imagen del post */}
-                    <Box width="100%" position={"relative"} height={"14rem"}>
+                    <Box width="100%" position={"relative"} height="18rem">
                         <Image
                             src={ thumbnail.url }
                             alt={ thumbnail.title }
-                            layout="fill"
-                            objectFit="cover"
+                            fill = "true"
                             blurDataURL={ thumbnail.url }
                             placeholder = 'blur'  
                         />
