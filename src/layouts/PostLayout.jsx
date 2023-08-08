@@ -1,16 +1,22 @@
-import useTranslation from "next-translate/useTranslation";
 import { Grid, BreadcrumbItem, BreadcrumbLink, Flex } from "@chakra-ui/react";
+import { NextSeo } from 'next-seo';
+import { generateSeoConfig } from "../../seo/seoConfig";
 import { BreadCrumb } from "@/ui";
 import { PostBody, PostInfo, PostContentTable } from "@/post";
 import { PostComments } from "@/comments";
- 
+
 
 // Plantilla de cada uno de los posts
 export const PostLayout = ( { props } ) => {
     const { category: { slug, name } } = props;
+
+    // Configuración de los metatags de Open Graph para esta página
+    const seoConfig = generateSeoConfig(props);
+
     return (
         <Flex direction={"column"} padding="2rem">
-       
+            <NextSeo {...seoConfig} />
+            
             <BreadCrumb>
                 <BreadcrumbItem color="brand.tertiary">
                     <BreadcrumbLink href={`/blog/category/${ slug }`}>{ name }</BreadcrumbLink>

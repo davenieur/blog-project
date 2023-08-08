@@ -1,4 +1,3 @@
-import { Head } from "next/document"
 import useTranslation from "next-translate/useTranslation"
 import { Flex, Icon, Text, Tooltip, useToast } from "@chakra-ui/react"
 import { LiaLinkedin, LiaTwitterSquare, LiaFacebookSquare } from "react-icons/lia"
