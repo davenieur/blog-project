@@ -4,14 +4,15 @@ import { getCategories } from '../../contentful/querys';
 export const useGetCategories = (locale, altLocale) => {
     const [ categories, setCategories ] = useState([]);
 
+    // Leemos las categorias
     useEffect(() => {
         const fetchCategories = async () => {
-        try {
-            const categories = await getCategories(locale, altLocale);
-            setCategories(categories);
-        } catch (error) {
-            console.error(error);
-        }
+            try {
+                const categories = await getCategories(locale, altLocale);
+                setCategories(categories);
+            } catch (error) {
+                console.error(error);
+            }
         };
         fetchCategories();
     }, [ locale ]);

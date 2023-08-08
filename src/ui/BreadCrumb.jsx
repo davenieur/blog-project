@@ -23,7 +23,7 @@ export const BreadCrumb = ( { children }) => {
     
     return (
         <Heading as='h2' display={"flex"} flexDirection={"row"} gap={"1rem"} fontSize={"3xl"} color='brand.black' padding={"2rem"}>
-            <Breadcrumb separator={<ChevronRightIcon color="brand.tertiary" />}>
+            <Breadcrumb separator={<ChevronRightIcon />}>
                 <BreadcrumbItem >
                     <BreadcrumbLink href='/blog'> { memorizedTitle } </BreadcrumbLink>
                 </BreadcrumbItem>

@@ -1,5 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
-import { Grid, BreadcrumbItem, BreadcrumbLink, Heading, Flex } from "@chakra-ui/react";
+import { Grid, BreadcrumbItem, BreadcrumbLink, Flex } from "@chakra-ui/react";
 import { BreadCrumb } from "@/ui";
 import { PostBody, PostInfo, PostContentTable } from "@/post";
 import { PostComments } from "@/comments";
@@ -12,7 +12,7 @@ export const PostLayout = ( { props } ) => {
         <Flex direction={"column"} padding="2rem">
        
             <BreadCrumb>
-                <BreadcrumbItem>
+                <BreadcrumbItem color="brand.tertiary">
                     <BreadcrumbLink href={`/blog/category/${ slug }`}>{ name }</BreadcrumbLink>
                 </BreadcrumbItem>
             </BreadCrumb>   
@@ -33,7 +33,7 @@ export const PostLayout = ( { props } ) => {
 
                 {/* Tabla de contenidos del post */}
                 <PostContentTable { ...props } />   
-                
+
                 {/* Comentarios del post */}
                 <PostComments { ...props } />
             </Grid>

@@ -1,7 +1,6 @@
-
+import { Head } from "next/document"
 import useTranslation from "next-translate/useTranslation"
 import { Flex, Icon, Text, Tooltip, useToast } from "@chakra-ui/react"
-import { Link } from '@chakra-ui/react'
 import { LiaLinkedin, LiaTwitterSquare, LiaFacebookSquare } from "react-icons/lia"
 import { BiLink } from "react-icons/bi"
 
@@ -21,6 +20,7 @@ export const ShareMenu = (props) => {
     const toast = useToast();
     const id = 'clipBoard'
 
+    // Función para copiar la dirección en el portapapeles
     const copyURLToClipboard = () => {
         const url = location.href;
         navigator.clipboard.writeText(url);
@@ -35,6 +35,17 @@ export const ShareMenu = (props) => {
         }
     };
 
+    // Abrimos los popups de las redes sociales
+    const openPopup = (url) => {
+        window.open(url, '_blank', 'width=500,height=400'); 
+    };
+
+    // Links de las redes sociales que incluye el slug del post
+    const postUrl = `https://blog-project-rho-ten.vercel.app/blog/${ postSlug }`;
+    const linkedInLink = `https://www.linkedin.com/sharing/share-offsite/?url=${ postUrl }`;
+    const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${ postUrl }`;
+    const twitterLink = `https://twitter.com/intent/tweet?url=${ postUrl }`
+
     return (
         <Flex direction={"row"} alignItems={"center"} gap={"1rem"} color={"brand.gray"} > 
             <Text>
@@ -43,23 +54,23 @@ export const ShareMenu = (props) => {
 
             {/* LinkedIn */}
             <Tooltip label={`${ toolTip } LinkedIn`} aria-label='A tooltip'>
-                <Link href={`https://www.linkedin.com/sharing/share-offsite/?url=https://blog-project-rho-ten.vercel.app/blog/${ postSlug }`}  isExternal>
-                    <Icon as={ LiaLinkedin } boxSize={"2rem"} /> 
-                </Link>
+                <span>
+                    <Icon as={ LiaLinkedin } boxSize={"2rem"} onClick={() => openPopup( linkedInLink )} cursor="pointer" />
+                </span>
             </Tooltip>
 
             {/* Facebook */}
             <Tooltip label={`${ toolTip } Facebook`} aria-label='A tooltip'>
-                <Link  href={`https://www.facebook.com/sharer/sharer.php?u=https://blog-project-rho-ten.vercel.app/blog/${ postSlug }`} isExternal>
-                    <Icon as={ LiaFacebookSquare } boxSize={"2rem"}/> 
-                </Link>
+                <span>
+                    <Icon as={ LiaFacebookSquare} boxSize={"2rem"} onClick={() => openPopup( facebookLink )} cursor="pointer" />
+                </span>
             </Tooltip>
 
             {/* Twitter */}
             <Tooltip label={`${ toolTip } Twitter`} aria-label='A tooltip'>
-                <Link href={`https://www.linkedin.com/sharing/share-offsite/?url=https://blog-project-rho-ten.vercel.app/blog/${ postSlug }`}  isExternal>
-                    <Icon as={  LiaTwitterSquare } boxSize={"2rem"}/> 
-                </Link>
+                <span>
+                    <Icon as={  LiaTwitterSquare } boxSize={"2rem"} onClick={() => openPopup( twitterLink )} cursor="pointer" /> 
+                </span>       
             </Tooltip>
 
             {/* Copy to clipboard */}

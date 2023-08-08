@@ -20,7 +20,7 @@ export const PostsLayout = ( { children, props } ) => {
             <BreadCrumb>
                 { name ? ( 
 
-                    <BreadcrumbItem isCurrentPage>
+                    <BreadcrumbItem isCurrentPage color="brand.secondary">
                         <BreadcrumbLink href={`#`}>{ name }</BreadcrumbLink>
                     </BreadcrumbItem>
                 ) : null } 

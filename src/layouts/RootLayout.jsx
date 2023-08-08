@@ -1,5 +1,7 @@
 import { Grid, GridItem  } from "@chakra-ui/react";
-import { Header, Footer } from "@/ui";
+import { Header, Footer, ScrollButton } from "@/ui";
+import ScrollToTop from "react-scroll-to-top";
+import { TriangleUpIcon } from "@chakra-ui/icons";
 
 // Plantilla base del sitio
 export const RootLayout = ( { children, pageProps } ) => {
@@ -25,6 +27,9 @@ export const RootLayout = ( { children, pageProps } ) => {
             
             {/* Footer */}
             <Footer { ...pageProps }/>
+
+            {/* Botón para regresar a la parte superior del sitio */}
+            <ScrollToTop smooth component={ <TriangleUpIcon/>} style={{ backgroundColor: '#FF8811' }} />
         </Grid>
     )
 }
