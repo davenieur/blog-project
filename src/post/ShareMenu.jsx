@@ -46,6 +46,7 @@ export const ShareMenu = (props) => {
 
     // Links de las redes sociales que incluye el slug del post
     const linkedInLink = `https://www.linkedin.com/sharing/share-offsite/?url=${ postUrl }`;
+  
     const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${ postUrl }`;
     const twitterLink = `https://twitter.com/intent/tweet?url=${ postUrl }`
 

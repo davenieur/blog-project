@@ -9,6 +9,7 @@ El propósito del blog es mantener informados y entretener a los miembros del eq
   - [Paquetes utilizados](#paquetes-utilizados)
   - [Instrucciones de Instalación en Linux](#instrucciones-de-instalación-en-linux)
   - [Instrucciones de Instalación en Windows](#instrucciones-de-instalación-en-windows)
+  - [Configuración de variables de entorno](#configuración-de-variables-de-entorno)
 ## Paquetes utilizados
 - React
 - React DOM
@@ -90,7 +91,7 @@ npm install ^
 npm run dev
 ```
 
-##Configuración de variables de entorno
+## Configuración de variables de entorno
 Crea un archivo en el directorio raíz del proyecto llamado .env.local con las siguientes API Keys
 
 
