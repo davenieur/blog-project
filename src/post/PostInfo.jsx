@@ -7,7 +7,7 @@ import { ShareMenu } from '.';
 import Image from 'next/image';
 
 export const PostInfo = (props) => {
-    const { title, slug, author, readingTime, featuredImage, creationDate, category, thumbnail, locale } = props;
+    const { title, author, readingTime, featuredImage, creationDate, category, thumbnail, locale, postUrl } = props;
 
 
     return (
@@ -53,7 +53,7 @@ export const PostInfo = (props) => {
 
                 {/* Menú para compartir el blog */}
                 <ShareMenu 
-                    postSlug={ slug }
+                    postUrl={ postUrl }
                     thumbnail={ thumbnail }
                 />
             </Flex>

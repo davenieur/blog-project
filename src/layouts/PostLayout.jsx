@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { Grid, BreadcrumbItem, BreadcrumbLink, Flex } from "@chakra-ui/react";
 import { NextSeo } from 'next-seo';
 import { generateSeoConfig } from "../../seo/seoConfig";
@@ -9,15 +9,22 @@ import { PostComments } from "@/comments";
 
 // Plantilla de cada uno de los posts
 export const PostLayout = ( { props } ) => {
-    const { category , slug, title, metaDescription, thumbnail } = props;
+    const { slug, category, title, metaDescription, thumbnail } = props;
+    const [ seoConfig, setSeoConfig ] = useState({});
     const [ postUrl, setPostUrl ] = useState('');
 
     useEffect(() => {
-        setPostUrl(window.location.href);
-    }, [ slug ])
+        // Obtenemos el url del sitio web
+        const url = window.location.href;
+        setPostUrl(url);
 
-    // Configuración de los metatags de Open Graph para esta página
-    const seoConfig = generateSeoConfig( title, metaDescription, thumbnail, postUrl );
+        // Configuración de los metatags de Open Graph para esta página
+        const seoConfig = generateSeoConfig( title, metaDescription, thumbnail, url );
+        setSeoConfig(seoConfig)
+
+    }, [ slug ]);
+
+    
 
     return (
         <Flex direction={"column"} padding="2rem">
@@ -38,7 +45,10 @@ export const PostLayout = ( { props } ) => {
                 gap={"2rem"}
             >   
                 {/* Información del post */}
-                <PostInfo { ...props } />    
+                <PostInfo 
+                    { ...props }
+                    postUrl = { postUrl }
+                />    
                 
                 {/*  Cuerpo del post */}
                 <PostBody { ...props } />

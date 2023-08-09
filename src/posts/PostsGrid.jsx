@@ -5,7 +5,7 @@ import { Pagination, PostCard } from "./";
 import { getPosts, getCategories } from "../../contentful/querys";
 
 
-export const PostsGrid = ( { props } ) => {
+export const PostsGrid = ( props ) => {
     const { locale, altLocale, slug, limit } = props;
     const [ posts, setPosts ] = useState([]);
 

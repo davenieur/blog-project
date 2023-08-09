@@ -6,12 +6,8 @@ import { BiLink } from "react-icons/bi"
 
 
 export const ShareMenu = (props) => {
-    const { postSlug } = props;
-    const [ postUrl, setPostUrl ] = useState('');
-
-    useEffect(() => {
-        setPostUrl(window.location.href);
-    }, [ postSlug ])
+    const { postSlug, postUrl } = props;
+    
 
     // Traducir el label del menú para compartir
     const { t } = useTranslation('share')
@@ -26,8 +22,9 @@ export const ShareMenu = (props) => {
     const id = 'clipBoard'
 
     // Función para copiar la dirección en el portapapeles
-    const copyURLToClipboard = (url) => {
-        navigator.clipboard.writeText(url);
+    const copyURLToClipboard = () => {
+        navigator.clipboard.writeText(postUrl);
+
         if (!toast.isActive(id)) {
             toast({
                 title: title,
@@ -46,7 +43,6 @@ export const ShareMenu = (props) => {
 
     // Links de las redes sociales que incluye el slug del post
     const linkedInLink = `https://www.linkedin.com/sharing/share-offsite/?url=${ postUrl }`;
-  
     const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${ postUrl }`;
     const twitterLink = `https://twitter.com/intent/tweet?url=${ postUrl }`
 

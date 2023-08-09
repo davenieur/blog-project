@@ -7,7 +7,7 @@ import useTranslation from 'next-translate/useTranslation'
 import { AuthorTag } from '@/ui';
 
 export const PostCard = (props) => {
-    const { title, altTitle, slug, altSlug, author, readingTime, thumbnail, creationDate } = props;
+    const { title, altTitle, slug, altSlug, readingTime, thumbnail, creationDate } = props;
  
     // Traducir el contenido de la carta
     const { t } = useTranslation('post');

@@ -1,7 +1,7 @@
 import { client } from "../contentfulApi";
 
 // Obtener todos los datos del post, se utiliza para que LanguageToggle tenga el slug en el otro idioma.
-const getPost= async (slug, locale, altLocale) => {
+const getPostBySlug= async (slug, locale, altLocale) => {
 
   
   const postQuery = `query{
@@ -58,5 +58,5 @@ const getPost= async (slug, locale, altLocale) => {
 };
 
 export {
-  getPost
+  getPostBySlug
 };

@@ -1,7 +1,7 @@
 import { client } from "../contentfulApi";
 
 // Obtenemos solo los datos relevantes para los PostCards, se utiliza en los SLUGS para un enrutamiento correcto 
-const getPosts= async (slug, offset = 0, limit = 3, locale = 'es', altLocale = "en-US") => {
+const getPosts= async (slug, offset = 0, limit = 3) => {
 
   // Si hay un parametro de búsqueda (slug) se agregará
   const withSearchParameter = slug ? `, where: { category: { slug: "${ slug }" } } ` : '';
@@ -9,12 +9,12 @@ const getPosts= async (slug, offset = 0, limit = 3, locale = 'es', altLocale = "
   const postQuery = `query{
     siteCollection {
       items {
-        postsCollection(limit: ${ limit }, skip: ${ offset }, order: [creationDate_DESC], locale: "${ locale }" ${ withSearchParameter }) {
+        postsCollection(limit: ${ limit }, skip: ${ offset }, order: [creationDate_DESC], locale: "es" ${ withSearchParameter }) {
           items {
             title
-            altTitle: title(locale: "${ altLocale }")
+            altTitle: title(locale: "en-US")
             slug
-            altSlug: slug(locale: "${ altLocale }")
+            altSlug: slug(locale: "en-US")
             creationDate
             thumbnail{
               title
@@ -30,9 +30,9 @@ const getPosts= async (slug, offset = 0, limit = 3, locale = 'es', altLocale = "
             readingTime
             category{
               slug
-              altSlug: slug(locale: "${ altLocale }")
+              altSlug: slug(locale: "en-US")
               name
-              altName: name(locale: "${ altLocale }")
+              altName: name(locale: "en-US")
             }
           }
         }

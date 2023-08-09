@@ -1,5 +1,5 @@
 import { PostLayout } from "@/layouts";
-import { getPostsSlugs, getPost } from "../../../contentful/querys";
+import { getPostBySlug, getPosts } from "../../../contentful/querys";
 
 /* blog/[...slug] */
 
@@ -11,11 +11,11 @@ export default function(props){
 }
 
 export async function getStaticPaths(){
-    const posts = await getPostsSlugs();
+    const posts = await getPosts();
 
     const pathES = posts.map(( item ) => ({
             params: {
-                slug: [item.slugES]
+                slug: [item.slug]
             },
             locale: 'es'
         })
@@ -23,14 +23,14 @@ export async function getStaticPaths(){
 
     const pathEN = posts.map(( item ) => ({
             params: {
-                slug: [item.slugEN]
+                slug: [item.altSlug]
             },
             locale: 'en-US'
         })
     )
         
     const allPaths = [ ...pathEN, ...pathES ];
-
+        
     return {
         paths: allPaths,
         fallback:false
@@ -42,14 +42,17 @@ export async function getStaticProps(props){
     const { params: { slug }, locale, locales } = props || {};    
     const pageSlug = slug.join("/");
     const [ altLocale ] = locales.filter(language => language !== locale);
-    const data = await getPost(pageSlug, locale, altLocale);
+
+    // Obtenemos el post a través de su slug
+    const data = await getPostBySlug(pageSlug, locale, altLocale);
+
     return {
       props: {
-        ...data, 
         locales,
         locale,
         altLocale,
         slug: pageSlug,
+        ...data
       }
     }
   }
