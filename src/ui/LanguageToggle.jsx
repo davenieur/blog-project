@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PropTypes from 'prop-types';
 import { useRouter } from "next/router";
 import { Button } from '@chakra-ui/react';
 import { GrLanguage } from "react-icons/gr"
@@ -25,11 +26,15 @@ export const LanguageToggle = (props) => {
     return (
         <Link href={ linkPath } locale={ altLocale }>
             <Button leftIcon={<GrLanguage />} color="brand.black" backgroundColor="brand.secondary" variant='ghost'>
-                
                 { label }
-            
             </Button>
         </Link>
         
     )
+}
+
+LanguageToggle.propTypes = {
+    slug: PropTypes.string,
+    altSlug: PropTypes.string,
+    altLocale: PropTypes.string.isRequired
 }

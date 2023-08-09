@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { GridItem } from "@chakra-ui/react"
 import { getFooter } from "../../contentful/querys";
 
-export const Footer = (props) => {
+export const Footer = () => {
     const [footer, setFooter] = useState('');
     
     useEffect(() => {
@@ -35,3 +35,4 @@ export const Footer = (props) => {
         </GridItem>
     )
 }
+

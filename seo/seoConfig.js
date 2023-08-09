@@ -1,15 +1,15 @@
 const postTitle = 'Título predeterminado del sitio';
 const description = 'Descripción predeterminada del sitio';
-const imageUrl = 'URL de la imagen predeterminada del sitio'; // Tamaño recomendado: 1200x630px
+const imageUrl = 'URL de la imagen predeterminada del sitio'; 
 
-
-
-export const generateSeoConfig = ( { title, metaDescription, thumbnail } ) => ({
+export const generateSeoConfig = ( { title, metaDescription, thumbnail, slug} ) => ({
   title: title || postTitle,
   description: metaDescription || description,
   openGraph: {
     title: title || postTitle,
     description: metaDescription || description,
+    type: "website",
+    url: `https://blog-project-rho-ten.vercel.app/blog/${slug}`,
     images: [
       {
         url: thumbnail.url || imageUrl,

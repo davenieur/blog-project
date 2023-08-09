@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import PropTypes from 'prop-types';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Heading  } from "@chakra-ui/react"
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { getSite } from "../../contentful/querys";
@@ -33,4 +34,8 @@ export const BreadCrumb = ( { children }) => {
             </Breadcrumb>
         </Heading>   
     )
+}
+
+BreadCrumb.propTypes = {
+    children: PropTypes.object
 }

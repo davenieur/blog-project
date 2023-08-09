@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import { Flex, Divider } from '@chakra-ui/react';
+import { AiFillCaretRight } from 'react-icons/ai'
 import { CategoryItem } from './CategoryItem';
 import { useGetCategories } from '@/hooks';
-import { AiFillCaretRight } from 'react-icons/ai'
 
 export const CategoriesGrid = (props) => {
     const { locale, altLocale } = props;
@@ -30,4 +31,9 @@ export const CategoriesGrid = (props) => {
             }
       </Flex>
     )
+}
+
+CategoriesGrid.propTypes = {
+    locale: PropTypes.string,
+    altLocale: PropTypes.string
 }

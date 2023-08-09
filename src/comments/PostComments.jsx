@@ -1,6 +1,6 @@
 import { DiscussionEmbed } from 'disqus-react';
 
-export const PostComments = ( { slug, title} ) => {
+export const PostComments = ( { slug, title } ) => {
     
     const disqusShortname = 'https-blog-project-rho-ten-vercel-app-blog'; 
     const disqusConfig = {

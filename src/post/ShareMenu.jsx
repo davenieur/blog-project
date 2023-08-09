@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import useTranslation from "next-translate/useTranslation"
 import { Flex, Icon, Text, Tooltip, useToast } from "@chakra-ui/react"
 import { LiaLinkedin, LiaTwitterSquare, LiaFacebookSquare } from "react-icons/lia"
@@ -6,7 +7,12 @@ import { BiLink } from "react-icons/bi"
 
 export const ShareMenu = (props) => {
     const { postSlug } = props;
-    
+    const [ postUrl, setPostUrl ] = useState('');
+
+    useEffect(() => {
+        setPostUrl(window.location.href);
+    }, [ postSlug ])
+
     // Traducir el label del menú para compartir
     const { t } = useTranslation('share')
     const label = t('share');
@@ -20,8 +26,7 @@ export const ShareMenu = (props) => {
     const id = 'clipBoard'
 
     // Función para copiar la dirección en el portapapeles
-    const copyURLToClipboard = () => {
-        const url = location.href;
+    const copyURLToClipboard = (url) => {
         navigator.clipboard.writeText(url);
         if (!toast.isActive(id)) {
             toast({
@@ -40,7 +45,6 @@ export const ShareMenu = (props) => {
     };
 
     // Links de las redes sociales que incluye el slug del post
-    const postUrl = `https://blog-project-rho-ten.vercel.app/blog/${ postSlug }`;
     const linkedInLink = `https://www.linkedin.com/sharing/share-offsite/?url=${ postUrl }`;
     const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${ postUrl }`;
     const twitterLink = `https://twitter.com/intent/tweet?url=${ postUrl }`
@@ -53,6 +57,7 @@ export const ShareMenu = (props) => {
 
             {/* LinkedIn */}
             <Tooltip label={`${ toolTip } LinkedIn`} aria-label='A tooltip'>
+               
                 <span>
                     <Icon as={ LiaLinkedin } boxSize={"2rem"} onClick={() => openPopup( linkedInLink )} cursor="pointer" />
                 </span>
@@ -75,7 +80,7 @@ export const ShareMenu = (props) => {
             {/* Copy to clipboard */}
             <Tooltip label={ clip } aria-label='A tooltip'>
                 <span>
-                    <Icon as={ BiLink } boxSize={"2rem"} cursor="pointer" onClick={ copyURLToClipboard } /> 
+                    <Icon as={ BiLink } boxSize={"2rem"} cursor="pointer" onClick={()  => copyURLToClipboard(postUrl) } /> 
                 </span>
             </Tooltip>
            

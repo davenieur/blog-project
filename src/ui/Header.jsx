@@ -1,4 +1,5 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import { GridItem, Flex } from "@chakra-ui/react";
 import Link from 'next/link';
 import { LanguageToggle } from ".";
@@ -35,12 +36,14 @@ export const Header = (props) => {
                         alt={ logoAlt }
                         width={50}
                         height={50}
-                    >
-                        
-                    </Image>
+                    />
                 </Link>
                 <LanguageToggle {...props}/>
             </Flex>
         </GridItem>
     )
+}
+
+Header.propTypes = {
+    locale: PropTypes.string.isRequired
 }
