@@ -72,9 +72,9 @@ export const renderOptions = {
             <ExternalLinkIcon ml='2px' /> 
           </Link>
       ),
-
+      
+      // Entrada de un post
       [INLINES.EMBEDDED_ENTRY]: (node, children) => {
-        // target the contentType of the EMBEDDED_ENTRY to display as you need
         if (node.data.target.sys.contentType.sys.id === "blogPost") {
           return (
             <Link href={`/blog/${node.data.target.fields.slug}`}>            
@@ -84,8 +84,8 @@ export const renderOptions = {
         }
       },
 
+      // Bloque de código
       [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
-        // target the contentType of the EMBEDDED_ENTRY to display as you need
         if (node.data.target.sys.contentType.sys.id === "codeBlock") {
           return (
             <pre>
@@ -93,7 +93,8 @@ export const renderOptions = {
             </pre>
           );
         }
-  
+        
+        // Video
         if (node.data.target.sys.contentType.sys.id === "videoEmbed") {
           return (
             <iframe
@@ -109,7 +110,7 @@ export const renderOptions = {
         }
       },
       
-      // Assets dentro de los posts
+      // IMAGENES
       [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
 
         return (

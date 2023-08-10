@@ -3,12 +3,11 @@ import useTranslation from "next-translate/useTranslation"
 import { Flex, Icon, Text, Tooltip, useToast } from "@chakra-ui/react"
 import { LiaLinkedin, LiaTwitterSquare, LiaFacebookSquare } from "react-icons/lia"
 import { BiLink } from "react-icons/bi"
-
+import PropTypes from 'prop-types';
 
 export const ShareMenu = (props) => {
-    const { postSlug, postUrl } = props;
+    const { postUrl } = props;
     
-
     // Traducir el label del menú para compartir
     const { t } = useTranslation('share')
     const label = t('share');
@@ -38,7 +37,7 @@ export const ShareMenu = (props) => {
 
     // Abrimos los popups de las redes sociales
     const openPopup = (url) => {
-        window.open(url, '_blank', 'width=500,height=400'); 
+        window.open(url, '_blank', 'width=500,height=700'); 
     };
 
     // Links de las redes sociales que incluye el slug del post
@@ -79,13 +78,11 @@ export const ShareMenu = (props) => {
                 <span>
                     <Icon as={ BiLink } boxSize={"2rem"} cursor="pointer" onClick={()  => copyURLToClipboard(postUrl) } /> 
                 </span>
-            </Tooltip>
-           
-
-           
-
-           
-            
+            </Tooltip>  
         </Flex>
     )
+}
+
+ShareMenu.propTypes = {
+    postUrl: PropTypes.string.isRequired
 }

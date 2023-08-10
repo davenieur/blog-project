@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 export const PostBody = (props) => {
     const { body } = props;
 
-    console.log(body.json.content);
     
     return (
         <Flex gridArea="postBody" direction={"column"}>
