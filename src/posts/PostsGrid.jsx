@@ -1,57 +1,61 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 
-import { Flex } from "@chakra-ui/react";
+import { Flex, Divider } from "@chakra-ui/react";
 import { Pagination, PostCard } from "./";
-import { getPosts, getCategories } from "../../contentful/querys";
+import { getPostsByCategory } from "../../contentful/querys";
+import { useGetPostsByCategory } from "@/hooks";
 
 
 export const PostsGrid = ( props ) => {
-    const { locale, altLocale, slug, limit } = props;
-    const [ posts, setPosts ] = useState([]);
+    const { slug, limit, locale, altLocale, showWrap } = props;
+    console.log(props)
 
     // Controlamos el offset para las peticiones (parametro Skip)
     const [ offset, setOffset ] = useState(0);
-    const [ maxOffset, setMaxOffset ] = useState(1);
+    const { postsByCategory, totalPages } = useGetPostsByCategory(slug, offset, limit, locale, altLocale)
     
+    // Decrementamos el offset
+    const decrementOffset = () => {
+        if (totalPages !== 1 && offset > 0) {
+            setOffset((current) => current - 1);
+        }
+    };
+    
+    // Incrementamos el offset
     const incrementOffset = () => {
-        setOffset((current) => (current > 1 ? current - 1 : maxOffset ));
-    }
-
-    // Cargamos los posts con base a sus diferentes parámetros (slug, offset, limit, locale, altLocale);
-    useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const posts = await getPosts(slug, offset * 3, limit, locale, altLocale);
-                setPosts(posts);
-                setMaxOffset( Math.ceil( posts.length / 3 ) );
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchPosts();
-    }, [ slug ]);
+        if (totalPages !== 1 && offset < totalPages + 1) {
+            setOffset((current) => current + 1);
+        }
+    };
     
-    // Memorizamos los posts para optimizar
-    const memorizedPosts = useMemo(() => posts, [posts]);
-
-    // Si se muestra los posts por categoria se aplica el wrap y se remueve el overflow = hidden
-    // Si se muestra los posts en la página principal (index) el wrap se remueve y se aplica el overflow = hidden
-    const wrapContent = limit === 9 ?  'wrap' : '';
-    const overFlow = limit > 3 ? '' : 'hidden';
+    // En la ruta "/blog" se muestran los posts de 3 en 3, en /blog/[category] se muestran más posts
+    const wrapProperty = showWrap ? "wrap" : "nowrap";
+    const overflowProperty = showWrap ? "visible" : "hidden";
 
     return (
-        <Flex alignItems={"flex-start"} justifyContent={"flex-start"} gap="4rem 2rem"  wrap={ wrapContent } overflow={ overFlow }>
-            {
-                memorizedPosts.map(post => {
-                    return(
-                        <PostCard 
-                            key={ post.slug }
-                            { ...post }
-                        />
-                    )
-                })
-            }
-        </Flex>  
-      
+        <Flex direction="column" gap="2rem">
+            <Flex alignItems={"flex-start"} justifyContent={"flex-start"} gap="4rem 2rem" wrap={ wrapProperty } overflow={ overflowProperty } >
+                {
+                    postsByCategory?.map(post => {
+                        return(
+                            <PostCard 
+                                key={ post.slug }
+                                { ...post }
+                            />
+                        )
+                    })
+                }
+            </Flex>  
+
+            <Flex direction="row" gap="2rem" align="center">
+                <Divider orientation='horizontal' variant="thick"/>
+                <Pagination 
+                    currentPage={ offset + 1 } 
+                    totalPages={ totalPages }
+                    incrementOffset = { incrementOffset }
+                    decrementOffset = { decrementOffset }
+                />
+            </Flex> 
+        </Flex>
     )
 }

@@ -1,38 +1,27 @@
 import { useState } from "react"
-import { Flex, IconButton} from "@chakra-ui/react"
+import { Flex, IconButton, Text} from "@chakra-ui/react"
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 
-export const Pagination = ( { totalPosts }) => {
-
-    const [ currentPage, setPage ] = useState(1)
-
-    const totalPages = Math.ceil(totalPosts / 3);
-
-    const handleLeft = () => {
-        setPage((currentPage) => (currentPage > 1 ? currentPage - 1 : totalPages ));
-    }
-
-    const handleRight = () => {
-        setPage((currentPage) => (currentPage < totalPages  ? currentPage + 1 : 1));
-    }
-
+export const Pagination = ({ totalPages, currentPage, incrementOffset, decrementOffset }) => {
     return (
-        
-            <Flex grid-area={"pages"} align={"center"} justify={"flex-end"} direction={"row"} gap={"1rem"}>
+            <Flex grid-area={"pages"} align={"center"} justify={"flex-end"} direction={"row"} gap={"1rem"} width="12rem">
                 <IconButton
                     isRound={true}
                     variant='solid'
                     background={"brand.gray"}
                     color={"brand.primary"}
                     aria-label='Back '
-                    fontSize='1rem'
+                    fontSize='1.25rem'
                     icon={<ArrowBackIcon />}
                     _hover={{ backgroundColor: "brand.pink"}}
-                    onClick={ handleLeft }
+                    onClick={ decrementOffset }
                     
                 />
+
+                <Text>
+                    { currentPage } / { totalPages } 
+                </Text>
                
-                { currentPage } / { totalPages } 
 
                 <IconButton
                     isRound={true}
@@ -40,14 +29,12 @@ export const Pagination = ( { totalPosts }) => {
                     background={"brand.gray"}
                     color={"brand.primary"}
                     aria-label='Foward'
-                    fontSize='1rem'
+                    fontSize='1.25rem'
                     icon={<ArrowForwardIcon />}
                     _hover={{ backgroundColor: "brand.pink"}}
-                    onClick={ handleRight }
+                    onClick={  incrementOffset }
 
                 />
-
-
             </Flex>
     )
 }

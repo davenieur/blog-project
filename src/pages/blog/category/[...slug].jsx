@@ -2,16 +2,18 @@ import { GridItem } from "@chakra-ui/react";
 import { PostsLayout } from "@/layouts";
 import { getCategories, getCategoryBySlug } from "../../../../contentful/querys";
 import { PostsGrid } from "@/posts";
+import { useGetPostsByCategory } from "@/hooks";
 
 /* blog/category/[...slug] */
 
 export default function(props){
+    const  { slug, locale, altLocale, showWrap } = props;
+
+
     return (
         <PostsLayout props={ props }> 
             <GridItem area={"posts"}>
-                <PostsGrid 
-                    props={ ...props}
-                />
+                <PostsGrid slug = { slug } limit = { 15 } locale={ locale } altLocale = { altLocale } showWrap = { showWrap }/>
             </GridItem>
         </PostsLayout> 
     )  
@@ -56,6 +58,8 @@ export async function getStaticProps(props){
     // Limite de posts por página
     const limit = 9;
 
+    const  showWrap = true;
+
     return {
       props: {
         locales,
@@ -64,7 +68,8 @@ export async function getStaticProps(props){
         slug: pageSlug,
         altSlug,
         name,
-        limit
+        limit,
+        showWrap
       }
     }
   }

@@ -28,20 +28,22 @@ export const PostLayout = ( { props } ) => {
 
     return (
         <Flex direction={"column"} padding="2rem">
+            {/* Configuramos los metatags del post */}
             <NextSeo {...seoConfig} />
             
+            {/* BreadCrumb */}
             <BreadCrumb>
                 <BreadcrumbItem color="brand.tertiary">
                     <BreadcrumbLink href={`/blog/category/${ category.slug }`}>{ category.name }</BreadcrumbLink>
                 </BreadcrumbItem>
             </BreadCrumb>   
 
+            {/* Mostramos los detalles del post */}
             <Grid
                 templateAreas={`"postInfo postInfo"
                     "postBody  postContentTable"`
                 }
                 gridTemplateColumns={"1fr .4fr"}
-
                 gap={"2rem"}
             >   
                 {/* Información del post */}

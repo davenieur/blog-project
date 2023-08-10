@@ -1,5 +1,5 @@
 import { PostLayout } from "@/layouts";
-import { getPostBySlug, getPosts } from "../../../contentful/querys";
+import { getPostBySlug, getPostsSlugs } from "../../../contentful/querys";
 
 /* blog/[...slug] */
 
@@ -11,7 +11,7 @@ export default function(props){
 }
 
 export async function getStaticPaths(){
-    const posts = await getPosts();
+    const posts = await getPostsSlugs();
 
     const pathES = posts.map(( item ) => ({
             params: {

@@ -17,7 +17,7 @@ export const useGetCategories = () => {
         fetchCategories();
     }, []);
 
-    // Memorizamos las categorías
+    // Memorizamos las categorías, así no es necesario realizar el fetch de forma
     const memorizedCategories = useMemo(() => categories, [categories]);
 
     return {
