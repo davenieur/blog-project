@@ -1,4 +1,5 @@
 import { DiscussionEmbed } from 'disqus-react';
+import PropTypes from 'prop-types';
 
 export const PostComments = ( { slug, title } ) => {
     
@@ -13,4 +14,9 @@ export const PostComments = ( { slug, title } ) => {
     return (
         <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
     );
+}
+
+PostComments.propTypes = {
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
 }

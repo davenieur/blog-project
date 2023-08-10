@@ -1,11 +1,12 @@
-import { Grid, BreadcrumbItem, BreadcrumbLink, GridItem } from "@chakra-ui/react"
+import { Grid, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react"
 import { BreadCrumb } from "@/ui";
-import { PostsGrid } from "@/posts";
 import { CategoriesGrid } from "@/categories";
+import PropTypes from 'prop-types';
+
 
 // Plantilla del despliegue de los posts
 export const PostsLayout = ( { children, props } ) => {
-    const { name } = props;
+    const { name, locale } = props;
 
     return (
         <Grid
@@ -17,7 +18,7 @@ export const PostsLayout = ( { children, props } ) => {
         >   
        
             {/* BREADCRUMB */}
-            <BreadCrumb>
+            <BreadCrumb props={ locale }>
                 { name ? ( 
 
                     <BreadcrumbItem isCurrentPage color="brand.secondary">
@@ -35,4 +36,9 @@ export const PostsLayout = ( { children, props } ) => {
            
         </Grid>
     )
+}
+
+PostsLayout.propTypes = {
+    name: PropTypes.string, 
+    locale: PropTypes.string.isRequired, 
 }

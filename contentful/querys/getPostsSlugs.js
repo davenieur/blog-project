@@ -7,7 +7,7 @@ const getPostsSlugs= async () => {
   const postQuery = `query{
     siteCollection {
       items {
-        postsCollection(limit: 100) {
+        postsCollection(limit: 100, locale: "es") {
           items {
             slug
             altSlug: slug(locale: "en-US")

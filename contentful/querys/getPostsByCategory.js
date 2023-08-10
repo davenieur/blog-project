@@ -1,7 +1,7 @@
 import { client } from "../contentfulApi";
 
 // Obtenemos solo los datos relevantes para los PostCards, se utiliza en los SLUGS para un enrutamiento correcto 
-const getPostsByCategory= async (slug, offset = 0, locale, altLocale) => {
+const getPostsByCategory= async (slug, offset = 0, locale = 'es', altLocale = "en-US") => {
   const postQuery = `query{
     siteCollection {
       items {

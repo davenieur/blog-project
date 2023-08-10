@@ -3,22 +3,17 @@ import Link from 'next/link';
 import { Card, CardBody,Text, Flex, Box } from '@chakra-ui/react';
 import { CalendarIcon, TimeIcon } from '@chakra-ui/icons';
 import { dateFormat } from '@/helpers/dateFormat';
-import useTranslation from 'next-translate/useTranslation'
 import { AuthorTag } from '@/ui';
+import PropTypes from 'prop-types';
+import "@fontsource/mukta";
 
 export const PostCard = (props) => {
-    const { title, altTitle, slug, altSlug, readingTime, thumbnail, creationDate } = props;
- 
-    // Traducir el contenido de la carta
-    const { t } = useTranslation('post');
-    
-    const postTitle = t('title', { titleES: title, titleEN: altTitle });
-    const postSlug = t('slug', { slugES: slug, slugEN: altSlug });
-    
+    const { title, slug, readingTime, thumbnail, creationDate } = props;
+   
     return (
         <Card  bg="brand.primary" border="none" shadow="none" flex={"0 0 calc(33.33% - 2rem)"}>
             <CardBody display="flex" gap="1rem" flexDirection="column" padding={"0"} >
-                <Link href={`/blog/${ postSlug }`}>
+                <Link href={`/blog/${ slug }`}>
                     {/* Imagen del post */}
                     <Box width="100%" position={"relative"} height="18rem">
                         <Image
@@ -33,9 +28,9 @@ export const PostCard = (props) => {
                 {/* Información del post */}
                 <Flex direction="column" gap="1rem" color={"brand.gray"}>
                     {/* Titulo */}
-                    <Link href={`/blog/${ postSlug }`}>
-                        <Text fontSize='xl' textAlign={"justify"}>
-                        { postTitle }
+                    <Link href={`/blog/${ slug }`}>
+                        <Text fontSize='xl' textAlign={"justify"} fontFamily="mukta">
+                        { title }
                         </Text>
                     </Link>
                     <Flex direction="row" gap="1rem" >
@@ -65,4 +60,12 @@ export const PostCard = (props) => {
             </CardBody>
         </Card>
     )
+}
+
+PostCard.propTypes = {
+    title: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+    readingTime: PropTypes.number.isRequired,
+    thumbnail: PropTypes.object.isRequired, 
+    creationDate: PropTypes.string.isRequired,
 }

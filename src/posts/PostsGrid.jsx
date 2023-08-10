@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
 import { Flex, Divider } from "@chakra-ui/react";
 import { Pagination, PostCard } from "./";
-import { getPostsByCategory } from "../../contentful/querys";
 import { useGetPostsByCategory } from "@/hooks";
-
+import PropTypes from 'prop-types';
 
 export const PostsGrid = ( props ) => {
     const { slug, limit, locale, altLocale, showWrap } = props;
-    console.log(props)
-
+ 
     // Controlamos el offset para las peticiones (parametro Skip)
     const [ offset, setOffset ] = useState(0);
     const { postsByCategory, totalPages } = useGetPostsByCategory(slug, offset, limit, locale, altLocale)
@@ -33,7 +30,7 @@ export const PostsGrid = ( props ) => {
     const overflowProperty = showWrap ? "visible" : "hidden";
 
     return (
-        <Flex direction="column" gap="2rem">
+        <Flex direction="column" gap="4rem">
             <Flex alignItems={"flex-start"} justifyContent={"flex-start"} gap="4rem 2rem" wrap={ wrapProperty } overflow={ overflowProperty } >
                 {
                     postsByCategory?.map(post => {
@@ -47,7 +44,7 @@ export const PostsGrid = ( props ) => {
                 }
             </Flex>  
 
-            <Flex direction="row" gap="2rem" align="center">
+            <Flex direction="row" gap="2rem" align="center" justify="center">
                 <Divider orientation='horizontal' variant="thick"/>
                 <Pagination 
                     currentPage={ offset + 1 } 
@@ -55,7 +52,16 @@ export const PostsGrid = ( props ) => {
                     incrementOffset = { incrementOffset }
                     decrementOffset = { decrementOffset }
                 />
+                <Divider orientation='horizontal' variant="thick"/>
             </Flex> 
         </Flex>
     )
+}
+
+PostsGrid.propTypes = {
+    slug: PropTypes.string.isRequired, 
+    limit: PropTypes.number.isRequired, 
+    locale: PropTypes.string.isRequired, 
+    altLocale: PropTypes.string.isRequired,
+    showWrap: PropTypes.bool.isRequired
 }

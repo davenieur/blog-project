@@ -1,5 +1,6 @@
 import moment from 'moment';
 
+// Da formato a las fechas
 export const dateFormat = (dateString) => {
     
     const dateObject = moment(dateString);

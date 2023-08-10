@@ -2,7 +2,6 @@ import { GridItem } from "@chakra-ui/react";
 import { PostsLayout } from "@/layouts";
 import { getCategories, getCategoryBySlug } from "../../../../contentful/querys";
 import { PostsGrid } from "@/posts";
-import { useGetPostsByCategory } from "@/hooks";
 
 /* blog/category/[...slug] */
 
@@ -73,3 +72,4 @@ export async function getStaticProps(props){
       }
     }
   }
+

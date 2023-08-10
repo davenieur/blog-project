@@ -5,11 +5,11 @@ import { generateSeoConfig } from "../../seo/seoConfig";
 import { BreadCrumb } from "@/ui";
 import { PostBody, PostInfo, PostContentTable } from "@/post";
 import { PostComments } from "@/comments";
-
+import Link from "next/link";
 
 // Plantilla de cada uno de los posts
 export const PostLayout = ( { props } ) => {
-    const { slug, category, title, metaDescription, thumbnail } = props;
+    const { slug, category, title, metaDescription, thumbnail, locale } = props || {};
     const [ seoConfig, setSeoConfig ] = useState({});
     const [ postUrl, setPostUrl ] = useState('');
 
@@ -24,17 +24,16 @@ export const PostLayout = ( { props } ) => {
 
     }, [ slug ]);
 
-    
-
     return (
         <Flex direction={"column"} padding="2rem">
+
             {/* Configuramos los metatags del post */}
             <NextSeo {...seoConfig} />
             
             {/* BreadCrumb */}
-            <BreadCrumb>
-                <BreadcrumbItem color="brand.tertiary">
-                    <BreadcrumbLink href={`/blog/category/${ category.slug }`}>{ category.name }</BreadcrumbLink>
+            <BreadCrumb props = { locale }>
+                <BreadcrumbItem color="brand.secondary">
+                    <BreadcrumbLink as={Link}  href={`/blog/category/${ category.slug }`} locale={ locale }>{ category.name }</BreadcrumbLink>
                 </BreadcrumbItem>
             </BreadCrumb>   
 

@@ -1,7 +1,8 @@
 import { Grid, GridItem  } from "@chakra-ui/react";
-import { Header, Footer, ScrollButton } from "@/ui";
+import { Header, Footer } from "@/ui";
 import ScrollToTop from "react-scroll-to-top";
 import { TriangleUpIcon } from "@chakra-ui/icons";
+import PropTypes from 'prop-types';
 
 // Plantilla base del sitio
 export const RootLayout = ( { children, pageProps } ) => {
@@ -34,3 +35,6 @@ export const RootLayout = ( { children, pageProps } ) => {
     )
 }
 
+RootLayout.propTypes = {
+    pageProps: PropTypes.object.isRequired
+}

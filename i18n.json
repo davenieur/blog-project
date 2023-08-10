@@ -2,6 +2,6 @@
   "locales": ["en-US", "es"],
   "defaultLocale": "es",
   "pages": {
-    "*": ["common", "post", "category", "share"]
+    "*": ["common", "share"]
   }
 }

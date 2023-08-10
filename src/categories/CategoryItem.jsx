@@ -1,23 +1,27 @@
 import Link from 'next/link';
-import useTranslation from 'next-translate/useTranslation';
+import PropTypes from 'prop-types';
+
+// Fuentes
+import "@fontsource/nunito";
+
 import { Text } from '@chakra-ui/react';
 
 export const CategoryItem = (props) => {
-    const { name, altName, slug, altSlug, locale } = props;
-
-     // Traducir el contenido de la categoría
-     const { t } = useTranslation('category');
-    
-     const categoryName = t('name', { nameES: name, nameEN: altName });
-     const categorySlug = t('slug', { slugES: slug, slugEN: altSlug });
+    const { name, slug, locale } = props || {};
 
     return (
        
-        <Link href={`/blog/category/${ categorySlug }`} locale={ locale }>
-            <Text>
-                { categoryName }
+        <Link href={`/blog/category/${ slug }`} locale={ locale }>
+            <Text fontFamily="nunito">
+                { name }
             </Text>
         </Link>
  
     )
+}
+
+CategoryItem.propTypes = {
+    name: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+    locale: PropTypes.string,
 }

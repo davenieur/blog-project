@@ -13,13 +13,19 @@ export const CategoriesGrid = (props) => {
     return (
         <Flex gridArea={'categories'} direction={"column"} color={"brand.black"} gap={"2rem"} padding={"1rem"}>
             {
-                memorizedCategories.map( category => {
+                memorizedCategories.map( ({ name, altName, slug, altSlug }) => {
                     return(
-                        <Flex direction="column" gap="1rem" key={ category.slug }>
+                        <Flex direction="column" gap="1rem" key={ slug }>
                             <Flex direction="row" gap=".2rem">
                                 <AiFillCaretRight size="1.5rem" color="#FF8811"/> 
+
+                                {/* Información de la categoría */}
                                 <CategoryItem  
-                                    { ...category }
+                                    name = { name }
+                                    altName = { altName }
+                                    slug = { slug }
+                                    altSlug = { altSlug }
+                                    locale = { locale }
                                 />
                             </Flex>
                            

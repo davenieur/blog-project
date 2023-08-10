@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Heading  } from "@chakra-ui/react"
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { getSite } from "../../contentful/querys";
+import Link from "next/link";
+import "@fontsource/mukta";
 
-export const BreadCrumb = ( { children }) => {
+export const BreadCrumb = ( { children, props }) => {
+    const { locale } = props;
+
     const [title, setTitle] = useState('');
     
     useEffect(() => {
@@ -24,9 +28,9 @@ export const BreadCrumb = ( { children }) => {
     
     return (
         <Heading as='h2' display={"flex"} flexDirection={"row"} gap={"1rem"} fontSize={"3xl"} color='brand.black' padding={"2rem"}>
-            <Breadcrumb separator={<ChevronRightIcon />}>
+            <Breadcrumb separator={<ChevronRightIcon />} fontFamily="mukta">
                 <BreadcrumbItem >
-                    <BreadcrumbLink href='/blog'> { memorizedTitle } </BreadcrumbLink>
+                    <BreadcrumbLink as={Link}  href={'/blog'} locale={ locale }>{ memorizedTitle }</BreadcrumbLink>
                 </BreadcrumbItem>
 
                 { children}

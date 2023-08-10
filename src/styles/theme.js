@@ -11,7 +11,6 @@ const dividerTheme = defineStyleConfig({
   variants: { thick },
 })
 
-
 const theme = extendTheme({
   colors: {
       brand: {
@@ -24,7 +23,6 @@ const theme = extendTheme({
         footer: "#F7F7F7"
       },
     },
-
   components: { Divider: dividerTheme },
 })
 

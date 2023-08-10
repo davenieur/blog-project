@@ -5,6 +5,9 @@ import { dateFormat } from '@/helpers';
 import { AuthorTag } from '@/ui';
 import { ShareMenu } from '.';
 import Image from 'next/image';
+import "@fontsource/mukta";
+import PropTypes from 'prop-types';
+
 
 export const PostInfo = (props) => {
     const { title, author, readingTime, featuredImage, creationDate, category, thumbnail, locale, postUrl } = props;
@@ -14,7 +17,7 @@ export const PostInfo = (props) => {
         <GridItem area={ "postInfo"} display={"flex"} alignItems={"center"} justifyContent="center" flexDirection={"row"} gap={"5rem"}  padding={"3rem"} >
             <Flex direction={"column"} gap={"2rem"} width={"40%"}>
                 {/* Nombre del post */}
-                <Heading as='h1' fontSize={"4xl"}>
+                <Heading as='h1' fontSize={"4xl"} fontFamily="mukta">
                     { title }
                 </Heading>
                 
@@ -71,4 +74,16 @@ export const PostInfo = (props) => {
             </Flex>
         </GridItem>
     )
+}
+
+PostInfo.propTypes = {
+    title: PropTypes.string.isRequired,
+    author: PropTypes.object.isRequired, 
+    readingTime: PropTypes.number.isRequired, 
+    featuredImage: PropTypes.object.isRequired, 
+    creationDate: PropTypes.string.isRequired, 
+    category: PropTypes.object.isRequired, 
+    thumbnail: PropTypes.object.isRequired, 
+    locale: PropTypes.string.isRequired,
+    postUrl: PropTypes.string.isRequired,
 }

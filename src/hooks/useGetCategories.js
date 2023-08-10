@@ -1,23 +1,21 @@
 import { useState, useEffect, useMemo } from 'react';
 import { getCategories } from '../../contentful/querys';
 
-export const useGetCategories = () => {
+export const useGetCategories = (locale, altLocale) => {
     const [ categories, setCategories ] = useState([]);
 
-    // Leemos las categorias 
     useEffect(() => {
         const fetchCategories = async () => {
-            try {
-                const categories = await getCategories();
-                setCategories(categories);
-            } catch (error) {
-                console.error(error);
-            }
+        try {
+            const categories = await getCategories(locale, altLocale);
+            setCategories(categories);
+        } catch (error) {
+            console.error(error);
+        }
         };
         fetchCategories();
-    }, []);
+    }, [ locale ]);
 
-    // Memorizamos las categorías, así no es necesario realizar el fetch de forma
     const memorizedCategories = useMemo(() => categories, [categories]);
 
     return {
