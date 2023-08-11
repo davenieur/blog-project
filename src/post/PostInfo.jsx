@@ -62,7 +62,7 @@ export const PostInfo = (props) => {
 
           
             {/* Imagen del post */}
-            <Flex width="30%" position={"relative"} height={"100%"} align="center" justify="center">
+            <Flex width="30%" position={"relative"} height={"20rem"} align="center" justify="center">
                 <Image
                     src={ featuredImage.url }
                     alt={ featuredImage.title }

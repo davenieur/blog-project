@@ -15,7 +15,7 @@ export const PostCard = (props) => {
             <CardBody display="flex" gap="1rem" flexDirection="column" padding={"0"} >
                 <Link href={`/blog/${ slug }`} locale={ locale }>
                     {/* Imagen del post */}
-                    <Box width="100%" position={"relative"} height="18rem">
+                    <Box width="100%" position={"relative"} height="20rem">
                         <Image
                             src={ thumbnail.url }
                             alt={ thumbnail.title }
