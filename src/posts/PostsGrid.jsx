@@ -13,21 +13,26 @@ export const PostsGrid = ( props ) => {
     
     // Decrementamos el offset
     const decrementOffset = () => {
-        if (totalPages !== 1 && offset > 0) {
+        if (offset > 0) {
             setOffset((current) => current - 1);
+        }else if(offset === 0){
+            setOffset(totalPages - 1);
         }
     };
     
     // Incrementamos el offset
     const incrementOffset = () => {
-        if (totalPages !== 1 && offset < totalPages + 1) {
+        if (offset < totalPages - 1) {
             setOffset((current) => current + 1);
+        } else if(offset === totalPages - 1){
+            setOffset(0);
         }
     };
     
     // En la ruta "/blog" se muestran los posts de 3 en 3, en /blog/[category] se muestran más posts
     const wrapProperty = showWrap ? "wrap" : "nowrap";
     const overflowProperty = showWrap ? "visible" : "hidden";
+    const isHidden = postsByCategory.length <= 3 ? true : false; 
 
     return (
         <Flex direction="column" gap="4rem">
@@ -44,16 +49,21 @@ export const PostsGrid = ( props ) => {
                 }
             </Flex>  
 
-            <Flex direction="row" gap="2rem" align="center" justify="center">
-                <Divider orientation='horizontal' variant="thick"/>
-                <Pagination 
-                    currentPage={ offset + 1 } 
-                    totalPages={ totalPages }
-                    incrementOffset = { incrementOffset }
-                    decrementOffset = { decrementOffset }
-                />
-                <Divider orientation='horizontal' variant="thick"/>
-            </Flex> 
+            {
+                isHidden ?  <Divider orientation='horizontal' variant="thick"/>  :  (      
+                    
+                    <Flex direction="row" gap="2rem" align="center" justify="center">
+                        <Divider orientation='horizontal' variant="thick"/> 
+                        <Pagination 
+                            currentPage={ offset + 1 } 
+                            totalPages={ totalPages }
+                            incrementOffset = { incrementOffset }
+                            decrementOffset = { decrementOffset }
+                        />
+                        <Divider orientation='horizontal' variant="thick"/> 
+                    </Flex>
+                )
+            }  
         </Flex>
     )
 }
