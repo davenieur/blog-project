@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import PropTypes from 'prop-types';
 import "@fontsource/mukta";
 import { GridItem, Heading, Flex, Text, Divider, Box } from '@chakra-ui/react';
 import { CalendarIcon, TimeIcon } from '@chakra-ui/icons';
@@ -6,8 +7,6 @@ import { CategoryItem } from '@/categories';
 import { dateFormat } from '@/helpers';
 import { AuthorTag } from '@/ui';
 import { ShareMenu } from '.';
-import PropTypes from 'prop-types';
-
 
 export const PostInfo = (props) => {
     const { title, author, readingTime, featuredImage, creationDate, category, thumbnail, locale, postUrl } = props;
