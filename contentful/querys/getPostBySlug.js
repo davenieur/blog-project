@@ -32,7 +32,7 @@ const getPostBySlug= async (slug, locale, altLocale) => {
           }
           slug
         }
-        excerpt
+        
         readingTime
         category{
           slug

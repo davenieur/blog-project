@@ -1,5 +1,5 @@
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
-import { Flex, Heading, Text, Divider,Link, ListItem, OrderedList, UnorderedList, Code, Box } from '@chakra-ui/react';
+import { Flex, Heading, Text, Divider, Link, ListItem, OrderedList, UnorderedList, Code, Box, Card, CardHeader, CardBody } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import Image from 'next/image';
 
@@ -8,26 +8,29 @@ import "@fontsource/mukta";
 import "@fontsource/nunito";
 import "@fontsource/raleway";
 import "@fontsource/open-sans";
+import { PostEntry } from '@/post';
 
 export const renderOptions = (links) => {
-  // create an asset map
+  // Creamos un mapa para los assets
   const assetMap = new Map();
-  // loop through the assets and add them to the map
+
+  // Agregamos todos los assets al map
   for (const asset of links.assets.block) {
     assetMap.set(asset.sys.id, asset);
   }
 
-  // // create an entry map
-  // const entryMap = new Map();
-  // // loop through the block linked entries and add them to the map
-  // for (const entry of links.entries.block) {
-  //   entryMap.set(entry.sys.id, entry);
-  // }
+  // Creamos un mapa para las entradas (links a otros posts)
+  const entryMap = new Map();
 
-  //  // loop through the inline linked entries and add them to the map
-  // for (const entry of links.entries.inline) {
-  //   entryMap.set(entry.sys.id, entry);
-  // }
+  // Agregamos todos las entradas al map
+  for (const entry of links.entries.block) {
+    entryMap.set(entry.sys.id, entry);
+  }
+
+  // Agregamos todos las entradas al map
+  for (const entry of links.entries.inline) {
+    entryMap.set(entry.sys.id, entry);
+  }
 
   return {
     // Letras negritas 
@@ -62,20 +65,11 @@ export const renderOptions = (links) => {
       // Header h6
       [BLOCKS.HEADING_6]: (node, children) => <Heading as="h6" color="brand.gray" fontSize="sm" fontFamily="mukta">{children}</Heading>,
 
-      // Unordered list
-      [BLOCKS.OL_LIST]: (node, children) => <OrderedList spacing={10} fontSize="sm" fontFamily="mukta">{children}</OrderedList>,
-
-      // Ordered list
-      [BLOCKS.UL_LIST]: (node, children) => <UnorderedList spacing={10} fontSize="sm" fontFamily="mukta">{children}</UnorderedList>,
-
-      // List Item
-      [BLOCKS.LIST_ITEM]: (node, children) => <ListItem fontSize="sm" fontFamily="mukta">{children}</ListItem>,
-
       // HR
       [BLOCKS.HR]: (node, children) => <Divider orientation='horizontal' variant="thick"/>,
 
       // Citas
-      // [BLOCKS.QUOTE]: (node, children) => <Box backgroundColor="brand.secondary" color="brand.gray" width="fit-content" padding=".5rem 1rem">{children}</Box>,
+      [BLOCKS.QUOTE]: (node, children) => <Box backgroundColor="brand.secondary" color="brand.black" width="fit-content" padding=".5rem 1rem">{children}</Box>,
 
       // Links
       [INLINES.HYPERLINK]: ({ data }, children) => (
@@ -98,38 +92,39 @@ export const renderOptions = (links) => {
       
       // Entrada de un post
       [INLINES.EMBEDDED_ENTRY]: (node, children) => {
-        if (node.data.target.sys.contentType.sys.id === "blogPost") {
-          return (
-            <Link href={`/blog/${node.data.target.fields.slug}`}>            
-              {node.data.target.fields.title}
-            </Link>
-          );
-        }
+        const entry = entryMap.get(node.data.target.sys.id);
+        return (
+          <h2>xd</h2>
+          // <Link href={`/blog/${node.data.target.fields.slug}`}>            
+          //   {node.data.target.fields.title}
+          // </Link>
+        );
       },
 
-      // Bloque de código
+      // Link a otro post (formato de card)
       [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
-        if (node.data.target.sys.contentType.sys.id === "codeBlock") {
+        const entry = entryMap.get(node.data.target.sys.id);
+
+        if (node.data.target.sys.linkType === "Entry") {
           return (
-            <pre>
-              <code>{node.data.target.fields.code}</code>
-            </pre>
+            <PostEntry { ...entry } />
+            
           );
         }
         
         // Video
-        if (node.data.target.sys.contentType.sys.id === "videoEmbed") {
-          return (
-            <iframe
-              src={node.data.target.fields.embedUrl}
-              height="100%"
-              width="100%"
-              frameBorder="0"
-              scrolling="no"
-              title={node.data.target.fields.title}
-              allowFullScreen={true}
-            />
-          );
+        // if (node.data.target.sys.contentType.sys.id === "videoEmbed") {
+         
+            // <iframe
+            //   src={node.data.target.fields.embedUrl}
+            //   height="100%"
+            //   width="100%"
+            //   frameBorder="0"
+            //   scrolling="no"
+            //   title={node.data.target.fields.title}
+            //   allowFullScreen={true}
+            // />
+          // );
         }
       },
       
@@ -138,24 +133,20 @@ export const renderOptions = (links) => {
         const asset = assetMap.get(node.data.target.sys.id);
 
         return (
-          <Flex width="30%" position={"relative"} height={"100%"} align="center" justify="center">
-            <Image
-                src={ asset.url }
-                alt={ asset.title }
-                width="200"
-                height="200"
-            />
-          </Flex>
+          
+          <Image
+              src={ asset.url }
+              alt={ asset.title }
+              width="200"
+              height="200"
+          />
+       
         );
         
-      },
-    },
-    
+      }
+    }
   }
 
 
-
-
-}
 
  

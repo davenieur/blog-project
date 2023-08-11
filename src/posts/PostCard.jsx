@@ -8,12 +8,12 @@ import PropTypes from 'prop-types';
 import "@fontsource/mukta";
 
 export const PostCard = (props) => {
-    const { title, slug, readingTime, thumbnail, creationDate } = props;
+    const { title, slug, readingTime, thumbnail, creationDate, locale } = props;
    
     return (
         <Card  bg="brand.primary" border="none" shadow="none" flex={"0 0 calc(33.33% - 2rem)"}>
             <CardBody display="flex" gap="1rem" flexDirection="column" padding={"0"} >
-                <Link href={`/blog/${ slug }`}>
+                <Link href={`/blog/${ slug }`} locale={ locale }>
                     {/* Imagen del post */}
                     <Box width="100%" position={"relative"} height="18rem">
                         <Image
@@ -28,7 +28,7 @@ export const PostCard = (props) => {
                 {/* Información del post */}
                 <Flex direction="column" gap="1rem" color={"brand.gray"}>
                     {/* Titulo */}
-                    <Link href={`/blog/${ slug }`}>
+                    <Link href={`/blog/${ slug }`} locale= { locale }>
                         <Text fontSize='xl' textAlign={"justify"} fontFamily="mukta">
                         { title }
                         </Text>
@@ -68,4 +68,5 @@ PostCard.propTypes = {
     readingTime: PropTypes.number.isRequired,
     thumbnail: PropTypes.object.isRequired, 
     creationDate: PropTypes.string.isRequired,
+    locale: PropTypes.string.isRequired,
 }

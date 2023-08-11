@@ -13,6 +13,29 @@ const getPostBody= async (slug, locale) => {
                 sys {
                   id
                 }
+                ... on Post {
+                  title
+                  slug
+                  thumbnail{
+                    title
+                    url
+                  }
+                  excerpt
+                }
+              }
+              block {
+                sys {
+                  id
+                }
+                ... on Post {
+                  title
+                  slug
+                  thumbnail{
+                    title
+                    url
+                  }
+                  excerpt
+                }
               }
             }
             assets {
