@@ -6,12 +6,12 @@ import PropTypes from 'prop-types';
 export const PostBody = (props) => {
     const { body } = props;
 
-    
+
     return (
         <Flex gridArea="postBody" direction={"column"}>
              <Flex  alignSelf="center"  direction={"column"} gap={"2rem"} fontSize="lg"  padding="2rem" >
 
-                { documentToReactComponents(body.json, renderOptions )}
+                { documentToReactComponents(body.json, renderOptions(body.links) )}
 
             </Flex>
 

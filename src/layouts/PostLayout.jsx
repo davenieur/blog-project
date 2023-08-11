@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { Grid, BreadcrumbItem, BreadcrumbLink, Flex } from "@chakra-ui/react";
 import { NextSeo } from 'next-seo';
 import { generateSeoConfig } from "../../seo/seoConfig";

@@ -1,11 +1,11 @@
+import Image from 'next/image';
+import "@fontsource/mukta";
 import { GridItem, Heading, Flex, Text, Divider, Box } from '@chakra-ui/react';
 import { CalendarIcon, TimeIcon } from '@chakra-ui/icons';
 import { CategoryItem } from '@/categories';
 import { dateFormat } from '@/helpers';
 import { AuthorTag } from '@/ui';
 import { ShareMenu } from '.';
-import Image from 'next/image';
-import "@fontsource/mukta";
 import PropTypes from 'prop-types';
 
 

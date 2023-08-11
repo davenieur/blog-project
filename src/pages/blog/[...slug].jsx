@@ -1,5 +1,5 @@
 import { PostLayout } from "@/layouts";
-import { getPostBySlug, getPostsSlugs } from "../../../contentful/querys";
+import { getPostBody, getPostBySlug, getPostsSlugs } from "../../../contentful/querys";
 
 /* blog/[...slug] */
 
@@ -46,12 +46,15 @@ export async function getStaticProps(props){
     // Obtenemos el post a través de su slug
     const data = await getPostBySlug(pageSlug, locale, altLocale);
 
+    const body = await getPostBody(pageSlug, locale);
+ 
     return {
       props: {
         locales,
         locale,
         altLocale,
         slug: pageSlug,
+        body,
         ...data
       }
     }

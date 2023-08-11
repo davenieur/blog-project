@@ -1,5 +1,5 @@
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
-import { Heading, Text, Divider,Link, ListItem, OrderedList, UnorderedList, Code } from '@chakra-ui/react';
+import { Flex, Heading, Text, Divider,Link, ListItem, OrderedList, UnorderedList, Code, Box } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import Image from 'next/image';
 
@@ -9,7 +9,27 @@ import "@fontsource/nunito";
 import "@fontsource/raleway";
 import "@fontsource/open-sans";
 
-export const renderOptions = {
+export const renderOptions = (links) => {
+  // create an asset map
+  const assetMap = new Map();
+  // loop through the assets and add them to the map
+  for (const asset of links.assets.block) {
+    assetMap.set(asset.sys.id, asset);
+  }
+
+  // // create an entry map
+  // const entryMap = new Map();
+  // // loop through the block linked entries and add them to the map
+  // for (const entry of links.entries.block) {
+  //   entryMap.set(entry.sys.id, entry);
+  // }
+
+  //  // loop through the inline linked entries and add them to the map
+  // for (const entry of links.entries.inline) {
+  //   entryMap.set(entry.sys.id, entry);
+  // }
+
+  return {
     // Letras negritas 
     renderMark: {
         [MARKS.BOLD]: (text) => <strong>{text}</strong>,
@@ -28,7 +48,7 @@ export const renderOptions = {
       },
 
       // Párrafos
-      [BLOCKS.PARAGRAPH]: (node, children) => <Text fontSize="md" fontFamily="nunito" lineHeight="2rem">{children}</Text>,
+      [BLOCKS.PARAGRAPH]: (node, children) => <Text fontSize="md" fontFamily="nunito" lineHeight="2rem" fontWeight="light">{children}</Text>,
 
       // Header h3
       [BLOCKS.HEADING_3]: (node, children) => <Heading as="h3" color="brand.gray" fontSize="xl" fontFamily="mukta">{children}</Heading>,
@@ -53,6 +73,9 @@ export const renderOptions = {
 
       // HR
       [BLOCKS.HR]: (node, children) => <Divider orientation='horizontal' variant="thick"/>,
+
+      // Citas
+      // [BLOCKS.QUOTE]: (node, children) => <Box backgroundColor="brand.secondary" color="brand.gray" width="fit-content" padding=".5rem 1rem">{children}</Box>,
 
       // Links
       [INLINES.HYPERLINK]: ({ data }, children) => (
@@ -112,17 +135,27 @@ export const renderOptions = {
       
       // IMAGENES
       [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
+        const asset = assetMap.get(node.data.target.sys.id);
 
         return (
-          <h2>xd</h2>
-          // <img
-          //   src={`https://UWU`}
-          //   height={node.data.target.fields.file.details.image.height}
-          //   width={node.data.target.fields.file.details.image.width}
-          //   alt={node.data.target.fields.description}
-          // />
+          <Flex width="30%" position={"relative"} height={"100%"} align="center" justify="center">
+            <Image
+                src={ asset.url }
+                alt={ asset.title }
+                width="200"
+                height="200"
+            />
+          </Flex>
         );
+        
       },
     },
     
-  };
+  }
+
+
+
+
+}
+
+ 

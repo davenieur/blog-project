@@ -40,9 +40,6 @@ const getPostBySlug= async (slug, locale, altLocale) => {
           name
           altName: name(locale: "${ altLocale }")
         }
-        body{
-          json
-        }
       }
     }
   }`;
