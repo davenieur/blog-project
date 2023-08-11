@@ -32,8 +32,7 @@ export const PostsGrid = ( props ) => {
     // En la ruta "/blog" se muestran los posts de 3 en 3, en /blog/[category] se muestran más posts
     const wrapProperty = showWrap ? "wrap" : "nowrap";
     const overflowProperty = showWrap ? "visible" : "hidden";
-    const isHidden = postsByCategory.length <= 3 ? true : false; 
-
+    
     return (
         <Flex direction="column" gap="4rem">
             <Flex alignItems={"flex-start"} justifyContent={"flex-start"} gap="4rem 2rem" wrap={ wrapProperty } overflow={ overflowProperty } >
@@ -48,22 +47,18 @@ export const PostsGrid = ( props ) => {
                     })
                 }
             </Flex>  
-
-            {
-                isHidden ?  <Divider orientation='horizontal' variant="thick"/>  :  (      
-                    
-                    <Flex direction="row" gap="2rem" align="center" justify="center">
-                        <Divider orientation='horizontal' variant="thick"/> 
-                        <Pagination 
-                            currentPage={ offset + 1 } 
-                            totalPages={ totalPages }
-                            incrementOffset = { incrementOffset }
-                            decrementOffset = { decrementOffset }
-                        />
-                        <Divider orientation='horizontal' variant="thick"/> 
-                    </Flex>
-                )
-            }  
+       
+            <Flex direction="row" gap="2rem" align="center" justify="center">
+                <Divider orientation='horizontal' variant="thick"/> 
+                <Pagination 
+                    currentPage={ offset + 1 } 
+                    totalPages={ totalPages }
+                    incrementOffset = { incrementOffset }
+                    decrementOffset = { decrementOffset }
+                />
+                <Divider orientation='horizontal' variant="thick"/> 
+            </Flex>
+         
         </Flex>
     )
 }
