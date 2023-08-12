@@ -1,13 +1,22 @@
 import { PostLayout } from "@/layouts";
 import { getPostBody, getPostBySlug, getPostsSlugs } from "../../../contentful/querys";
+import { useRouter } from 'next/router'
 
 /* blog/[...slug] */
 
 export default function(props){
-    return (
-        // Uso de la plantilla de cada post
-        <PostLayout props={ ...props } /> 
-    )  
+    const router = useRouter();
+
+    if (router.isFallback) {
+        return <div>Loading...</div>
+    } else{
+        return (
+            // Uso de la plantilla de cada post
+            <PostLayout props={ ...props } /> 
+        )  
+    }
+
+    
 }
 
 export async function getStaticPaths(){

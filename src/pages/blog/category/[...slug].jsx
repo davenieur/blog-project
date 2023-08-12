@@ -2,20 +2,25 @@ import { GridItem } from "@chakra-ui/react";
 import { PostsLayout } from "@/layouts";
 import { getCategories, getCategoryBySlug } from "../../../../contentful/querys";
 import { PostsGrid } from "@/posts";
+import { useRouter } from 'next/router'
 
 /* blog/category/[...slug] */
 
 export default function(props){
     const  { slug, locale, altLocale, showWrap } = props;
+    const router = useRouter()
 
-
-    return (
-        <PostsLayout props={ props }> 
-            <GridItem area={"posts"}>
-                <PostsGrid slug = { slug } limit = { 15 } locale={ locale } altLocale = { altLocale } showWrap = { showWrap }/>
-            </GridItem>
-        </PostsLayout> 
-    )  
+    if (router.isFallback) {
+        return <div>Loading...</div>
+    } else{
+        return (
+            <PostsLayout props={ props }> 
+                <GridItem area={"posts"}>
+                    <PostsGrid slug = { slug } limit = { 15 } locale={ locale } altLocale = { altLocale } showWrap = { showWrap }/>
+                </GridItem>
+            </PostsLayout> 
+        )  
+    }
 }
 
 export async function getStaticPaths(){
