@@ -11,6 +11,8 @@ import "@fontsource/open-sans";
 import { PostEntry } from '@/post';
 
 export const renderOptions = (links) => {
+  console.log(links)
+
   // Creamos un mapa para los assets
   const assetMap = new Map();
 
@@ -108,44 +110,42 @@ export const renderOptions = (links) => {
         if (node.data.target.sys.linkType === "Entry") {
           return (
             <PostEntry { ...entry } />
-            
           );
-        }
-        
-        // Video
-        // if (node.data.target.sys.contentType.sys.id === "videoEmbed") {
-         
-            // <iframe
-            //   src={node.data.target.fields.embedUrl}
-            //   height="100%"
-            //   width="100%"
-            //   frameBorder="0"
-            //   scrolling="no"
-            //   title={node.data.target.fields.title}
-            //   allowFullScreen={true}
-            // />
-          // );
         }
       },
       
-      // IMAGENES
+      // Multimedia
       [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
         const asset = assetMap.get(node.data.target.sys.id);
 
-        return (
+        // Videos
+        if( asset.url.endsWith('mp4')){
+          return(
+            <iframe
+              src={ asset.url }
+              title={ asset.title }
+              width="500"
+              height="500"
+              allowFullScreen={true}
+          />
+          )
+        } else {
           
-          <Image
+          // Imagenes
+          return (
+            <Image
               src={ asset.url }
               alt={ asset.title }
               width="200"
               height="200"
-          />
-       
-        );
-        
+            />
+         
+          );
+        }
       }
     }
   }
+}
 
 
 

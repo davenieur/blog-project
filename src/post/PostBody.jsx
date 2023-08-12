@@ -9,7 +9,7 @@ export const PostBody = (props) => {
 
     return (
         <Flex gridArea="postBody" direction={"column"}>
-             <Flex  alignSelf="center"  direction={"column"} gap={"2rem"} fontSize="lg"  padding="2rem" >
+             <Flex   direction={"column"} gap={"2rem"} fontSize="lg"  padding="2rem" >
 
                 { documentToReactComponents(body.json, renderOptions(body.links) )}
 
