@@ -55,6 +55,7 @@ export async function getStaticProps(props){
     // Obtenemos el post a través de su slug
     const data = await getPostBySlug(pageSlug, locale, altLocale);
 
+    // Obtenemos el cuerpo del post
     const body = await getPostBody(pageSlug, locale);
  
     return {

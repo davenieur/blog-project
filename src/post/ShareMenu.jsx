@@ -46,37 +46,36 @@ export const ShareMenu = (props) => {
     const twitterLink = `https://twitter.com/intent/tweet?url=${ postUrl }`
 
     return (
-        <Flex direction={"row"} alignItems={"center"} gap={"1rem"} color={"brand.gray"} > 
+        <Flex direction="row" align="center" gap="1rem" color="brand.primary" width="fit-content"> 
             <Text>
                 { label }
             </Text>
 
             {/* LinkedIn */}
-            <Tooltip label={`${ toolTip } LinkedIn`} aria-label='A tooltip'>
-               
+            <Tooltip label={`${ toolTip } LinkedIn`} aria-label='LinkedIn tooltip'>
                 <span>
-                    <Icon as={ LiaLinkedin } boxSize={"2rem"} onClick={() => openPopup( linkedInLink )} cursor="pointer" />
+                    <Icon as={ LiaLinkedin } boxSize="2rem" onClick={() => openPopup( linkedInLink )} cursor="pointer" />
                 </span>
             </Tooltip>
 
             {/* Facebook */}
-            <Tooltip label={`${ toolTip } Facebook`} aria-label='A tooltip'>
+            <Tooltip label={`${ toolTip } Facebook`} aria-label='Facebook tooltip'>
                 <span>
-                    <Icon as={ LiaFacebookSquare} boxSize={"2rem"} onClick={() => openPopup( facebookLink )} cursor="pointer" />
+                    <Icon as={ LiaFacebookSquare} boxSize="2rem" onClick={() => openPopup( facebookLink )} cursor="pointer" />
                 </span>
             </Tooltip>
 
             {/* Twitter */}
-            <Tooltip label={`${ toolTip } Twitter`} aria-label='A tooltip'>
+            <Tooltip label={`${ toolTip } Twitter`} aria-label='Twitter tooltip'>
                 <span>
-                    <Icon as={  LiaTwitterSquare } boxSize={"2rem"} onClick={() => openPopup( twitterLink )} cursor="pointer" /> 
+                    <Icon as={ LiaTwitterSquare } boxSize="2rem" onClick={() => openPopup( twitterLink )} cursor="pointer" /> 
                 </span>       
             </Tooltip>
 
             {/* Copy to clipboard */}
-            <Tooltip label={ clip } aria-label='A tooltip'>
+            <Tooltip label={ clip } aria-label='Copy to clipboard'>
                 <span>
-                    <Icon as={ BiLink } boxSize={"2rem"} cursor="pointer" onClick={()  => copyURLToClipboard(postUrl) } /> 
+                    <Icon as={ BiLink } boxSize="2rem" cursor="pointer" onClick={()  => copyURLToClipboard(postUrl) } /> 
                 </span>
             </Tooltip>  
         </Flex>

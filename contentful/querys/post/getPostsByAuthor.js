@@ -1,14 +1,13 @@
-import { client } from "../contentfulApi";
+import { client } from "../../contentfulApi";
 
 // Obtenemos solo los datos relevantes para los PostCards, se utiliza en los SLUGS para un enrutamiento correcto 
-const getPostsByCategory= async (slug, offset = 0, locale = 'es', altLocale = "en-US") => {
+const getPostsByAuthor= async (slug, offset = 0, locale = 'es', altLocale = "en-US") => {
   const postQuery = `query{
     siteCollection {
       items {
         postsCollection(limit: 15, order: [creationDate_DESC],  skip: ${ offset }, locale: "${ locale }", where: { category: { slug: "${ slug }" } } ) {
           items {
             title
-            altTitle: title(locale: "${ altLocale }")
             slug
             altSlug: slug(locale: "${ altLocale }")
             creationDate
@@ -26,9 +25,7 @@ const getPostsByCategory= async (slug, offset = 0, locale = 'es', altLocale = "e
             readingTime
             category{
               slug
-              altSlug: slug(locale: "${ altLocale }")
               name
-              altName: name(locale: "${ altLocale }")
             }
           }
         }
@@ -38,7 +35,6 @@ const getPostsByCategory= async (slug, offset = 0, locale = 'es', altLocale = "e
 
   try {
     const data = await client.request(postQuery);
-   
     const { siteCollection: { items } } = data;
     return items[0].postsCollection.items;
   } catch (error) {
@@ -48,5 +44,5 @@ const getPostsByCategory= async (slug, offset = 0, locale = 'es', altLocale = "e
 };
 
 export {
-  getPostsByCategory
+  getPostsByAuthor
 };

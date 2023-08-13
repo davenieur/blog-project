@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export const Pagination = ({ totalPages, currentPage, incrementOffset, decrementOffset }) => {
     return (
-        <Flex grid-area="pages" align="center" justify="center" direction="row" gap="1rem" width="30rem">
+        <Flex grid-area="pages" align="center" justify="center" direction="row" gap="1rem" width="fit-content">
             <IconButton
                 isRound={true}
                 variant='solid'
@@ -18,7 +18,7 @@ export const Pagination = ({ totalPages, currentPage, incrementOffset, decrement
                 
             />
 
-            <Text>
+            <Text width="4rem" textAlign="center">
                 { currentPage } / { totalPages } 
             </Text>
             

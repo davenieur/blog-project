@@ -1,11 +1,17 @@
-import { client } from "../contentfulApi";
+import { client } from "../../contentfulApi";
 
-// Se utiliza para obtener el contenido del footer  ( se pueden agregar imagenes, texto o más ) 
-const getFooter = async () => {
+// Se utiliza para obtener el contenido del Header ( se pueden agregar imagenes, texto o más ) 
+const getHeader = async () => {
   const siteQuery = `query {
     siteCollection {
       items {
-        footer
+        header{
+          name
+          logo{
+            url
+            title
+          }
+        }
       }
     }
   }`;
@@ -21,5 +27,5 @@ const getFooter = async () => {
 };
 
 export {
-  getFooter
+  getHeader
 };

@@ -25,14 +25,14 @@ export const PostLayout = ( { props } ) => {
     }, [ slug ]);
 
     return (
-        <Flex direction={"column"} padding="2rem">
+        <Flex direction={"column"} gap="2rem 0">
 
             {/* Configuramos los metatags del post */}
             <NextSeo {...seoConfig} />
             
             {/* BreadCrumb */}
             <BreadCrumb props = { locale }>
-                <BreadcrumbItem color="brand.secondary">
+                <BreadcrumbItem>
                     <BreadcrumbLink as={Link}  href={`/blog/category/${ category.slug }`} locale={ locale }>{ category.name }</BreadcrumbLink>
                 </BreadcrumbItem>
             </BreadCrumb>   
@@ -43,7 +43,7 @@ export const PostLayout = ( { props } ) => {
                     "postBody  postContentTable"`
                 }
                 gridTemplateColumns={"1fr .4fr"}
-                gap={"2rem"}
+              
             >   
                 {/* Información del post */}
                 <PostInfo 

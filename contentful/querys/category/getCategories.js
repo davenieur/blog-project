@@ -1,4 +1,4 @@
-import { client } from "../contentfulApi";
+import { client } from "../../contentfulApi";
 
 // Obtenemos solo los datos relevantes para los categoryItems, se utiliza en los SLUGS para un enrutamiento correcto 
 const getCategories = async (locale = "es", altLocale="en-US") => {

@@ -1,4 +1,5 @@
 import { DiscussionEmbed } from 'disqus-react';
+import { Box } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
 export const PostComments = ( { slug, title } ) => {
@@ -12,7 +13,9 @@ export const PostComments = ( { slug, title } ) => {
 
   
     return (
-        <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+        <Box padding="4rem">
+            <DiscussionEmbed shortname={disqusShortname} config={disqusConfig}  />
+        </Box>
     );
 }
 

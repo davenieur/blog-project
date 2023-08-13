@@ -11,7 +11,6 @@ import "@fontsource/open-sans";
 import { PostEntry } from '@/post';
 
 export const renderOptions = (links) => {
-  console.log(links)
 
   // Creamos un mapa para los assets
   const assetMap = new Map();

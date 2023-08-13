@@ -4,6 +4,7 @@ import { getCategories } from '../../contentful/querys';
 export const useGetCategories = (locale, altLocale) => {
     const [ categories, setCategories ] = useState([]);
 
+    // Obtenemos las categorías dentro del posts
     useEffect(() => {
         const fetchCategories = async () => {
         try {

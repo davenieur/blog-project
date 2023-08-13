@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import { Flex, Divider } from '@chakra-ui/react';
-import { AiFillCaretRight } from 'react-icons/ai'
+import { Flex } from '@chakra-ui/react';
 import { CategoryItem } from './CategoryItem';
 import { useGetCategories } from '@/hooks';
 
@@ -15,23 +14,14 @@ export const CategoriesGrid = (props) => {
             {
                 memorizedCategories.map( ({ name, altName, slug, altSlug }) => {
                     return(
-                        <Flex direction="column" gap="1rem" key={ slug }>
-                            <Flex direction="row" gap=".2rem">
-                                <AiFillCaretRight size="1.5rem" color="#FF8811"/> 
-
-                                {/* Información de la categoría */}
-                                <CategoryItem  
-                                    name = { name }
-                                    altName = { altName }
-                                    slug = { slug }
-                                    altSlug = { altSlug }
-                                    locale = { locale }
-                                />
-                            </Flex>
-                           
-                            <Divider orientation='horizontal' width={"100%"} variant="thick"/>
-                        </Flex>
-                        
+                        <CategoryItem  
+                            name = { name }
+                            altName = { altName }
+                            slug = { slug }
+                            altSlug = { altSlug }
+                            locale = { locale }
+                            key= { slug }
+                        />
                     )
                 })
             }

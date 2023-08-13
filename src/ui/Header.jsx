@@ -28,7 +28,7 @@ export const Header = (props) => {
     
 
     return (
-        <GridItem as="header" padding="2rem 4rem"  width={"100vw"}  area={'header'} >
+        <GridItem as="header" padding="2rem 4rem"  width={"100vw"}  area={'header'} backgroundColor="brand.primary">
             <Flex justifyContent="space-between" alignItems="center">
                 <Link href={`/blog`} locale={ locale }>
                     <Image

@@ -22,7 +22,7 @@ export const RootLayout = ( { children, pageProps } ) => {
             <Header { ...pageProps }/>
             
             {/* Main */}
-            <GridItem as="main"  bg='brand.primary' area={'main'} p={"4rem"}>
+            <GridItem as="main"  bg='brand.primary' area={'main'}>
                 { children }
             </GridItem>
             

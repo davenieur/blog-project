@@ -1,4 +1,4 @@
-import { client } from "../contentfulApi";
+import { client } from "../../contentfulApi";
 
 // Obtenemos la información de sitio como el titulo (se puede incluir más cosas)
 const getSite = async () => {

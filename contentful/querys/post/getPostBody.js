@@ -1,4 +1,4 @@
-import { client } from "../contentfulApi";
+import { client } from "../../contentfulApi";
 
 // Obtener el body del post
 const getPostBody= async (slug, locale) => {

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Card, CardBody,Text, Flex, Box } from '@chakra-ui/react';
 import { CalendarIcon, TimeIcon } from '@chakra-ui/icons';
 import { dateFormat } from '@/helpers/dateFormat';
-import { AuthorTag } from '@/ui';
+import { AuthorTag } from '@/author';
 import PropTypes from 'prop-types';
 import "@fontsource/mukta";
 
@@ -11,11 +11,12 @@ export const PostCard = (props) => {
     const { title, slug, readingTime, thumbnail, creationDate } = props;
    
     return (
-        <Card  bg="brand.primary" border="none" shadow="none" flex={"0 0 calc(33.33% - 2rem)"}>
+        <Card  bg="brand.primary" border="none" shadow="none" flex={"0 0 calc(33.33% - 3rem)"} >
             <CardBody display="flex" gap="1rem" flexDirection="column" padding={"0"} >
                 <Link href={`/blog/${ slug }`}>
+
                     {/* Imagen del post */}
-                    <Box width="100%" position={"relative"} height="20rem">
+                    <Box width="100%" position={"relative"} height="18rem">
                         <Image
                             src={ thumbnail.url }
                             alt={ thumbnail.title }

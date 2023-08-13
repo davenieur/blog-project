@@ -1,3 +1,5 @@
+import 'animate.css';
+
 // Chakra
 import { ChakraProvider } from '@chakra-ui/react'
 import theme  from '../styles/theme';

@@ -8,8 +8,8 @@ export const PostBody = (props) => {
 
 
     return (
-        <Flex gridArea="postBody" direction={"column"}>
-             <Flex   direction={"column"} gap={"2rem"} fontSize="lg"  padding="2rem" >
+        <Flex gridArea="postBody" direction={"column"} padding="4rem">
+             <Flex   direction={"column"} gap={"2rem"} fontSize="lg"  >
 
                 { documentToReactComponents(body.json, renderOptions(body.links) )}
 

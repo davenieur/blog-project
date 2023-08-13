@@ -6,7 +6,7 @@ export const AuthorTag = ( props ) => {
     
     const { author, locale } = props;
     return (
-        // <Link href={`/blog`} locale={ locale } >
+        <Link href={`/blog/author/${ author.slug }`} locale={ locale } >
             <Tag size='lg' bg={"brand.gray"} color={"brand.primary"} fontWeight="bold" borderRadius='full'>
                 <Avatar
                     src={ author.photo.url }
@@ -18,7 +18,7 @@ export const AuthorTag = ( props ) => {
                 />
                 <TagLabel>{ author.fullName } </TagLabel>
             </Tag>
-        // </Link>
+        </Link>
     )
 }
 
