@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { Flex, Divider } from "@chakra-ui/react";
+import { Flex, Divider, useBreakpointValue, Grid } from "@chakra-ui/react";
 import { Pagination, PostCard } from "./";
 import PropTypes from 'prop-types';
 
 export const PostsGrid = ( props ) => {
-    const { slug, filteredPosts, locale, altLocale, showWrap, queryFunction, totalPages } = props;
+    const { slug, filteredPosts, locale, altLocale, queryFunction, totalPages } = props;
+    
+    // Utiliza useBreakpointValue para adaptar el número de columnas
+    const gridColumnCount = useBreakpointValue({ base: 1, md: 2, lg: 3 });
 
     // Controlamos el offset para las peticiones (parametro Skip)
     const [ offset, setOffset ] = useState(0);
@@ -13,16 +16,18 @@ export const PostsGrid = ( props ) => {
  
     // Cada vez que se cambie el slug o el offset
     useEffect(() => {
-        const fetchPosts = async (slug) => {
+        const fetchPosts = async () => {
             try {
-                const posts = await queryFunction(slug, offset * 3, locale, altLocale);
+                const posts = await queryFunction(slug, offset * 9, locale, altLocale);
                 setPosts(posts);
             } catch (error) {
                 console.error(error);
             }
         };
         fetchPosts(slug, offset);
-    }, [ slug, offset ])
+    }, [ slug, offset ]);
+
+    
     
     // Decrementamos el offset
     const decrementOffset = () => {
@@ -42,15 +47,12 @@ export const PostsGrid = ( props ) => {
         }
     };
     
-    // En la ruta "/blog" se muestran los posts de 3 en 3, en /blog/[category] se muestran más posts
-    const wrapProperty = showWrap ? "wrap" : "nowrap";
-    const overflowProperty = showWrap ? "visible" : "hidden";
-    
+    // Se muestran los posts en forma de catalogo
     return (
-        <Flex direction="column" padding="0 6rem" gap="2rem">
+        <Flex direction="column" gap="2rem" width="100rem" padding="2rem 4rem" overflow="hidden">
 
             {/* Postcards */}
-            <Flex alignItems={"flex-start"} justifyContent={"flex-start"} gap="4rem" wrap={ wrapProperty } overflow={ overflowProperty }>
+            <Grid templateColumns={`repeat(${gridColumnCount}, 1fr)`} gap="2rem">
                 {
                     posts?.map(post => {
                         return(
@@ -61,25 +63,31 @@ export const PostsGrid = ( props ) => {
                         )
                     })
                 }
-            </Flex>  
+            </Grid>  
+            
+            {
+                totalPages > 1 ? (
+                    // Paginación
+                    <Flex direction="row" gap="2rem" align="center" justify="center" height="10rem">
+                        <Divider orientation='horizontal' variant="thick"/> 
+                        <Pagination 
+                            currentPage={ offset + 1 } 
+                            totalPages={ totalPages }
+                            incrementOffset = { incrementOffset }
+                            decrementOffset = { decrementOffset }
+                        />
+                        <Divider orientation='horizontal' variant="thick"/> 
+                    </Flex>
+                ) : <></>
+            }
 
-            {/* Paginación */}
-            <Flex direction="row" gap="2rem" align="center" justify="center">
-                <Divider orientation='horizontal' variant="thick"/> 
-                <Pagination 
-                    currentPage={ offset + 1 } 
-                    totalPages={ totalPages }
-                    incrementOffset = { incrementOffset }
-                    decrementOffset = { decrementOffset }
-                />
-                <Divider orientation='horizontal' variant="thick"/> 
-            </Flex>
+            
         </Flex>
     )
 }
 
 PostsGrid.propTypes = {
-    slug: PropTypes.string.isRequired, 
+    slug: PropTypes.string,
     locale: PropTypes.string.isRequired, 
     altLocale: PropTypes.string.isRequired,
     showWrap: PropTypes.bool.isRequired,

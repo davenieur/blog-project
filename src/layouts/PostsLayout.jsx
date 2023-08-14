@@ -8,14 +8,14 @@ export const PostsLayout = ( { children, props } ) => {
 
     return (
         <Grid
-            gridTemplateColumns={"75% 25%"}  
+            gridTemplateColumns={"80% 20%"}  
             gridTemplateRows={"10% 90%"}
-            templateAreas={`"breadcrumb categories"
+            templateAreas={`"breadcrumb categories" 
+                "categoryInfo categories" 
                 "posts categories"`}
-            gap={"2rem"}
-            
+            gap={"2rem"}    
         >   
-       
+
             {/* BREADCRUMB */}
             <BreadCrumb props={ locale }>
                 { name ? ( 

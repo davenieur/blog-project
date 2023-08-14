@@ -8,16 +8,20 @@ import useTranslation from 'next-translate/useTranslation'
 export const LanguageToggle = (props) => {
 
     const { slug, altSlug, altLocale } = props;
-    
+
     const router = useRouter();
 
     // Obtener el path completo
     const fullPath = router.asPath;
 
-    // Comprobar si el path contiene "category/"
+    // Comprobar si el path contiene "category"
     const hasCategorySubroute = fullPath.includes('/category/');
+    
+    // Comprobar si el path contiene "author"
+    const hasAuthorSubroute = fullPath.includes('/author/');
 
-    const linkPath = slug ? ( hasCategorySubroute ? `/blog/category/${ altSlug }` : `/blog/${ altSlug }`) : "/blog"
+    // Creamos la estructura del link
+    const linkPath = slug ? ( hasCategorySubroute ? `/blog/category/${ altSlug }` :  hasAuthorSubroute ? `/blog/author/${ altSlug }` : `/blog/${ altSlug }`) : "/blog"
 
     // Traducir el label del botón de idiomas
     const { t } = useTranslation('common')

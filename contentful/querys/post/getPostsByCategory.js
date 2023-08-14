@@ -5,7 +5,7 @@ const getPostsByCategory= async (slug, offset = 0, locale = 'es', altLocale = "e
   const postQuery = `query{
     siteCollection {
       items {
-        postsCollection(limit: 15, order: [creationDate_DESC],  skip: ${ offset }, locale: "${ locale }", where: { category: { slug: "${ slug }" } } ) {
+        postsCollection(limit: 18, order: [creationDate_DESC],  skip: ${ offset }, locale: "${ locale }", where: { category: { slug: "${ slug }" } } ) {
           items {
             title
             altTitle: title(locale: "${ altLocale }")

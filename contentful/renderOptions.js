@@ -10,13 +10,13 @@ import "@fontsource/raleway";
 import "@fontsource/open-sans";
 import { PostEntry } from '@/post';
 
-export const renderOptions = (links) => {
+export const renderOptions = (links = {}) => {
 
   // Creamos un mapa para los assets
   const assetMap = new Map();
 
   // Agregamos todos los assets al map
-  for (const asset of links.assets.block) {
+  for (const asset of (links?.assets?.block || [])) {
     assetMap.set(asset.sys.id, asset);
   }
 
@@ -24,12 +24,12 @@ export const renderOptions = (links) => {
   const entryMap = new Map();
 
   // Agregamos todos las entradas al map
-  for (const entry of links.entries.block) {
+  for (const entry of (links?.entries?.block || [])) {
     entryMap.set(entry.sys.id, entry);
   }
 
   // Agregamos todos las entradas al map
-  for (const entry of links.entries.inline) {
+  for (const entry of (links?.entries?.inline || [])) {
     entryMap.set(entry.sys.id, entry);
   }
 
@@ -95,10 +95,7 @@ export const renderOptions = (links) => {
       [INLINES.EMBEDDED_ENTRY]: (node, children) => {
         const entry = entryMap.get(node.data.target.sys.id);
         return (
-          <h2>xd</h2>
-          // <Link href={`/blog/${node.data.target.fields.slug}`}>            
-          //   {node.data.target.fields.title}
-          // </Link>
+          <PostEntry { ...entry } />
         );
       },
 
@@ -126,7 +123,7 @@ export const renderOptions = (links) => {
               width="500"
               height="500"
               allowFullScreen={true}
-          />
+            />
           )
         } else {
           

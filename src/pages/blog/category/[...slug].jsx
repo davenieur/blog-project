@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/router'
-import { GridItem } from "@chakra-ui/react";
+import { Flex, GridItem, Text } from "@chakra-ui/react";
 import { PostsLayout } from "@/layouts";
 import { getCategories, getCategoryBySlug, getPostsByCategory } from "../../../../contentful/querys";
 import { PostsGrid } from "@/posts";
+import { CategoryInfo } from "@/categories";
 
 /* blog/category/[...slug] */
 
@@ -30,6 +31,9 @@ export default function(props){
     } else{
         return (
             <PostsLayout props={ props }> 
+                {/* CATEGORY INFO */}
+                <CategoryInfo { ...props }/>
+
                 <GridItem area={"posts"}>
                     <PostsGrid 
                         slug = { slug } 
@@ -81,7 +85,7 @@ export async function getStaticProps(props){
     const [ altLocale ] = locales.filter(language => language !== locale);
 
     // Obtenemos la categoría a través de su slug
-    const { name, altSlug } = await getCategoryBySlug(pageSlug, locale, altLocale);
+    const category = await getCategoryBySlug(pageSlug, locale, altLocale);
 
     // Limite de posts por página
     const limit = 9;
@@ -95,10 +99,9 @@ export async function getStaticProps(props){
         locale,
         altLocale,
         slug: pageSlug,
-        altSlug,
-        name,
         limit,
-        showWrap
+        showWrap,
+        ...category
       }
     }
   }

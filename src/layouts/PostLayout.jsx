@@ -43,7 +43,6 @@ export const PostLayout = ( { props } ) => {
                     "postBody  postContentTable"`
                 }
                 gridTemplateColumns={"1fr .4fr"}
-              
             >   
                 {/* Información del post */}
                 <PostInfo 

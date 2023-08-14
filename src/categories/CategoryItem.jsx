@@ -12,7 +12,7 @@ export const CategoryItem = (props) => {
     return (
        
         <Link href={`/blog/category/${ slug }`} locale={ locale }>
-            <Text fontFamily="nunito"  _hover={{ backgroundColor: "brand.secondary", color: "brand.black", transition: "1s"}} width="fit-content">
+            <Text fontFamily="nunito" >
                 { name }
             </Text>
         </Link>

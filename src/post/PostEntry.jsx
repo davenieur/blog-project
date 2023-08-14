@@ -26,3 +26,10 @@ export const PostEntry = (props) => {
         </Link>
     );
 }
+
+PostEntry.propTypes = {
+  slug: PropTypes.string.isRequired,
+  thumbnail: PropTypes.object.isRequired,
+  excerpt: PropTypes.array.isRequired,
+  title: PropTypes.array.isRequired
+}

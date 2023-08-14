@@ -5,12 +5,16 @@ const getCategoryBySlug = async (slug, locale = 'es', altLocale = 'en-US') => {
   const siteQuery = `query {
     siteCollection {
       items {
-        categoriesCollection(locale: "${locale}", where: { slug:"${slug}" } ) {
+        categoriesCollection(limit: 1, locale: "${locale}", where: { slug:"${slug}" } ) {
           items{
             slug
             altSlug: slug(locale: "${altLocale}")
             name
             altName: name(locale: "${altLocale}")
+            thumbnail{
+              url
+              title
+            } 
           }
         }
       }

@@ -1,11 +1,12 @@
 import { client } from "../../contentfulApi";
 
 // Obtenemos solo los datos relevantes para los PostCards, se utiliza en los SLUGS para un enrutamiento correcto 
-const getPostsByAuthor= async (slug, offset = 0, locale = 'es', altLocale = "en-US") => {
+const getAllPosts= async (slug, offset = 0, locale = 'es', altLocale = "en-US") => {
+
   const postQuery = `query{
     siteCollection {
       items {
-        postsCollection(limit: 18, order: [creationDate_DESC],  skip: ${ offset }, locale: "${ locale }", where: { author: { slug: "${ slug }" } } ) {
+        postsCollection(limit: 9, order: [creationDate_DESC], skip: ${ offset }, locale: "${ locale }", where:{sys:{id_exists:true}}) {
           items {
             title
             slug
@@ -16,6 +17,7 @@ const getPostsByAuthor= async (slug, offset = 0, locale = 'es', altLocale = "en-
               url
             }
             author{
+              slug
               fullName
               photo{
                 title
@@ -44,5 +46,6 @@ const getPostsByAuthor= async (slug, offset = 0, locale = 'es', altLocale = "en-
 };
 
 export {
-  getPostsByAuthor
+  getAllPosts
 };
+

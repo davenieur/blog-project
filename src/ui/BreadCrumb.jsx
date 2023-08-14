@@ -30,9 +30,8 @@ export const BreadCrumb = ( { children, props }) => {
         <Heading as='h2' display="flex" flexDirection="row" gap="1rem" fontSize="3xl" color='brand.black' padding="2rem 4rem" >
             <Breadcrumb separator={<ChevronRightIcon color="brand.secondary" />} fontFamily="mukta">
                 <BreadcrumbItem >
-                    <BreadcrumbLink as={Link}  href={'/blog'} locale={ locale }>{ memorizedTitle }</BreadcrumbLink>
+                    <BreadcrumbLink as={Link} href={'/blog'} locale={ locale }>{ memorizedTitle }</BreadcrumbLink>
                 </BreadcrumbItem>
-
                 { children}
 
             </Breadcrumb>

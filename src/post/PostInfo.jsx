@@ -11,7 +11,6 @@ import { ShareMenu } from '.';
 export const PostInfo = (props) => {
     const { title, author, readingTime, featuredImage, creationDate, category, thumbnail, locale, postUrl } = props;
 
-
     return (
         <GridItem 
             area={ "postInfo"} 
@@ -31,8 +30,13 @@ export const PostInfo = (props) => {
                 </Heading>
                 
                 <Flex direction="row" gap="2rem" fontSize="md" align="center" >
+
                     {/* Datos del autor */}
-                    <AuthorTag author={ ...author } locale={ locale} />
+                    <AuthorTag
+                        author = { author }
+                        locale = { locale }
+                    />
+                  
 
                     {/* Fecha de publicación */}
                     <Flex direction="row" align="center" gap=".5rem">

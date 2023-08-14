@@ -14,7 +14,9 @@ const getAuthorBySlug = async (slug, locale = 'es', altLocale = 'en-US') => {
               url
               title
             }
-            
+            biography {
+              json
+            }
           }
         }
       }
