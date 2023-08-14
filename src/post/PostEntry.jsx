@@ -8,28 +8,28 @@ export const PostEntry = (props) => {
 
     return (
             
-        <Link href={`/blog/${ slug }`} textDecoration="none" width="35rem" fontFamily="mukta">   
-          <Card> 
-            <CardHeader backgroundColor="brand.secondary" color="brand.primary" display="flex" flexDirection="row" alignItems="center" gap="2rem"> 
-              <Image
-                  src={ thumbnail.url }
-                  alt={ thumbnail.title }
-                  width="200"
-                  height="200"
-              />
-              <Heading as="h3" fontSize="xl" fontFamily="mukta"> 
-                { title } 
-              </Heading>  
-            </CardHeader>
-            <CardBody fontWeight="light"> {excerpt }</CardBody>
-          </Card>
-        </Link>
+          
+      <Card> 
+        <CardHeader backgroundColor="brand.secondary" color="brand.primary" display="flex" flexDirection="row" alignItems="center" gap="2rem"> 
+          <Image
+              src={ thumbnail.url }
+              alt={ thumbnail.title }
+              width="200"
+              height="200"
+          />
+          
+     
+  
+        </CardHeader>
+        <CardBody fontWeight="light"> { excerpt }</CardBody>
+      </Card>
+        
     );
 }
 
 PostEntry.propTypes = {
   slug: PropTypes.string.isRequired,
   thumbnail: PropTypes.object.isRequired,
-  excerpt: PropTypes.array.isRequired,
-  title: PropTypes.array.isRequired
+  excerpt: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 }

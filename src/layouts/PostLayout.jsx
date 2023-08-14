@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Grid, BreadcrumbItem, BreadcrumbLink, Flex } from "@chakra-ui/react";
 import { NextSeo } from 'next-seo';
-import { generateSeoConfig } from "../../seo/seoConfig";
+import { generateSeoConfig } from "../../seo/generateSeoConfig";
 import { BreadCrumb } from "@/ui";
 import { PostBody, PostInfo, PostContentTable } from "@/post";
 import { PostComments } from "@/comments";
@@ -9,7 +9,7 @@ import Link from "next/link";
 
 // Plantilla de cada uno de los posts
 export const PostLayout = ( { props } ) => {
-    const { slug, category, title, metaDescription, thumbnail, locale } = props || {};
+    const { slug, category, title, metaDescription, thumbnail, locale, author } = props || {};
     const [ seoConfig, setSeoConfig ] = useState({});
     const [ postUrl, setPostUrl ] = useState('');
 
@@ -19,7 +19,7 @@ export const PostLayout = ( { props } ) => {
         setPostUrl(url);
 
         // Configuración de los metatags de Open Graph para esta página
-        const seoConfig = generateSeoConfig( title, metaDescription, thumbnail, url );
+        const seoConfig = generateSeoConfig( title, metaDescription, thumbnail, url, author );
         setSeoConfig(seoConfig)
 
     }, [ slug ]);

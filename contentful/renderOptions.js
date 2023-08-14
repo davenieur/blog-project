@@ -94,9 +94,7 @@ export const renderOptions = (links = {}) => {
       // Entrada de un post
       [INLINES.EMBEDDED_ENTRY]: (node, children) => {
         const entry = entryMap.get(node.data.target.sys.id);
-        return (
-          <PostEntry { ...entry } />
-        );
+        return <Link href={`/blog/${entry.slug}`}>{entry.title}</Link>;
       },
 
       // Link a otro post (formato de card)
@@ -105,7 +103,8 @@ export const renderOptions = (links = {}) => {
 
         if (node.data.target.sys.linkType === "Entry") {
           return (
-            <PostEntry { ...entry } />
+            <h1>uwu</h1>
+            // <PostEntry { ...entry } />
           );
         }
       },
