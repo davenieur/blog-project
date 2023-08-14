@@ -5,7 +5,7 @@ const getPostsByAuthor= async (slug, offset = 0, locale = 'es', altLocale = "en-
   const postQuery = `query{
     siteCollection {
       items {
-        postsCollection(limit: 18, order: [creationDate_DESC],  skip: ${ offset }, locale: "${ locale }", where: { author: { slug: "${ slug }" } } ) {
+        postsCollection(limit: 9, order: [creationDate_DESC], skip: ${ offset }, locale: "${ locale }", where: { author: { slug: "${ slug }", sys:{id_exists:true} } } ) {
           items {
             title
             slug
@@ -16,6 +16,7 @@ const getPostsByAuthor= async (slug, offset = 0, locale = 'es', altLocale = "en-
               url
             }
             author{
+              slug
               fullName
               photo{
                 title

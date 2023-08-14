@@ -9,25 +9,10 @@ import { AuthorInfo } from "@/author";
 /* blog/author/[...slug] */
 
 export default function(props){
-    const  { slug, locale, altLocale, showWrap, limit } = props;
-
-
-    const [ posts, setPosts ] = useState([]);
-
-    useEffect(() => {
-        const fetchPostsByAuthor = async () => {
-            // Realizar la solicitud GET de posts por autor
-            const posts = await getPostsByAuthor(slug, 0, locale, altLocale);
-
-            // Obtenemos los posts por autor
-            setPosts(posts);
-        }
-        fetchPostsByAuthor();
-        // TODO: Mejorar que no se actualicé cada vez que se cambie el locale, utilizar next-translate
-    }, [ locale ]);
+    const  { slug, locale, altLocale, limit } = props;
 
     const router = useRouter()
-
+    
     if (router.isFallback) {
         return <div>Loading...</div>
     } else{
@@ -39,10 +24,8 @@ export default function(props){
                         limit = { limit } 
                         locale={ locale } 
                         altLocale = { altLocale } 
-                        showWrap = { showWrap }
-                        filteredPosts = { posts }
-                        totalPages = { Math.ceil(posts.length / limit) }
                         queryFunction = { getPostsByAuthor }
+                        parameter = 'author'
                     />
                 </GridItem>
             </AuthorLayout>
@@ -89,9 +72,6 @@ export async function getStaticProps(props){
     // Limite de posts por página
     const limit = 9;
 
-    // Mostrar los posts en forma de catalogo
-    const  showWrap = true;
-
     return {
       props: {
         locales,
@@ -99,7 +79,6 @@ export async function getStaticProps(props){
         altLocale,
         slug: pageSlug,
         limit,
-        showWrap,
         ...author
       }
     }

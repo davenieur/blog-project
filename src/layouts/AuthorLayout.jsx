@@ -17,7 +17,8 @@ export const AuthorLayout = ( { children, props } ) => {
                 "authorInfo categories"
                 "posts categories"`}
             gap={"2rem"}
-            
+            padding="2rem"
+            margin="4rem"
         >
            
             {/* BREADCRUMB */}

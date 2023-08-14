@@ -8,13 +8,13 @@ export const PostsLayout = ( { children, props } ) => {
 
     return (
         <Grid
-            gridTemplateColumns={"80% 20%"}  
-            gridTemplateRows={"10% 90%"}
+            gridTemplateColumns="80% 20%" 
+            margin="4rem"
             templateAreas={`"breadcrumb categories" 
-                "categoryInfo categories" 
                 "posts categories"`}
-            gap={"2rem"}  
-            padding="2rem"  
+            gap="2rem"
+            padding="2rem"
+      
         >   
 
             {/* BREADCRUMB */}

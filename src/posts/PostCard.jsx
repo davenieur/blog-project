@@ -28,7 +28,7 @@ export const PostCard = (props) => {
                 <Link href={`/blog/${ slug }`}>
 
                     {/* Imagen del post */}
-                    <Box position={"relative"} height="14rem">
+                    <Box position={"relative"} height="18rem">
                         <Image
                             src={ thumbnail.url }
                             alt={ thumbnail.title }
@@ -41,7 +41,7 @@ export const PostCard = (props) => {
                 
  
                 {/* Información del post */}
-                <Flex direction="column" gap="1rem" color="brand.gray" height="100%" padding="1rem" fontWeight="light">
+                <Flex direction="column" gap="1rem" color="brand.gray"  padding="1rem" fontWeight="light">
                     
                     <Flex direction="row" gap="1rem" justify="space-between">
                         {/* Nombre del autor */}
@@ -55,23 +55,23 @@ export const PostCard = (props) => {
                                 { dateFormat(creationDate) }
                             </Text>
                         </Flex>
+
+                         {/* Tiempo de lectura */}
+                        <Flex direction="row" align="center" gap=".5rem">
+                            <TimeIcon />
+
+                            <Text >
+                                {readingTime} min 
+                            </Text>
+                        </Flex>
                     </Flex>
 
-                      {/* Titulo */}
+                    {/* Titulo */}
                     <Link  href={`/blog/${ slug }`}>
-                        <Text fontSize='lg' textAlign={"justify"} fontFamily="mukta">
+                        <Text fontSize='xl' textAlign={"justify"} fontFamily="mukta">
                             { title }
                         </Text>
                     </Link>
-              
-                    {/* Tiempo de lectura */}
-                    <Flex direction="row" align="center" gap=".5rem">
-                        <TimeIcon />
-
-                        <Text >
-                            {readingTime} min 
-                        </Text>
-                    </Flex>
                 </Flex>
             </CardBody>
         </Card>

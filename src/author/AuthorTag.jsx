@@ -7,7 +7,17 @@ export const AuthorTag = ( props ) => {
     const { author, locale } = props;
     return (
         <Link href={`/blog/author/${ author.slug }`} locale={ locale } >
-            <Flex color="brand.gray" fontWeight="light" >
+            <Flex 
+                backgroundColor="brand.primary"
+                color="brand.gray"
+                fontWeight="bold" 
+                transition=".5s"
+                width="fit-content" 
+                padding=".5rem 1rem" 
+                borderRadius="1rem" 
+                align="center"
+                _hover={{ backgroundColor: "brand.tertiary", color: "brand.primary"  }}
+            >
                 <Avatar
                     src={ author.photo.url }
                     size='xs'
@@ -16,7 +26,7 @@ export const AuthorTag = ( props ) => {
                     mr={2}
                     alt= {`${ author.fullName } avatar`}
                 />
-                <Text fontSize="sm" fontSize="mukta">{ author.fullName } </Text>
+                <Text fontSize="sm" fontFamily="mukta">{ author.fullName } </Text>
             </Flex>
         </Link>
     )

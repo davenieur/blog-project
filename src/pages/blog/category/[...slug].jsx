@@ -9,39 +9,22 @@ import { PostsGrid } from "@/posts";
 /* blog/category/[...slug] */
 
 export default function(props){
-    const  { slug, locale, altLocale, showWrap, limit } = props;
+    const  { slug, locale, altLocale, limit } = props;
     const router = useRouter();
-
-    const [ posts, setPosts ] = useState([]);
-
-    useEffect(() => {
-        const fetchPostsByCategory = async () => {
-            // Realizar la solicitud GET de posts por categoría
-            const posts = await getPostsByCategory(slug, 0, locale, altLocale);
-            // Obtenemos los posts por categoría
-            setPosts(posts);
-        }
-        fetchPostsByCategory();
-        // TODO: Mejorar que no se actualicé cada vez que se cambie el locale, utilizar next-translate
-    }, [ locale ]);
-
 
     if (router.isFallback) {
         return <div>Loading...</div>
     } else{
         return (
             <PostsLayout props={ props }> 
-            
                 <GridItem area={"posts"}>
                     <PostsGrid 
                         slug = { slug } 
                         limit = { limit } 
                         locale={ locale } 
                         altLocale = { altLocale } 
-                        showWrap = { showWrap }
-                        filteredPosts = { posts }
-                        totalPages = { Math.ceil(posts.length / limit) }
                         queryFunction = { getPostsByCategory }
+                        parameter = 'category'
                     />
                 </GridItem>
             </PostsLayout> 
@@ -88,9 +71,6 @@ export async function getStaticProps(props){
     // Limite de posts por página
     const limit = 9;
 
-    // Indicamos que se van a desplegar todos los posts en forma de catalogo
-    const  showWrap = true;
-
     return {
       props: {
         locales,
@@ -98,7 +78,6 @@ export async function getStaticProps(props){
         altLocale,
         slug: pageSlug,
         limit,
-        showWrap,
         ...category
       }
     }

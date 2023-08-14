@@ -9,39 +9,38 @@ export const AuthorInfo = (props) => {
     const { fullName, photo, biography } = props;
 
     return (
-        <GridItem 
-            area= "authorInfo" 
+    
+        <Flex 
+            direction="row" 
+            gap="2rem" 
+            align="flex-start"
+            gridArea= "authorInfo" 
             display="flex" 
             alignItems="center" 
-         
-            flexDirection="column" 
-            gap="5rem"  
-            padding="3rem" 
+            flexDirection="row" 
             color="brand.black"
-            
         >
-            <Flex direction="row" gap="2rem" align="flex-start">
-                {/* Imagen del autor */}
-                <Image
-                    src={ photo.url }
-                    alt={ photo.title }
-                    width="320"
-                    height="320"
-                />
             
 
-                <Flex direction="column" gap="2rem" width="80%" textAlign="justify">
-                    {/* Nombre del autor */}
-                    <Heading as='h1' fontSize="4xl" fontFamily="mukta" color="brand.black" >
-                        { fullName }
-                    </Heading>
+            {/* Imagen del autor */}
+            <Image
+                src={ photo.url }
+                alt={ photo.title }
+                width="320"
+                height="320"
+            />
+        
 
-                    {/* Biografía del autor */}
-                    { documentToReactComponents(biography.json, renderOptions() )}
-                </Flex>
+            <Flex direction="column" gap="2rem" width="80%" textAlign="justify">
+                {/* Nombre del autor */}
+                <Heading as='h1' fontSize="4xl" fontFamily="mukta" color="brand.black" >
+                    { fullName }
+                </Heading>
+
+                {/* Biografía del autor */}
+                { documentToReactComponents(biography.json, renderOptions() )}
             </Flex>
-
-        </GridItem>
+        </Flex>
     )
 }
 

@@ -1,5 +1,5 @@
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
-import { Flex, Heading, Text, Divider, Link, ListItem, OrderedList, UnorderedList, Code, Box, Card, CardHeader, CardBody } from '@chakra-ui/react';
+import { Heading, Text, Divider, Link, Code, Box } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import Image from 'next/image';
 
@@ -94,16 +94,36 @@ export const renderOptions = (links = {}) => {
       // Entrada de un post
       [INLINES.EMBEDDED_ENTRY]: (node, children) => {
         const entry = entryMap.get(node.data.target.sys.id);
-        return <Link href={`/blog/${entry.slug}`}>{entry.title}</Link>;
+        return (
+          <Link 
+            display="flex"
+            href={`/blog/${ entry.slug }`} 
+            width="fit-content" 
+            color="brand.gray" 
+            backgroundColor="brand.primary" 
+            borderRadius="1rem"
+            padding="1rem"
+            alignItems="center"
+            gap="1rem"
+            _hover={{ backgroundColor: "brand.tertiary", color: "brand.primary"}}
+          >
+            
+            <Image
+                src={ entry.thumbnail.url }
+                alt={ entry.thumbnail.title }
+                width="100"
+                height="100"
+            />
+            { entry.title }
+          </Link>
+
+        );
       },
 
       // Link a otro post (formato de card)
       [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
         const entry = entryMap.get(node.data.target.sys.id);
-
-        if (node.data.target.sys.linkType === "Entry") {
-          return <Link href={`/blog/${entry.slug}`}>{entry.title}</Link>;
-        }
+        return <PostEntry { ...entry }/>;
       },
       
       // Multimedia

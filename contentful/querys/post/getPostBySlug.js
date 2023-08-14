@@ -5,7 +5,7 @@ const getPostBySlug= async (slug, locale, altLocale) => {
 
   
   const postQuery = `query{
-    postCollection(locale: "${locale}", where: { slug:"${slug}" } ) {
+    postCollection(limit: 1, locale: "${locale}", where: { slug:"${slug}" } ) {
       items {
         slug
         altSlug: slug(locale: "${altLocale}")
