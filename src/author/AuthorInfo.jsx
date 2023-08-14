@@ -22,13 +22,12 @@ export const AuthorInfo = (props) => {
         >
             <Flex direction="row" gap="2rem" align="flex-start">
                 {/* Imagen del autor */}
-                
-                    <Image
-                        src={ photo.url }
-                        alt={ photo.title }
-                        width="320"
-                        height="320"
-                    />
+                <Image
+                    src={ photo.url }
+                    alt={ photo.title }
+                    width="320"
+                    height="320"
+                />
             
 
                 <Flex direction="column" gap="2rem" width="80%" textAlign="justify">
