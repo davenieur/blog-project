@@ -45,7 +45,7 @@ export const ShareMenu = (props) => {
     const twitterLink = `https://twitter.com/intent/tweet?url=${ postUrl }`
 
     return (
-        <Flex direction="row" align="center" gap="1rem" color="brand.primary" width="fit-content"> 
+        <Flex direction="row" align="center" gap="1rem" color="brand.gray" width="fit-content"> 
             <Text>
                 { label }
             </Text>

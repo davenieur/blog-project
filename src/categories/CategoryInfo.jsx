@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import "@fontsource/mukta";
-import { Heading, Flex, Box } from '@chakra-ui/react';
+import { GridItem, Heading, Flex } from '@chakra-ui/react';
 
 export const CategoryInfo = (props) => {
-    const { name } = props;
+    const { name, thumbnail } = props;
 
     return (
      
@@ -16,20 +16,18 @@ export const CategoryInfo = (props) => {
             padding="3rem" 
             color="brand.black"
             width="300"
+            align="center"
        
         >
         
             {/* Imagen de la categoría */}
-        
-            <Box position={"relative"} height="18rem">
-                {/* <Image
-                    src={ thumbnail.url }
-                    alt={ thumbnail.title }
-                    fill = "true"
-                    blurDataURL={ thumbnail.url }
-                    placeholder = 'blur'  
-                /> */}
-            </Box>
+  
+            <Image
+                src={ thumbnail.url }
+                alt={ thumbnail.title }
+                width="300"
+                height="300"
+            /> 
 
             
             {/* Nombre de la categoría */}

@@ -11,6 +11,10 @@ const getCategoryBySlug = async (slug, locale = 'es', altLocale = 'en-US') => {
             altSlug: slug(locale: "${altLocale}")
             name
             altName: name(locale: "${altLocale}")
+            thumbnail{
+              url
+              title
+            } 
           }
         }
       }
