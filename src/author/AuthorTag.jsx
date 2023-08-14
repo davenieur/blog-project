@@ -1,12 +1,13 @@
 import Link from "next/link";
 import PropTypes from 'prop-types';
-import { Avatar, Tag, TagLabel } from "@chakra-ui/react";
+import { Avatar, Flex, Text } from "@chakra-ui/react";
+import "@fontsource/mukta";
 
 export const AuthorTag = ( props ) => {
     const { author, locale } = props;
     return (
         <Link href={`/blog/author/${ author.slug }`} locale={ locale } >
-            <Tag size='lg' color="brand.primary" backgroundColor="brand.gray" fontWeight="bold" borderRadius='full' width="10rem" >
+            <Flex color="brand.gray" fontWeight="light" >
                 <Avatar
                     src={ author.photo.url }
                     size='xs'
@@ -15,8 +16,8 @@ export const AuthorTag = ( props ) => {
                     mr={2}
                     alt= {`${ author.fullName } avatar`}
                 />
-                <TagLabel>{ author.fullName } </TagLabel>
-            </Tag>
+                <Text fontSize="sm" fontSize="mukta">{ author.fullName } </Text>
+            </Flex>
         </Link>
     )
 }

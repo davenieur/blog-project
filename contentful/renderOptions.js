@@ -102,10 +102,7 @@ export const renderOptions = (links = {}) => {
         const entry = entryMap.get(node.data.target.sys.id);
 
         if (node.data.target.sys.linkType === "Entry") {
-          return (
-            <h1>uwu</h1>
-            // <PostEntry { ...entry } />
-          );
+          return <Link href={`/blog/${entry.slug}`}>{entry.title}</Link>;
         }
       },
       

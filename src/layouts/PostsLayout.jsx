@@ -13,7 +13,8 @@ export const PostsLayout = ( { children, props } ) => {
             templateAreas={`"breadcrumb categories" 
                 "categoryInfo categories" 
                 "posts categories"`}
-            gap={"2rem"}    
+            gap={"2rem"}  
+            padding="2rem"  
         >   
 
             {/* BREADCRUMB */}

@@ -49,10 +49,10 @@ export const PostsGrid = ( props ) => {
     
     // Se muestran los posts en forma de catalogo
     return (
-        <Flex direction="column" gap="2rem" width="100rem" padding="2rem 4rem" overflow="hidden">
+        <Flex direction="column" gap="2rem" width="100rem" overflow="hidden" >
 
             {/* Postcards */}
-            <Grid templateColumns={`repeat(${gridColumnCount}, 1fr)`} gap="2rem">
+            <Grid templateColumns={`repeat(${gridColumnCount}, 20rem)`} gap="2rem" justifyContent="center">
                 {
                     posts?.map(post => {
                         return(

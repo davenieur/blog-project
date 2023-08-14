@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/router'
-import { Flex, GridItem, Text } from "@chakra-ui/react";
+import { GridItem } from "@chakra-ui/react";
 import { PostsLayout } from "@/layouts";
 import { getCategories, getCategoryBySlug, getPostsByCategory } from "../../../../contentful/querys";
 import { PostsGrid } from "@/posts";
-import { CategoryInfo } from "@/categories";
+
 
 /* blog/category/[...slug] */
 
@@ -31,9 +31,7 @@ export default function(props){
     } else{
         return (
             <PostsLayout props={ props }> 
-                {/* CATEGORY INFO */}
-                <CategoryInfo { ...props }/>
-
+            
                 <GridItem area={"posts"}>
                     <PostsGrid 
                         slug = { slug } 

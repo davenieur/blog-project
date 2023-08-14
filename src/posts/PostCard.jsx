@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Link from 'next/link';
-import { Card, CardBody,Text, Flex, Box } from '@chakra-ui/react';
+
+import { Card, CardBody,Text, Flex, Box, Link } from '@chakra-ui/react';
 import { CalendarIcon, TimeIcon } from '@chakra-ui/icons';
 import { dateFormat } from '@/helpers/dateFormat';
 import { AuthorTag } from '@/author';
@@ -12,7 +12,7 @@ export const PostCard = (props) => {
     const { title, slug, readingTime, thumbnail, creationDate, category, locale } = props;
     
     return (
-        <Card  bg="brand.primary" border="none" shadow="none" flex={"0 0 calc(33.33% - 4rem)"} height="30rem"  >
+        <Card  bg="brand.primary" border="none" shadow="none" >
             <CardBody display="flex" flexDirection="column" padding="0">
                  {/* Categoría */}
                 <Box 
@@ -28,7 +28,7 @@ export const PostCard = (props) => {
                 <Link href={`/blog/${ slug }`}>
 
                     {/* Imagen del post */}
-                    <Box position={"relative"} height="18rem">
+                    <Box position={"relative"} height="14rem">
                         <Image
                             src={ thumbnail.url }
                             alt={ thumbnail.title }
@@ -38,21 +38,15 @@ export const PostCard = (props) => {
                         />
                     </Box>
                 </Link>
-
+                
+ 
                 {/* Información del post */}
                 <Flex direction="column" gap="1rem" color="brand.gray" height="100%" padding="1rem" fontWeight="light">
                     
-                    {/* Titulo */}
-                    <Link href={`/blog/${ slug }`}>
-                        <Text fontSize='xl' textAlign={"justify"} fontFamily="mukta">
-                        { title }
-                        </Text>
-                    </Link>
-
-                    <Flex direction="row" gap="1rem" >
+                    <Flex direction="row" gap="1rem" justify="space-between">
                         {/* Nombre del autor */}
                         <AuthorTag {...props} />
-
+                        
                         {/* Fecha de publicación */}
                         <Flex direction="row" align="center" gap=".5rem">
                             <CalendarIcon />
@@ -61,16 +55,22 @@ export const PostCard = (props) => {
                                 { dateFormat(creationDate) }
                             </Text>
                         </Flex>
-                        
+                    </Flex>
 
-                        {/* Tiempo de lectura */}
-                        <Flex direction="row" align="center" gap=".5rem">
-                            <TimeIcon />
+                      {/* Titulo */}
+                    <Link  href={`/blog/${ slug }`}>
+                        <Text fontSize='lg' textAlign={"justify"} fontFamily="mukta">
+                            { title }
+                        </Text>
+                    </Link>
+              
+                    {/* Tiempo de lectura */}
+                    <Flex direction="row" align="center" gap=".5rem">
+                        <TimeIcon />
 
-                            <Text >
-                                {readingTime} min 
-                            </Text>
-                        </Flex>
+                        <Text >
+                            {readingTime} min 
+                        </Text>
                     </Flex>
                 </Flex>
             </CardBody>

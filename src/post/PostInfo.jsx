@@ -29,15 +29,14 @@ export const PostInfo = (props) => {
                     { title }
                 </Heading>
                 
-                <Flex direction="row" gap="2rem" fontSize="md" align="center" >
+                <Flex direction="row" gap="2rem" fontSize="md" align="center" fontWeight="light">
 
                     {/* Datos del autor */}
                     <AuthorTag
                         author = { author }
                         locale = { locale }
                     />
-                  
-
+                    
                     {/* Fecha de publicación */}
                     <Flex direction="row" align="center" gap=".5rem">
                         <CalendarIcon />

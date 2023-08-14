@@ -25,7 +25,7 @@ export const PostLayout = ( { props } ) => {
     }, [ slug ]);
 
     return (
-        <Flex direction={"column"} gap="2rem 0">
+        <Flex direction={"column"} gap="2rem 0" padding="2rem">
 
             {/* Configuramos los metatags del post */}
             <NextSeo {...seoConfig} />
