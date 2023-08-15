@@ -12,7 +12,7 @@ export const CategoryItem = (props) => {
     return (
        
         <Link href={`/blog/category/${ slug }`} locale={ locale }>
-            <Text fontFamily="nunito" >
+            <Text fontFamily="nunito" display="flex" alignItems="center">
                 { name }
             </Text>
         </Link>

@@ -9,9 +9,9 @@ import "@fontsource/nunito";
 import "@fontsource/raleway";
 import "@fontsource/open-sans";
 import { PostEntry } from '@/post';
+import { CategoryItem } from '@/categories';
 
 export const renderOptions = (links = {}) => {
-
   // Creamos un mapa para los assets
   const assetMap = new Map();
 
@@ -93,31 +93,46 @@ export const renderOptions = (links = {}) => {
       
       // Entrada de un post
       [INLINES.EMBEDDED_ENTRY]: (node, children) => {
+        
         const entry = entryMap.get(node.data.target.sys.id);
-        return (
-          <Link 
-            display="flex"
-            href={`/blog/${ entry.slug }`} 
-            width="fit-content" 
-            color="brand.gray" 
-            backgroundColor="brand.primary" 
-            borderRadius="1rem"
-            padding="1rem"
-            alignItems="center"
-            gap="1rem"
-            _hover={{ backgroundColor: "brand.tertiary", color: "brand.primary"}}
-          >
-            
-            <Image
-                src={ entry.thumbnail.url }
-                alt={ entry.thumbnail.title }
+      
+        if (entry.__typename === "Category"){
+          return (
+            <Box 
+              backgroundColor="brand.secondary"
+              width="fit-content" 
+              padding=".5rem 1rem" 
+              borderRadius="1rem"
+              _hover={{ backgroundColor: "brand.tertiary ", color: "brand.primary", transition: ".25s"}}
+            >
+              <CategoryItem { ...entry } />
+            </Box>
+          );
+        } else if (entry.__typename === "Post"){
+          return (
+            <Link 
+              display="flex"
+              href={`/blog/${ entry.slug }`} 
+              width="fit-content" 
+              color="brand.gray" 
+              backgroundColor="brand.primary" 
+              borderRadius="1rem"
+              padding="1rem"
+              alignItems="center"
+              gap="1rem"
+              _hover={{ backgroundColor: "brand.tertiary", color: "brand.primary"}}
+            >        
+              <Image
+                src={ entry?.thumbnail.url }
+                alt={ entry?.thumbnail.title }
                 width="100"
                 height="100"
-            />
-            { entry.title }
-          </Link>
-
-        );
+              />
+              { entry.title }
+            </Link>
+  
+          );
+        }
       },
 
       // Link a otro post (formato de card)

@@ -1,4 +1,4 @@
-import { Grid, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react"
+import { Grid, BreadcrumbItem, BreadcrumbLink, useBreakpointValue } from "@chakra-ui/react"
 import { BreadCrumb } from "@/ui";
 import { CategoriesGrid } from "@/categories";
 
@@ -6,12 +6,25 @@ import { CategoriesGrid } from "@/categories";
 export const PostsLayout = ( { children, props } ) => {
     const { name, locale } = props;
 
+    const gridTemplateAreas = useBreakpointValue({
+        base: `
+            "categories categories"
+            "breadcrumb breadcrumb"
+            "posts posts"
+        `,
+        md: `
+            "breadcrumb categories" 
+            "posts categories"
+           
+        `,
+    });
+
+
     return (
         <Grid
             gridTemplateColumns="80% 20%" 
             margin="4rem"
-            templateAreas={`"breadcrumb categories" 
-                "posts categories"`}
+            templateAreas={ gridTemplateAreas}
             gap="2rem"
             padding="2rem"
       

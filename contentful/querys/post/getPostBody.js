@@ -13,6 +13,7 @@ const getPostBody= async (slug, locale) => {
                 sys {
                   id
                 }
+                __typename
                 ... on Post {
                   title
                   slug
@@ -21,12 +22,17 @@ const getPostBody= async (slug, locale) => {
                     url
                   }
                   excerpt
+                }
+                ... on Category {
+                  name
+                  slug
                 }
               }
               block {
                 sys {
                   id
                 }
+                __typename
                 ... on Post {
                   title
                   slug
@@ -35,6 +41,10 @@ const getPostBody= async (slug, locale) => {
                     url
                   }
                   excerpt
+                }
+                ... on Category {
+                  name
+                  slug
                 }
               }
             }

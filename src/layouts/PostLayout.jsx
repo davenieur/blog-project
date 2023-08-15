@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Grid, BreadcrumbItem, BreadcrumbLink, Flex } from "@chakra-ui/react";
+import { Grid, BreadcrumbItem, BreadcrumbLink, Flex, useBreakpointValue } from "@chakra-ui/react";
 import { NextSeo } from 'next-seo';
 import { generateSeoConfig } from "../../seo/generateSeoConfig";
 import { BreadCrumb } from "@/ui";
@@ -12,6 +12,19 @@ export const PostLayout = ( { props } ) => {
     const { slug, category, title, metaDescription, thumbnail, locale, author } = props || {};
     const [ seoConfig, setSeoConfig ] = useState({});
     const [ postUrl, setPostUrl ] = useState('');
+
+    const gridTemplateAreas = useBreakpointValue({
+        base: `
+            "postInfo postInfo"
+            "postContentTable postContentTable"
+            "postBody  postBody"
+        `,
+        md: `
+            "postInfo postInfo"
+            "postBody  postContentTable"
+        `,
+    });
+
 
     useEffect(() => {
         // Obtenemos el url del sitio web
@@ -39,9 +52,7 @@ export const PostLayout = ( { props } ) => {
 
             {/* Mostramos los detalles del post */}
             <Grid
-                templateAreas={`"postInfo postInfo"
-                    "postBody  postContentTable"`
-                }
+                templateAreas={ gridTemplateAreas }
                 gridTemplateColumns={"1fr .4fr"}
             >   
                 {/* Información del post */}

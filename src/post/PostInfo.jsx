@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import "@fontsource/mukta";
-import { GridItem, Heading, Flex, Text, Divider, Box } from '@chakra-ui/react';
+import { GridItem, Heading, Flex, Text, Divider, Box, useBreakpointValue } from '@chakra-ui/react';
 import { CalendarIcon, TimeIcon } from '@chakra-ui/icons';
 import { CategoryItem } from '@/categories';
 import { dateFormat } from '@/helpers';
@@ -11,19 +11,33 @@ import { ShareMenu } from '.';
 export const PostInfo = (props) => {
     const { title, author, readingTime, featuredImage, creationDate, category, thumbnail, locale, postUrl } = props;
 
+    const gridTemplateAreas = useBreakpointValue({
+        base: `
+            "postImage postImage"
+            "info  info"
+        `,
+        md: `
+            "info postImage"
+            "info  postImage"
+           
+        `,
+    });
+
     return (
         <GridItem 
-            area={ "postInfo"} 
-            display={"flex"} 
-            alignItems={"center"} 
-            justifyContent="center" 
-            flexDirection={"row"} 
-            gap={"5rem"}  
-            padding={"3rem"} 
+            display="grid"
+            gridTemplateAreas={ gridTemplateAreas }
+            area= "postInfo"
+            // display="flex"
+            // alignItems="center" 
+            // justifyContent="center" 
+            // flexDirection= { flexDirection }
+            gap="5rem"  
+            padding="3rem" 
             color="brand.black"
           
         >
-            <Flex direction="column" gap="2rem" width="40%">
+            <Flex direction="column" gap="2rem" gridArea="info">
                 {/* Nombre del post */}
                 <Heading as='h1' fontSize="4xl" fontFamily="mukta" color="brand.black" >
                     { title }
@@ -75,13 +89,12 @@ export const PostInfo = (props) => {
 
           
             {/* Imagen del post */}
-            <Flex width="30rem" position="relative" height="20rem" align="center" justify="center">
+            <Flex width="30rem" position="relative" height="20rem" align="center" justify="center" gridArea="postImage">
                 <Image
                     src={ featuredImage.url }
                     alt={ featuredImage.title }
-                    fill = "true"
-                    blurDataURL={ featuredImage.url }
-                    placeholder = 'blur'  
+                    width="500"
+                    height="500"  
                 />
             </Flex>
         </GridItem>
