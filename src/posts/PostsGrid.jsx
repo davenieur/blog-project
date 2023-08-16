@@ -7,7 +7,7 @@ import { useGetPosts } from "@/hooks";
 export const PostsGrid = ( props ) => {
     const { slug, locale, altLocale, queryFunction, parameter } = props;
     const gridColumnCount = useBreakpointValue({ base: 1, md: 1, lg: 2, xl: 3 });
-    const limit = useBreakpointValue ({ base: "3", md: "3", lg: "9", xl: "9" });
+    const limit = useBreakpointValue ({ base: 3, md: 3, lg: 9, xl: 9 });
     const postWidth =  useBreakpointValue ({ base: "1fr", md: "25rem", lg: "25rem", xl: "1fr" });
     
     // Controlamos el offset para las peticiones (parametro Skip)
