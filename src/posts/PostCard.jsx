@@ -13,30 +13,25 @@ export const PostCard = (props) => {
 
     const fontSize = useBreakpointValue({ base: "sm", md: "md", lg: "md", xl: "md" });
     const flexDirection = useBreakpointValue({ base: "column", md: "row", lg: "row", xl: "row"});
-    const imageWidth =  useBreakpointValue({ base: "250", md: "400", lg: "300", xl: "600" });
-    const imageHeight =  useBreakpointValue({ base: "30", md: "75", lg: "100", xl: "300" });
+    const imageHeight=  useBreakpointValue({ base: 250, md: 250, lg: 350, xl: 260 });
+
     return (
-        <Card  bg="brand.primary" border="none" shadow="none" >
-            <CardBody display="flex" flexDirection="column" padding="0">
-               
-
+        <Card  bg="brand.primary" border="none" shadow="none" padding="0">
+            <CardBody display="flex" flexDirection="column" gap="1rem" padding="0">
+                {/* Imagen del post */}
                 <Link href={`/blog/${ slug }`} locale={ locale }>
-
-                    {/* Imagen del post */}
-                    <Box height= { imageHeight } overflow="hidden">
+                    <Box position="relative" width="100%" height={ imageHeight }>
                         <Image
                             src={ thumbnail.url }
                             alt={ thumbnail.title }
-                            width={ imageWidth } 
-                            height={ imageHeight } 
                             objectFit="cover"
+                            layout="fill"
                         />
                     </Box>
                 </Link>
                 
- 
-                {/* Información del post */}
-                <Flex direction= "column" gap="1rem" color="brand.gray"  padding="1rem" fontWeight="light">
+                <Flex direction= "column" gap="1rem" color="brand.gray" fontWeight="light">
+
                     {/* Categoría */}
                     <Box 
                         backgroundColor="brand.secondary" 
@@ -45,7 +40,7 @@ export const PostCard = (props) => {
                         padding=".5rem 1rem" 
                         transition=".25s"
                         _hover={{ backgroundColor: "brand.tertiary ", color: "brand.primary", }}
-                        borderRadius="1rem"
+                        borderRadius=".5rem"
                         width="fit-content"
                         fontWeight="bold"
                         fontSize={ fontSize }
@@ -61,7 +56,8 @@ export const PostCard = (props) => {
                         </Text>
                     </Link>
                     
-                    <Flex direction={ flexDirection } gap="1rem" justify="space-between" justifySelf="flex-end">
+                    {/* Información del post */}
+                    <Flex direction={ flexDirection } gap="1rem" >
                         <Flex direction= { flexDirection} gap="1rem">
                             {/* Nombre del autor */}
                             <AuthorTag {...props} />
@@ -75,9 +71,6 @@ export const PostCard = (props) => {
                                 </Text>
                             </Flex>
                         </Flex>
-
-                       
-
                          {/* Tiempo de lectura */}
                         <Flex direction="row" align="center" gap=".5rem">
                             <TimeIcon />

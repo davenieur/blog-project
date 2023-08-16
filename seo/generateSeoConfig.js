@@ -2,7 +2,7 @@ const postTitle = 'Título predeterminado del sitio';
 const description = 'Descripción predeterminada del sitio';
 const imageUrl = 'URL de la imagen predeterminada del sitio'; 
 
-export const generateSeoConfig = ( title, metaDescription, thumbnail, url, author ) => ({
+export const generateSeoConfig = (title, metaDescription, thumbnail, url, author) => ({
   title: title || postTitle,
   description: metaDescription || description,
   openGraph: {
@@ -18,12 +18,12 @@ export const generateSeoConfig = ( title, metaDescription, thumbnail, url, autho
         alt: title || postTitle,
       },
     ],
-    twitter: {
-      card: "Blog Post",
-      title: title,
-      description: description,
-      creator: `@${ author.fullName }`,
-      images: [thumbnail.url],
-    },
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: title || postTitle,
+    description: metaDescription || description,
+    creator: `@${author.fullName}`,
+    image: thumbnail.url || imageUrl,
   },
 });

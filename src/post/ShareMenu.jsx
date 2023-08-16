@@ -1,5 +1,5 @@
 import useTranslation from "next-translate/useTranslation"
-import { Flex, Icon, Text, Tooltip, useToast } from "@chakra-ui/react"
+import { Flex, Icon, Text, Tooltip, useToast, useBreakpointValue } from "@chakra-ui/react"
 import { LiaLinkedin, LiaTwitterSquare, LiaFacebookSquare } from "react-icons/lia"
 import { BiLink } from "react-icons/bi"
 import PropTypes from 'prop-types';
@@ -18,6 +18,9 @@ export const ShareMenu = (props) => {
     // Notificación que aparece al dar click en el botón del clipboard
     const toast = useToast();
     const id = 'clipBoard'
+
+    // Diseño responsivo 
+    const flexDirection = useBreakpointValue({ base: "column", md: "row", lg: "row", xl: "row"});
 
     // Función para copiar la dirección en el portapapeles
     const copyURLToClipboard = () => {
@@ -45,7 +48,7 @@ export const ShareMenu = (props) => {
     const twitterLink = `https://twitter.com/intent/tweet?url=${ postUrl }`
 
     return (
-        <Flex direction="row" align="center" gap="1rem" color="brand.gray" width="fit-content"> 
+        <Flex direction={ flexDirection } align="center" gap="1rem" color="brand.gray" width="fit-content"> 
             <Text>
                 { label }
             </Text>

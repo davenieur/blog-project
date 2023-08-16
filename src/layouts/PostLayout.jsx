@@ -15,30 +15,32 @@ export const PostLayout = ( { props } ) => {
 
     const gridTemplateAreas = useBreakpointValue({
         base: `
-            "postInfo postInfo"
-            "postContentTable postContentTable"
-            "postBody  postBody"
-            "postComments postComments"
+            "postInfo"
+            "postContentTable"
+            "postBody"
+            "postComments"
         `,
         md: `
-            "postInfo postInfo"
-            "postContentTable postContentTable"
-            "postBody  postBody"
-            "postComments postComments"
+            "postInfo"
+            "postContentTable"
+            "postBody"
+            "postComments"
         `,
         lg: `
-            "postInfo postInfo"
-            "postContentTable postContentTable"
-            "postBody  postBody"
-            "postComments postComments"
+            "postInfo"
+            "postContentTable"
+            "postBody"
+            "postComments"
         `,
         xl: `
             "postInfo postInfo"
-            "postContentTable postContentTable"
-            "postBody  postBody"
+            "postBody postContentTable"
+            "postBody  postContentTable"
             "postComments postComments"
         `,
     });
+
+    const gridTemplateColumns = useBreakpointValue({ base: "100%", md: "100%", lg: "100%", xl: "1fr .25fr"})
 
 
     useEffect(() => {
@@ -53,7 +55,7 @@ export const PostLayout = ( { props } ) => {
     }, [ slug ]);
 
     return (
-        <Flex direction={"column"} padding="2rem" margin="4rem">
+        <Flex direction={"column"} padding="2rem" margin="4rem" gap="2rem">
 
             {/* Configuramos los metatags del post */}
             <NextSeo {...seoConfig} />
@@ -68,7 +70,8 @@ export const PostLayout = ( { props } ) => {
             {/* Mostramos los detalles del post */}
             <Grid
                 templateAreas={ gridTemplateAreas }
-                gridTemplateColumns={"1fr .4fr"}
+                gridTemplateColumns={ gridTemplateColumns }
+                gap="2rem"
             >   
                 {/* Información del post */}
                 <PostInfo 

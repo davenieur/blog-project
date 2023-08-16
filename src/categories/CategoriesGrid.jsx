@@ -35,8 +35,7 @@ export const CategoriesGrid = (props) => {
                 direction={ flexDirection } 
                 align= { align }
                 justify= { justify } 
-                gap="2rem" 
-                
+                wrap="wrap"
             >
                 {
                     memorizedCategories.map( ({ name, altName, slug, altSlug }) => {
@@ -45,6 +44,7 @@ export const CategoriesGrid = (props) => {
                                 transition =".25s"
                                 _hover={{ backgroundColor: "brand.secondary ", }} 
                                 key= { slug } 
+                                padding=".5rem"
                                 fontSize= { fontSize }
                                 
                             >

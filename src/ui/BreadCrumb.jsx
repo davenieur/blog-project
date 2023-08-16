@@ -10,7 +10,7 @@ export const BreadCrumb = ( { children, props }) => {
     const { locale } = props;
 
     const [title, setTitle] = useState('');
-    const fontSize = useBreakpointValue({ base: "sm", md: "xl", lg: "3xl", xl: "4xl" });
+    const fontSize = useBreakpointValue({ base: "lg", md: "xl", lg: "2xl", xl: "4xl" });
     
     useEffect(() => {
         const fetchData = async () => {

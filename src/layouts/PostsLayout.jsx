@@ -8,19 +8,19 @@ export const PostsLayout = ( { children, props } ) => {
 
     const gridTemplateAreas = useBreakpointValue({
         base: `
-            "categories categories"
-            "breadcrumb breadcrumb"
-            "posts posts"
+            "categories"
+            "breadcrumb"
+            "posts"
         `,
         md: `
-            "categories categories"
-            "breadcrumb breadcrumb"
-            "posts posts"
+            "categories"
+            "breadcrumb"
+            "posts"
         `,
         lg: `
-            "categories categories"
-            "breadcrumb breadcrumb"
-            "posts posts"
+            "categories"
+            "breadcrumb"
+            "posts"
         `,
         xl: `
             "breadcrumb categories" 
@@ -28,15 +28,14 @@ export const PostsLayout = ( { children, props } ) => {
         `
     });
 
+    const gridTemplateColumns = useBreakpointValue({ base: "100%", md: "100%", lg: "100%", xl: "1fr .25fr"})
 
     return (
         <Grid
-            gridTemplateColumns="80% 20%" 
-            margin="4rem"
+            gridTemplateColumns= { gridTemplateColumns }
             templateAreas={ gridTemplateAreas}
             gap="2rem"
             padding="2rem"
-      
         >   
 
             {/* BREADCRUMB */}

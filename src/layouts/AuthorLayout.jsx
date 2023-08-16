@@ -11,22 +11,22 @@ export const AuthorLayout = ( { children, props } ) => {
 
     const gridTemplateAreas = useBreakpointValue({
         base: `
-            "categories categories"
-            "breadcrumb breadcrumb"
-            "authorInfo authorInfo"
-            "posts posts"
+            "categories"
+            "breadcrumb"
+            "authorInfo"
+            "posts"
         `,
         md: `
-            "categories categories"
-            "breadcrumb breadcrumb"
-            "authorInfo authorInfo"
-            "posts posts"
+            "categories"
+            "breadcrumb"
+            "authorInfo"
+            "posts"
         `,
         lg: `
-            "categories categories"
-            "breadcrumb breadcrumb"
-            "authorInfo authorInfo"
-            "posts posts"
+            "categories"
+            "breadcrumb"
+            "authorInfo"
+            "posts"
         `,
         xl: `
             "breadcrumb categories" 
@@ -34,11 +34,13 @@ export const AuthorLayout = ( { children, props } ) => {
             "posts categories"
         `
     });
+    
+    const gridTemplateColumns = useBreakpointValue({ base: "100%", md: "100%", lg: "100%", xl: "1fr .20fr"})
 
     return (
         <Grid
-            gridTemplateColumns="80% 20%" 
-            margin="4rem"
+            gridTemplateColumns={ gridTemplateColumns }
+
             templateAreas={ gridTemplateAreas}
             gap="2rem"
             padding="2rem"

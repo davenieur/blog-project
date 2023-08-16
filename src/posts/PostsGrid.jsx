@@ -6,19 +6,23 @@ import { useGetPosts } from "@/hooks";
 
 export const PostsGrid = ( props ) => {
     const { slug, locale, altLocale, queryFunction, parameter } = props;
+
     const gridColumnCount = useBreakpointValue({ base: 1, md: 1, lg: 2, xl: 3 });
-    const limit = useBreakpointValue ({ base: 3, md: 3, lg: 9, xl: 9 });
-    const postWidth =  useBreakpointValue ({ base: "1fr", md: "25rem", lg: "25rem", xl: "1fr" });
+    const responsiveLimit = useBreakpointValue ({ base: 1, md: 3, lg: 9, xl: 9 });
     
     // Controlamos el offset para las peticiones (parametro Skip)
     const [ offset, setOffset ] = useState(0);
+    const [ limit, setLimit ] = useState(9);
     const { memorizedPosts, totalPages } = useGetPosts(slug, locale, altLocale, queryFunction, limit, parameter, offset);
 
     useEffect(() => {
         setOffset(0);
     }, [ totalPages ])
 
- 
+    useEffect(() => {
+        setLimit(responsiveLimit);
+    }, [ responsiveLimit ])
+
     // Decrementamos el offset
     const decrementOffset = () => {
         if (offset > 0) {
@@ -39,13 +43,12 @@ export const PostsGrid = ( props ) => {
     
     // Se muestran los posts en forma de catalogo
     return (
-        <Flex direction="column" gap="2rem" overflow="hidden">
+        <Flex direction="column" justifyContent="flex-start">
             {/* Postcards */}
             <Grid 
-                templateColumns={`repeat(${gridColumnCount}, ${ postWidth } )`} 
-                templateRows="repeat(3, 1fr)" 
-                gap="2rem" 
-                justifyContent="center" 
+                templateColumns={`repeat(${ gridColumnCount }, 1fr )`} 
+                padding="0"
+                gap="5rem 1rem"
             >
                 {
                     memorizedPosts?.map(post => {

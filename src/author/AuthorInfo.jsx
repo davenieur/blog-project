@@ -11,22 +11,28 @@ export const AuthorInfo = (props) => {
 
     const gridTemplateAreas = useBreakpointValue({
         base: `
-            "authorImage authorImage"
-            "info  info"
+            "authorImage"
+            "info"
         `,
         md: `
-            "authorImage authorImage"
-            "info  info" 
+            "authorImage"
+            "info " 
         `,
         lg: `
-            "authorImage info"
-            "authorImage  info"
+            "authorImage"
+            "info"
         `,
         xl: `
             "authorImage info"
             "authorImage  info"
         `
     });
+
+    const imageHeight=  useBreakpointValue({ base: 260, md: 550, lg: 350, xl: 350 });
+    const imageWidth=  useBreakpointValue({ base: "100%", md: "100%", lg:300, xl: 350 });
+
+    const titleFontSize = useBreakpointValue({ base: "2xl", md: "4xl", lg: "4xl", xl: "4xl" });
+    const gridTemplateColumns = useBreakpointValue({ base: "100%", md: "100%", lg: "100%", xl: ".4fr .5fr"})
 
     return (
     
@@ -35,17 +41,24 @@ export const AuthorInfo = (props) => {
             gridTemplateAreas={ gridTemplateAreas }
             gap="2rem" 
             color="brand.black"
+            gridTemplateColumns= { gridTemplateColumns }
+          
         >
             
 
             {/* Imagen del autor */}
-            <Box gridArea="authorImage">
-                <Image src={photo.url} alt={ photo.title } width={ 500 } height={ 300 } objectFit="cover" />
+            <Box position="relative" width= { imageWidth } height={ imageHeight } gridArea="authorImage">
+                <Image
+                    src={photo.url}
+                    alt={ photo.title }
+                    objectFit="cover"
+                    layout="fill"
+                />
             </Box>
           
             <Flex direction="column" gap="2rem" width="80%" textAlign="justify">
                 {/* Nombre del autor */}
-                <Heading as='h1' fontSize="4xl" fontFamily="mukta" color="brand.black" >
+                <Heading as='h1' fontSize= { titleFontSize } fontFamily="mukta" color="brand.black" >
                     { fullName }
                 </Heading>
 

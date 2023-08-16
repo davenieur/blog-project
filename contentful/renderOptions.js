@@ -11,7 +11,7 @@ import "@fontsource/open-sans";
 import { PostEntry } from '@/post';
 import { CategoryItem } from '@/categories';
 
-export const renderOptions = (links = {}) => {
+export const renderOptions = (links = {}, imageHeight) => {
   // Creamos un mapa para los assets
   const assetMap = new Map();
 
@@ -113,21 +113,26 @@ export const renderOptions = (links = {}) => {
             <Link 
               display="flex"
               href={`/blog/${ entry.slug }`} 
-              width="fit-content" 
+              width= "100%" 
               color="brand.gray" 
               backgroundColor="brand.primary" 
               borderRadius="1rem"
-              padding="1rem"
               alignItems="center"
               gap="1rem"
+              flexDirection="column"
+  
               _hover={{ backgroundColor: "brand.tertiary", color: "brand.primary"}}
-            >        
-              <Image
-                src={ entry?.thumbnail.url }
-                alt={ entry?.thumbnail.title }
-                width="100"
-                height="100"
-              />
+            >  
+
+              <Box position="relative" width= "100%" height= { imageHeight }>
+                <Image
+                    src={ entry?.thumbnail.url }
+                    alt={ entry?.thumbnail.title }
+                    objectFit="cover"
+                    layout="fill"
+                />
+              </Box>  
+
               { entry.title }
             </Link>
   
@@ -151,8 +156,8 @@ export const renderOptions = (links = {}) => {
             <iframe
               src={ asset.url }
               title={ asset.title }
-              width="500"
-              height="500"
+              width="fit-content"
+              height="100%"
               allowFullScreen={true}
             />
           )
@@ -160,12 +165,14 @@ export const renderOptions = (links = {}) => {
           
           // Imagenes
           return (
-            <Image
-              src={ asset.url }
-              alt={ asset.title }
-              width="200"
-              height="200"
-            />
+            <Box position="relative" width= "100%" height=  { imageHeight }>
+              <Image
+                  src={ asset?.url }
+                  alt={ asset?.title }
+                  objectFit="cover"
+                  layout="fill"
+              />
+            </Box>  
          
           );
         }

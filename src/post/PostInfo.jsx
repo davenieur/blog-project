@@ -9,20 +9,20 @@ import { AuthorTag } from '@/author';
 import { ShareMenu } from '.';
 
 export const PostInfo = (props) => {
-    const { title, author, readingTime, featuredImage, creationDate, category, thumbnail, locale, postUrl } = props;
+    const { title, readingTime, featuredImage, creationDate, category, thumbnail, locale, postUrl } = props;
 
     const gridTemplateAreas = useBreakpointValue({
         base: `
-            "postImage postImage"
-            "info  info"
+            "postImage"
+            "info"
         `,
         md: `
-            "postImage postImage"
-            "info  info" 
+            "postImage"
+            "info" 
         `,
         lg: `
-            "postImage postImage"
-            "info  info" 
+            "postImage"
+            "info" 
         `,
         xl: `
             "info postImage"
@@ -30,29 +30,34 @@ export const PostInfo = (props) => {
         `
     });
 
+    const imageHeight=  useBreakpointValue({ base: 100, md: 450, lg: 450, xl: 350 });
+    const imageWidth=  useBreakpointValue({ base:  "100%", md: "100%", lg:"100", xl: 450 });
+
+    const fontSize = useBreakpointValue({ base: "sm", md: "md", lg: "md", xl: "md" });
+    const flexDirection = useBreakpointValue({ base: "column", md: "row", lg: "row", xl: "row"});
+
+    const titleFontSize = useBreakpointValue({ base: "2xl", md: "4xl", lg: "4xl", xl: "4xl" });
+    const gridTemplateColumns = useBreakpointValue({ base: "100%", md: "100%", lg: "100%", xl: ".7fr .5fr"})
+
     return (
         <GridItem 
             display="grid"
             gridTemplateAreas={ gridTemplateAreas }
             area= "postInfo"
-            gap="5rem"  
-            padding="3rem" 
+            gap="2rem"  
             color="brand.black"
-          
+            gridTemplateColumns= { gridTemplateColumns }
         >
             <Flex direction="column" gap="2rem" gridArea="info">
                 {/* Nombre del post */}
-                <Heading as='h1' fontSize="4xl" fontFamily="mukta" color="brand.black" >
+                <Heading as='h1' fontSize={ titleFontSize} fontFamily="mukta" color="brand.black" >
                     { title }
                 </Heading>
                 
-                <Flex direction="row" gap="2rem" fontSize="md" align="center" fontWeight="light">
-
-                    {/* Datos del autor */}
-                    <AuthorTag
-                        author = { author }
-                        locale = { locale }
-                    />
+                <Flex direction={ flexDirection } gap="1rem">
+                    
+                    {/* Nombre del autor */}
+                    <AuthorTag {...props} />
                     
                     {/* Fecha de publicación */}
                     <Flex direction="row" align="center" gap=".5rem">
@@ -62,6 +67,7 @@ export const PostInfo = (props) => {
                             { dateFormat(creationDate) }
                         </Text>
                     </Flex>
+                 
                     
 
                     {/* Tiempo de lectura */}
@@ -72,11 +78,17 @@ export const PostInfo = (props) => {
                             {readingTime} min 
                         </Text>
                     </Flex>
-                    
                 </Flex>
 
                 {/* Categoría del post */}
-                <Box backgroundColor="brand.secondary" color="brand.black" width="fit-content" padding=".5rem 1rem" borderRadius="1rem" fontSize="md">
+                <Box 
+                    backgroundColor="brand.secondary" 
+                    color="brand.black" 
+                    width="fit-content" 
+                    padding=".5rem 1rem" 
+                    borderRadius="1rem" 
+                    fontSize={ fontSize }
+                >
                     <CategoryItem { ...category }/>
                 </Box>
                 
@@ -92,14 +104,15 @@ export const PostInfo = (props) => {
 
           
             {/* Imagen del post */}
-            <Flex width="30rem" position="relative" height="20rem" align="center" justify="center" gridArea="postImage">
+            <Box position="relative" width= { imageWidth } height={ imageHeight } gridArea="postImage">
                 <Image
                     src={ featuredImage.url }
                     alt={ featuredImage.title }
-                    width="500"
-                    height="500"  
+                    objectFit="cover"
+                    layout="fill"
                 />
-            </Flex>
+            </Box>
+
         </GridItem>
     )
 }

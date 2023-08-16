@@ -22,7 +22,6 @@ export const useGetPosts = (slug, locale, altLocale, queryFunction, limit, param
     // Obtenemos el número total de posts
     useEffect(() => {
         const getTotalPages = async () => {
-           
             // Obtenemos el total de posts
             const totalPosts = await getTotalPosts(slug,parameter);
             setTotalPosts(totalPosts);
@@ -36,10 +35,10 @@ export const useGetPosts = (slug, locale, altLocale, queryFunction, limit, param
 
     // Obtenemos el número total de páginas
     useEffect(() => {
-         // Obtenemos el total de páginas para realizar la páginación
-         const totalPages = Math.ceil(totalPosts / limit);
+        // Obtenemos el total de páginas para realizar la páginación
+        const totalPages = Math.ceil(totalPosts / limit);
 
-         setTotalPages(totalPages);
+        setTotalPages(totalPages);
     }, [ limit ])
 
     const memorizedPosts = useMemo(() => posts, [posts]);

@@ -1,5 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
-import { Divider, Flex, Icon, Text } from "@chakra-ui/react";
+import { Divider, Flex, Icon, Text, useBreakpointValue } from "@chakra-ui/react";
 import { AiFillCaretRight } from 'react-icons/ai'
 import PropTypes from 'prop-types';
 
@@ -8,6 +8,9 @@ import "@fontsource/mukta";
 
 
 export const PostContentTable = ( props ) => {
+
+    const fontSize = useBreakpointValue({ base: "sm", md: "md", lg: "md", xl: "md" });
+
     const { body: { json: { content }}} = props;
     const headers = content.filter(content => content.nodeType === 'heading-2');
 
@@ -25,9 +28,9 @@ export const PostContentTable = ( props ) => {
     };
     
     return (
-        <Flex  gridArea="postContentTable" direction="column" gap="2rem" padding="2rem">
+        <Flex  gridArea="postContentTable" direction="column" gap="2rem" >
             
-            <Flex direction="row" align="center" fontSize="lg" gap=".5rem">
+            <Flex direction="row" align="center" fontSize= { fontSize } >
                 <Icon as={ AiFillCaretRight } boxSize={"1.5rem"} color="brand.tertiary"/>
                 <Text> { contentLabel }</Text>
             </Flex>
