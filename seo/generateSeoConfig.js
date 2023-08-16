@@ -20,10 +20,7 @@ export const generateSeoConfig = (title, metaDescription, thumbnail, url, author
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: title || postTitle,
-    description: metaDescription || description,
-    creator: `@${author.fullName}`,
-    image: thumbnail.url || imageUrl,
+    cardType: 'summary_large_image',
+    site: `Loo_veely`,
   },
 });
