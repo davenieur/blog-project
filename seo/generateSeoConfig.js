@@ -21,7 +21,7 @@ export const generateSeoConfig = (title, metaDescription, thumbnail, url, author
   },
   twitter: {
     cardType: 'summary_large_image',
-    site: '@Loo_veely',
-    handle: '@Loo_veely',
+    site: 'Loo_veely',
+    handle: 'Loo_veely',
   },
 });
