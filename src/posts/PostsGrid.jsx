@@ -9,10 +9,15 @@ export const PostsGrid = ( props ) => {
 
     const gridColumnCount = useBreakpointValue({ base: 1, md: 1, lg: 2, xl: 3 });
     const responsiveLimit = useBreakpointValue ({ base: 1, md: 3, lg: 9, xl: 9 });
+    const cardWidth = useBreakpointValue ({ base: "60%", md: "60%", lg: "50%", xl: "30%" });
     
     // Controlamos el offset para las peticiones (parametro Skip)
     const [ offset, setOffset ] = useState(0);
+
+    // TODO: MEJORAR QUE AL CARGAR EL SITIO WEB EN DISTINTAS PANTALLAS UTILICÉ EL LIMIT CORRECTO
     const [ limit, setLimit ] = useState(9);
+
+    // Utilizamos el hook personalizado
     const { memorizedPosts, totalPages } = useGetPosts(slug, locale, altLocale, queryFunction, limit, parameter, offset);
 
     useEffect(() => {
@@ -40,15 +45,39 @@ export const PostsGrid = ( props ) => {
             setOffset(0);
         }
     };
+
+    
+    useEffect(() => {
+        const handleResize = () => {
+        const screenWidth = window.innerWidth;
+
+        if (screenWidth >= 1024) {
+            setLimit(9);
+        } else if (screenWidth >= 768) {
+            setLimit(3);
+        } else {
+            setLimit(1);
+        }
+        };
+
+        handleResize(); // Llamada inicial
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+        window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     
     // Se muestran los posts en forma de catalogo
     return (
         <Flex direction="column" justifyContent="flex-start">
             {/* Postcards */}
             <Grid 
-                templateColumns={`repeat(${ gridColumnCount }, 1fr )`} 
+                templateColumns={`repeat(${ gridColumnCount }, ${ cardWidth } )`} 
                 padding="0"
                 gap="5rem 1rem"
+                alignItems="center"
+                justifyContent="center"
             >
                 {
                     memorizedPosts?.map(post => {

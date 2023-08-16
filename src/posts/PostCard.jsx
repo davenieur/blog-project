@@ -13,7 +13,7 @@ export const PostCard = (props) => {
 
     const fontSize = useBreakpointValue({ base: "sm", md: "md", lg: "md", xl: "md" });
     const flexDirection = useBreakpointValue({ base: "column", md: "row", lg: "row", xl: "row"});
-    const imageHeight=  useBreakpointValue({ base: 250, md: 250, lg: 350, xl: 260 });
+    const imageHeight=  useBreakpointValue({ base: 150, md: 250, lg: 200, xl: 260 });
 
     return (
         <Card  bg="brand.primary" border="none" shadow="none" padding="0">
@@ -51,7 +51,7 @@ export const PostCard = (props) => {
 
                     {/* Titulo */}
                     <Link  href={`/blog/${ slug }`}  locale={ locale }>
-                        <Text fontSize={ fontSize } textAlign={"justify"} fontFamily="mukta">
+                        <Text fontSize={ fontSize }  fontFamily="mukta" width="100%">
                             { title }
                         </Text>
                     </Link>
