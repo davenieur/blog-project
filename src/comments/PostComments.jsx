@@ -13,7 +13,7 @@ export const PostComments = ( { slug, title } ) => {
 
   
     return (
-        <Box padding="4rem">
+        <Box gridArea="postComments">
             <DiscussionEmbed shortname={disqusShortname} config={disqusConfig}  />
         </Box>
     );

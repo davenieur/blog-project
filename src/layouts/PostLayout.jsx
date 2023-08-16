@@ -18,10 +18,25 @@ export const PostLayout = ( { props } ) => {
             "postInfo postInfo"
             "postContentTable postContentTable"
             "postBody  postBody"
+            "postComments postComments"
         `,
         md: `
             "postInfo postInfo"
-            "postBody  postContentTable"
+            "postContentTable postContentTable"
+            "postBody  postBody"
+            "postComments postComments"
+        `,
+        lg: `
+            "postInfo postInfo"
+            "postContentTable postContentTable"
+            "postBody  postBody"
+            "postComments postComments"
+        `,
+        xl: `
+            "postInfo postInfo"
+            "postContentTable postContentTable"
+            "postBody  postBody"
+            "postComments postComments"
         `,
     });
 

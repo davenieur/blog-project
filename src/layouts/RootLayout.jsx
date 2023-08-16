@@ -8,7 +8,8 @@ import PropTypes from 'prop-types';
 export const RootLayout = ( { children, pageProps } ) => {
     return (
         <Grid 
-            gridTemplateRows={"1fr 4fr 1fr"}
+            gridTemplateRows="1fr 4fr 1fr"
+            gridTemplateColumns="1fr 1fr"
             templateAreas={`"header header"
             "main main"
             "footer footer"`}

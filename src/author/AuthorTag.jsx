@@ -10,10 +10,8 @@ export const AuthorTag = ( props ) => {
             <Flex 
                 backgroundColor="brand.primary"
                 color="brand.gray"
-                fontWeight="bold" 
+             
                 transition=".5s"
-                width="fit-content" 
-                padding=".5rem 1rem" 
                 borderRadius="1rem" 
                 align="center"
                 _hover={{ backgroundColor: "brand.tertiary", color: "brand.primary"  }}
@@ -26,7 +24,7 @@ export const AuthorTag = ( props ) => {
                     mr={2}
                     alt= {`${ author.fullName } avatar`}
                 />
-                <Text fontSize="sm" fontFamily="mukta">{ author.fullName } </Text>
+                <Text fontSize="sm" fontFamily="mukta" mr="1rem">{ author.fullName } </Text>
             </Flex>
         </Link>
     )

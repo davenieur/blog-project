@@ -17,9 +17,10 @@ const theme = extendTheme({
         primary: "#FCFCFC",
         secondary: "#FF8811",
         tertiary: "#5F00BA",
+        primary_background: "#fff5eb",
+        secondary_background: "#d5a8ff",
         black: "#0C0910",
         gray: "#212529",
-        pink: "#F227B2",
         footer: "#F7F7F7"
       },
     },

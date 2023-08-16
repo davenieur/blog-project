@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import PropTypes from 'prop-types';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Heading  } from "@chakra-ui/react"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Heading, useBreakpointValue  } from "@chakra-ui/react"
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { getSite } from "../../contentful/querys";
 import Link from "next/link";
@@ -10,6 +10,7 @@ export const BreadCrumb = ( { children, props }) => {
     const { locale } = props;
 
     const [title, setTitle] = useState('');
+    const fontSize = useBreakpointValue({ base: "sm", md: "xl", lg: "3xl", xl: "4xl" });
     
     useEffect(() => {
         const fetchData = async () => {
@@ -27,7 +28,7 @@ export const BreadCrumb = ( { children, props }) => {
     
     
     return (
-        <Heading as='h2' display="flex" flexDirection="row" gap="1rem" fontSize="4xl" color='brand.black' >
+        <Heading as='h2' display="flex" flexDirection="row" gap="1rem" fontSize= { fontSize } color='brand.black' width="fit-content">
             <Breadcrumb separator={<ChevronRightIcon color="brand.secondary" />} fontFamily="mukta">
                 <BreadcrumbItem >
                     <BreadcrumbLink as={Link} href={'/blog'} locale={ locale }>{ memorizedTitle }</BreadcrumbLink>

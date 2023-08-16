@@ -2,18 +2,21 @@ import { useEffect, useState } from "react";
 import { Flex, Divider, useBreakpointValue, Grid } from "@chakra-ui/react";
 import { Pagination, PostCard } from "./";
 import PropTypes from 'prop-types';
-import { getTotalPosts } from "../../contentful/querys";
 import { useGetPosts } from "@/hooks";
 
 export const PostsGrid = ( props ) => {
-    const { slug, locale, altLocale, queryFunction, limit, parameter } = props;
+    const { slug, locale, altLocale, queryFunction, parameter } = props;
+    const gridColumnCount = useBreakpointValue({ base: 1, md: 1, lg: 2, xl: 3 });
+    const limit = useBreakpointValue ({ base: "3", md: "3", lg: "9", xl: "9" });
+    const postWidth =  useBreakpointValue ({ base: "1fr", md: "25rem", lg: "25rem", xl: "1fr" });
     
-    // Utiliza useBreakpointValue para adaptar el número de columnas
-    const gridColumnCount = useBreakpointValue({ base: 1, md: 2, lg: 3 });
-
     // Controlamos el offset para las peticiones (parametro Skip)
     const [ offset, setOffset ] = useState(0);
     const { memorizedPosts, totalPages } = useGetPosts(slug, locale, altLocale, queryFunction, limit, parameter, offset);
+
+    useEffect(() => {
+        setOffset(0);
+    }, [ totalPages ])
 
  
     // Decrementamos el offset
@@ -36,10 +39,14 @@ export const PostsGrid = ( props ) => {
     
     // Se muestran los posts en forma de catalogo
     return (
-        <Flex direction="column" gap="2rem" overflow="hidden" >
-
+        <Flex direction="column" gap="2rem" overflow="hidden">
             {/* Postcards */}
-            <Grid templateColumns={`repeat(${gridColumnCount}, .5fr)`} gap="2rem" justifyContent="center">
+            <Grid 
+                templateColumns={`repeat(${gridColumnCount}, ${ postWidth } )`} 
+                templateRows="repeat(3, 1fr)" 
+                gap="2rem" 
+                justifyContent="center" 
+            >
                 {
                     memorizedPosts?.map(post => {
                         return(

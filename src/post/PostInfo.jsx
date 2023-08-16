@@ -17,10 +17,17 @@ export const PostInfo = (props) => {
             "info  info"
         `,
         md: `
+            "postImage postImage"
+            "info  info" 
+        `,
+        lg: `
+            "postImage postImage"
+            "info  info" 
+        `,
+        xl: `
             "info postImage"
             "info  postImage"
-           
-        `,
+        `
     });
 
     return (
@@ -28,10 +35,6 @@ export const PostInfo = (props) => {
             display="grid"
             gridTemplateAreas={ gridTemplateAreas }
             area= "postInfo"
-            // display="flex"
-            // alignItems="center" 
-            // justifyContent="center" 
-            // flexDirection= { flexDirection }
             gap="5rem"  
             padding="3rem" 
             color="brand.black"

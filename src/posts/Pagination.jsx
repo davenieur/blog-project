@@ -31,7 +31,7 @@ export const Pagination = ({ totalPages, currentPage, incrementOffset, decrement
                 aria-label='Foward'
                 fontSize='1.25rem'
                 icon={<ArrowForwardIcon />}
-                _hover={{ backgroundColor: "brand.pink"}}
+                _hover={{ backgroundColor: "brand.secondary"}}
                 onClick={  incrementOffset }
 
             />

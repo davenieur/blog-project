@@ -13,10 +13,19 @@ export const PostsLayout = ( { children, props } ) => {
             "posts posts"
         `,
         md: `
+            "categories categories"
+            "breadcrumb breadcrumb"
+            "posts posts"
+        `,
+        lg: `
+            "categories categories"
+            "breadcrumb breadcrumb"
+            "posts posts"
+        `,
+        xl: `
             "breadcrumb categories" 
             "posts categories"
-           
-        `,
+        `
     });
 
 
