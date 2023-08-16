@@ -108,10 +108,6 @@ npm install ^
     framer-motion@^10.15.1 ^
     graphql@^16.7.1 ^
     graphql-request@^6.1.0 ^
-    fontsource/mukta@^5.0.8 ^
-    fontsource/nunito@^5.0.8 ^
-    fontsource/open-sans@^5.0.8 ^
-    fontsource/raleway@^5.0.8 ^
     moment@^2.29.4 ^
     next@13.4.10 ^
     next-seo@^6.1.0 ^
